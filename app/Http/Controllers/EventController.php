@@ -14,7 +14,7 @@ class EventController extends Controller
             $events[] = [
                 'id' => $event->id,
                 'name' => $event->name,
-//                'image' => $event->image,//
+//                'image' => $event->image,
                 'description' => $event->description,
             ];
         }

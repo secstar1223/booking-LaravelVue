@@ -4,4 +4,4 @@ composer install
 npm install
 ./artisan cache:clear
 npm run build
-./artisan migrate
+yes | ./artisan migrate

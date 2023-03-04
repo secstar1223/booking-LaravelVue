@@ -1,8 +1,7 @@
 #!/bin/sh
 
-sudo -u web composer install
-sudo -u web npm install
-sudo -u web npm run build
-sudo -u web ./artisan migrate
-sudo -u web ./artisan cache:clear
-chown -fR web:web ./
+composer install
+npm install
+npm run build
+./artisan migrate
+./artisan cache:clear

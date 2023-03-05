@@ -9,7 +9,7 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book It Dashboard</title>
-  <link rel="stylesheet" href="CSS/Dashboardcss.css">
+ <link rel="stylesheet" href="{{ asset('css/Dashboardcss.css') }}">
 </head>
 <body>
   <header>

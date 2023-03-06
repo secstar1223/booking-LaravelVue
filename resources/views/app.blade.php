@@ -16,20 +16,6 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
-    <!-- Left side menu code here -->
-            <nav>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li>
-                    <a href="#">Users</a>
-                    <ul>
-                        <li><a href="#">All Users</a></li>
-                        <li><a href="#">Add User</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
         @inertia
     </body>
 </html>

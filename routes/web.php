@@ -3,7 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\SeatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/events', [\App\Http\Controllers\EventController::class, 'index']);
-
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}/seats', [SeatController::class, 'index'])->name('events.seats.index');
 
 Route::middleware([
     'auth:sanctum',

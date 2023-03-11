@@ -16,12 +16,27 @@ class CreateSeatsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('max_available')->default(0);
-            $table->integer('price')->default(0);
-            $table->string('currency', 3)->default('USD');
+            $table->integer('max_capacity')->default(0);
             $table->integer('order')->default(0);
-            $table->unsignedBigInteger('event_session_id');
-            $table->foreign('event_session_id')->references('id')->on('event_sessions')->onDelete('cascade');
+            $table->text('prices');
+            /*
+            [
+                {
+                    'name'=>'hour',
+                    'duration'=>3600,
+                    'order'=>0,
+                    'price'=> 1000, // price as an integer
+                    'currency'=>'USD',
+                }
+            ]
+            */
+            $table->unsignedBigInteger('team_id');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->index('team_id');
+            $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->index(['team_id', 'event_id']);
+            $table->index(['id', 'event_id']);
             $table->timestamps();
         });
     }

@@ -19,6 +19,8 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/inertia-vue3": "^0.6.0",
         "bootstrap": "^5.2.3",
         "sass": "^1.58.3",
         "sass-loader": "^13.2.0"

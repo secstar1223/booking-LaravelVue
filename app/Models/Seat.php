@@ -11,7 +11,8 @@ class Seat extends Model
     protected $fillable = [
         'name',
         'description',
-        'max_available',
+        'max_capacity',
+        'order',
         'price',
     ];
 

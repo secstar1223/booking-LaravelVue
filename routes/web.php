@@ -26,6 +26,15 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/mdashboard', function () {
+    return Inertia::render('mdashboard', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}/seats', [SeatController::class, 'index'])->name('events.seats.index');
 

@@ -26,7 +26,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/', function () {
+Route::get('/mdashboard', function () {
     return Inertia::render('mdashboard', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),

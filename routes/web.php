@@ -26,6 +26,8 @@ Route::get('/', function () {
     ]);
 });
 
+
+
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}/seats', [SeatController::class, 'index'])->name('events.seats.index');
 

@@ -11,8 +11,8 @@ export default defineConfig({
             host: 'booking.hxx.li',
         },
         https: {
-            key: fs.readFileSync('./resources/ssl/privkey.pem'),
-            cert: fs.readFileSync('./resources/ssl/fullchain.pem'),
+            key: fs.readFileSync('./resources/ssl/hxx.li.key'),
+            cert: fs.readFileSync('./resources/ssl/hxx.li.crt'),
         },
     },
     resolve: {

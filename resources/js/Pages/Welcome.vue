@@ -16,7 +16,7 @@ export default {
         {
           quote: 'Booking 24/7 has completely transformed the way I manage my bookings. It\'s so easy to use and my clients love it!',
           author: 'John Smith',
-          job: 'Owner of Smith Salon'
+          job: 'Owner of Smith happty ending Salon'
         },
         {
           quote: 'I\'ve tried several booking software solutions over the years, but Booking 24/7 is by far the best. It\'s simple, efficient, and has saved me so much time.',
@@ -31,8 +31,6 @@ export default {
 
 <template>
     <Head title="Welcome" />
-
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
             <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</Link>
 
@@ -42,7 +40,6 @@ export default {
                 <Link v-if="canRegister" :href="route('register')" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
             </template>
         </div> 
-    </div>
             <template>
 			  <div class="landing-page">
 				<header>

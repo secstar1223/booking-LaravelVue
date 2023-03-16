@@ -5,3 +5,4 @@ npm install
 ./artisan cache:clear
 npm run build
 yes | ./artisan migrate
+ln -s ../storage/app/public public/storage

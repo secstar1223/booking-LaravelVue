@@ -40,33 +40,34 @@ export default {
                 <Link v-if="canRegister" :href="route('register')" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
             </template>
         </div> 
-            <template>
-			  <div class="landing-page">
-				<header>
-				  <h1>Booking 24/7</h1>
-				  <p>The Online Booking Solution</p>
-				  <a href="#" class="cta-btn">Book Now</a>
-				</header>
-				<section class="benefits">
-				  <h2>Why Choose Booking 24/7?</h2>
-				  <ul>
-					<li>24/7 availability</li>
-					<li>Easy booking process</li>
-					<li>Automatic reminders</li>
-					<li>Customizable booking forms</li>
-				  </ul>
-				</section>
-				<section class="testimonials">
-				  <h2>What Our Customers Say</h2>
-				  <div class="testimonial" v-for="(testimonial, index) in testimonials" :key="index">
-					<p>"{{ testimonial.quote }}"</p>
-					<p class="author">- {{ testimonial.author }}, {{ testimonial.job }}</p>
-				  </div>
-				</section>
-				<footer>
+        <template>
+          <div class="landing-page">
+		    <header>
+		      <h1>Booking 24/7</h1>
+		      <p>The Online Booking Solution</p>
+		      <a href="#" class="cta-btn">Book Now</a>
+		    </header>
+		    <section class="benefits">
+		      <h2>Why Choose Booking 24/7?</h2>
+              <ul>
+                <li>24/7 availability</li>
+                <li>Easy booking process</li>
+                <li>Automatic reminders</li>
+                <li>Customizable booking forms</li>
+              </ul>
+		    </section>
+            <section class="testimonials">
+              <h2>What Our Customers Say</h2>
+              <div class="testimonial" v-for="(testimonial, index) in testimonials" :key="index">
+                <p>"{{ testimonial.quote }}"</p>
+                <p class="author">- {{ testimonial.author }}, {{ testimonial.job }}</p>
+              </div>
+            </section>
+		    <footer>
 				  <p>&copy; 2023 Booking 24/7. All rights reserved.</p>
-				</footer>
-			</template>
+		    </footer>
+          </div>
+		</template>
 </template>
 
 

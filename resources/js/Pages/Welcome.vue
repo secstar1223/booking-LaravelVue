@@ -21,7 +21,7 @@ export default {
         {
           quote: 'I\'ve tried several booking software solutions over the years, but Booking 24/7 is by far the best. It\'s simple, efficient, and has saved me so much time.',
           author: 'Jane Doe',
-          job: 'Personal Trainer'
+          job: 'Personal Trainer of Butts'
         }
       ]
     }

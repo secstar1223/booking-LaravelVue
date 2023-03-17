@@ -41,9 +41,9 @@
 				</ul>
 				<button id="nav-products-btn">Products</button>
 			<ul id="nav-products-menu" class="hidden">
-				<li><a href="#"id="nav-rentals-btn">Rentals</a></li>
-				<li><a href="addon.html"id="nav-addon-btn">Add-ons</a></li>
-				<li><a href="#"id="nav-membership-btn">Memberships</a></li>
+				<li><a href="#" id="nav-rentals-btn">Rentals</a></li>
+				<li><a href="addon.html" id="nav-addon-btn">Add-ons</a></li>
+				<li><a href="#" id="nav-membership-btn">Memberships</a></li>
 			</ul>
 				<button id="nav-configuration-btn">Configuration</button>
 			<ul id="nav-configuration-menu" class="hidden">

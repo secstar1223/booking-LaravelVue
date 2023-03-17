@@ -75,104 +75,105 @@ export default {
 
 
 <style>
+/* Set background color and font */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  background-color: #87CEEB; /* light blue */
+  font-family: 'Roboto', sans-serif;
 }
 
-.container {
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Set the height to 100% of the viewport height */
-}
-
-
+/* Style the header section */
 header {
-  background-color: #0077CC;
-  color: #FFFFFF;
   text-align: center;
-  padding: 50px;
+  margin-top: 100px;
 }
 
-header h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
+h1 {
+  font-size: 64px;
+  color: #FFFFFF; /* white */
+  text-shadow: 2px 2px 5px #000000; /* add shadow */
 }
 
-header p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
+p {
+  font-size: 24px;
+  color: #FFFFFF; /* white */
+  margin-bottom: 50px;
 }
 
 .cta-btn {
-  background-color: #FFFFFF;
-  color: #0077CC;
-  font-size: 1.2em;
-  padding: 10px 20px;
-  border-radius: 5px;
+  display: inline-block;
+  background-color: #F08080; /* coral */
+  color: #FFFFFF; /* white */
+  font-size: 20px;
+  padding: 20px 40px;
+  border-radius: 50px;
   text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .cta-btn:hover {
-  background-color: #0077CC;
-  color: #FFFFFF;
+  background-color: #FFA07A; /* light salmon */
 }
 
+/* Style the benefits section */
 .benefits {
-  background-color: #F7F7F7;
-  padding: 50px;
+  text-align: center;
+  margin-top: 100px;
 }
 
-.benefits h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
+h2 {
+  font-size: 48px;
+  color: #FFFFFF; /* white */
+  text-shadow: 2px 2px 5px #000000; /* add shadow */
 }
 
-.benefits ul {
-  list-style: none;
-  padding: 0;
+ul {
+  list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 
-.benefits li {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+li {
+  font-size: 24px;
+  color: #FFFFFF; /* white */
+  margin-bottom: 20px;
 }
 
+/* Style the testimonials section */
 .testimonials {
-  background-color: #FFFFFF;
-  padding: 50px;
-}
-
-.testimonials h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
+  text-align: center;
+  margin-top: 100px;
 }
 
 .testimonial {
-  margin-bottom: 30px;
+  background-color: #FFFFFF; /* white */
+  color: #000000; /* black */
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 50px;
+  box-shadow: 2px 2px 5px #000000; /* add shadow */
 }
 
-.testimonial p {
-  font-size: 1.2em;
-margin-bottom: 10px;
+.author {
+  font-style: italic;
+  margin-top: 20px;
 }
 
-.testimonial .author {
-font-size: 1em;
-font-style: italic;
+/* Style the footer */
+footer {
+  text-align: center;
+  margin-top: 100px;
+  color: #FFFFFF; /* white */
 }
 
-.footer {
-background-color: #0077CC;
-color: #FFFFFF;
-text-align: center;
-padding: 20px;
+/* Set link styles */
+a {
+  color: #FFFFFF; /* white */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
 
-.footer p {
-font-size: 1.2em;
-margin: 0;
+a:hover {
+  color: #FFA07A; /* light salmon */
 }
+
 </style>

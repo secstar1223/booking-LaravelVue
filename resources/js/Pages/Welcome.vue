@@ -39,12 +39,14 @@ defineProps({
  
   </div>
       <section class="testimonials">
-      <h2>What Our Customers Say</h2>
-      <div class="testimonial" v-for="(testimonial, index) in testimonials" :key="index">
-        <p>"{{ testimonial.quote }}"</p>
-        <p class="author">- {{ testimonial.author }}, {{ testimonial.job }}</p>
-      </div>
-    </section>
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-wrapper">
+          <div class="testimonial" v-for="(testimonial, index) in testimonials" :key="index">
+            <p>"{{ testimonial.quote }}"</p>
+            <p class="author">- {{ testimonial.author }}, {{ testimonial.job }}</p>
+          </div>
+        </div>
+      </section>
   </div>
      <footer>
       <p>&copy; 2023 Booking 24/7. All rights reserved.</p>
@@ -139,23 +141,35 @@ li {
 }
 
 /* Style the testimonials section */
-.testimonials {
-  text-align: center;
-  margin-top: 100px;
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.testimonial-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .testimonial {
-  background-color: #FFFFFF; /* white */
-  color: #000000; /* black */
-  border-radius: 10px;
-  padding: 30px;
-  margin-bottom: 50px;
-  box-shadow: 2px 2px 5px #000000; /* add shadow */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  max-width: 400px;
+}
+
+.testimonial p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #000;
 }
 
 .author {
+  text-align: right;
   font-style: italic;
-  margin-top: 20px;
 }
 
 /* Style the footer */

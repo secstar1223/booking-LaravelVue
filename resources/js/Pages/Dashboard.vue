@@ -3,97 +3,9 @@
 //import Welcome from '@/Components/Welcome.vue';
 </script>
 
-<script>
-function hideOtherSections() {
-  var otherSections = document.querySelectorAll('.right:not(.hidden)');
-  otherSections.forEach(function(section) {
-    section.classList.add('hidden');
-  });
-}
 
-// Get all buttons with dropdown menus
-var buttons = document.querySelectorAll('.nav-button-container button');
-
-// Add event listeners to each button
-buttons.forEach(function(button) {
-  var menu = button.nextElementSibling;
-  if (menu) {
-    button.addEventListener('click', function() {
-      menu.classList.toggle('hidden');
-      if (button.id === 'nav-configuration-btn') {
-        hideOtherSections();
-        var customerSection = document.getElementById('customer-section');
-        customerSection.classList.toggle('hidden');
-      }
-    });
-  }
-});
-
-// Get all links in the dashboard menu
-var links = document.querySelectorAll('#nav-dashboard-menu a, #nav-calendar-menu a, #nav-customers-menu a, #nav-reports-menu a, #nav-marketing-menu a, #nav-products-menu a');
-
-// Add event listeners to each link
-links.forEach(function(link) {
-  link.addEventListener('click', function(event) {
-  
-   if (link.getAttribute('href') === 'abandon.html') {
-      // Allow the default link behavior
-      return;
-    }
-	if (link.getAttribute('href') === 'addon.html') {
-      // Allow the default link behavior
-      return;
-    }
-	
-    // Prevent the default link behavior
-    event.preventDefault();
-
-    // Stop the event from bubbling up to the button
-    event.stopPropagation();
-
-    hideOtherSections();
-
-    if (link.id === 'nav-manifest-btn') {
-      var manifestSection = document.getElementById('manafest-selection');
-      manifestSection.classList.remove('hidden');
-    } else if (link.id === 'nav-capacity-btn') {
-      var capacitySection = document.getElementById('capacity-selection');
-      capacitySection.classList.remove('hidden');
-    } else if (link.id === 'nav-calrentals-btn') {
-      var calrentalsSection = document.getElementById('calrentals-selection');
-      calrentalsSection.classList.remove('hidden');
-	} else if (link.id === 'nav-calavilablity-btn') {
-      var calavilablitySection = document.getElementById('calavilablity-selection');
-      calavilablitySection.classList.remove('hidden');
-	} else if (link.id === 'nav-searchcustomers-btn') {
-      var searchcustomers = document.getElementById('searchcustomers-selection');
-      searchcustomers.classList.remove('hidden');
-	} else if (link.id === 'nav-members-btn') {
-      var members = document.getElementById('members-selection');
-      members.classList.remove('hidden');
-	} else if (link.id === 'nav-sales-btn') {
-      var salesSelection = document.getElementById('sales-selection');
-      salesSelection.classList.remove('hidden');
-	} else if (link.id === 'nav-profit-btn') {
-      var profitSelection = document.getElementById('profit-selection');
-      profitSelection.classList.remove('hidden');
-	} else if (link.id === 'nav-promocode-btn') {
-      var promoSelection = document.getElementById('promo-selection');
-      promoSelection.classList.remove('hidden');
-	} else if (link.id === 'nav-rentals-btn') {
-      var rentalSelection = document.getElementById('rental-selection');
-      rentalSelection.classList.remove('hidden');
-	}
-  });
-});
-
-
-
-
-</script>
 
 <template>
-   <body>
 	<header>
 		<h1>Book It Dashboard</h1>
 	</header>
@@ -499,6 +411,96 @@ links.forEach(function(link) {
 	</div> 
 </body>
 </template>
+
+<script>
+function hideOtherSections() {
+  var otherSections = document.querySelectorAll('.right:not(.hidden)');
+  otherSections.forEach(function(section) {
+    section.classList.add('hidden');
+  });
+}
+
+// Get all buttons with dropdown menus
+var buttons = document.querySelectorAll('.nav-button-container button');
+
+// Add event listeners to each button
+buttons.forEach(function(button) {
+  var menu = button.nextElementSibling;
+  if (menu) {
+    button.addEventListener('click', function() {
+      menu.classList.toggle('hidden');
+      if (button.id === 'nav-configuration-btn') {
+        hideOtherSections();
+        var customerSection = document.getElementById('customer-section');
+        customerSection.classList.toggle('hidden');
+      }
+    });
+  }
+});
+
+// Get all links in the dashboard menu
+var links = document.querySelectorAll('#nav-dashboard-menu a, #nav-calendar-menu a, #nav-customers-menu a, #nav-reports-menu a, #nav-marketing-menu a, #nav-products-menu a');
+
+// Add event listeners to each link
+links.forEach(function(link) {
+  link.addEventListener('click', function(event) {
+  
+   if (link.getAttribute('href') === 'abandon.html') {
+      // Allow the default link behavior
+      return;
+    }
+	if (link.getAttribute('href') === 'addon.html') {
+      // Allow the default link behavior
+      return;
+    }
+	
+    // Prevent the default link behavior
+    event.preventDefault();
+
+    // Stop the event from bubbling up to the button
+    event.stopPropagation();
+
+    hideOtherSections();
+
+    if (link.id === 'nav-manifest-btn') {
+      var manifestSection = document.getElementById('manafest-selection');
+      manifestSection.classList.remove('hidden');
+    } else if (link.id === 'nav-capacity-btn') {
+      var capacitySection = document.getElementById('capacity-selection');
+      capacitySection.classList.remove('hidden');
+    } else if (link.id === 'nav-calrentals-btn') {
+      var calrentalsSection = document.getElementById('calrentals-selection');
+      calrentalsSection.classList.remove('hidden');
+	} else if (link.id === 'nav-calavilablity-btn') {
+      var calavilablitySection = document.getElementById('calavilablity-selection');
+      calavilablitySection.classList.remove('hidden');
+	} else if (link.id === 'nav-searchcustomers-btn') {
+      var searchcustomers = document.getElementById('searchcustomers-selection');
+      searchcustomers.classList.remove('hidden');
+	} else if (link.id === 'nav-members-btn') {
+      var members = document.getElementById('members-selection');
+      members.classList.remove('hidden');
+	} else if (link.id === 'nav-sales-btn') {
+      var salesSelection = document.getElementById('sales-selection');
+      salesSelection.classList.remove('hidden');
+	} else if (link.id === 'nav-profit-btn') {
+      var profitSelection = document.getElementById('profit-selection');
+      profitSelection.classList.remove('hidden');
+	} else if (link.id === 'nav-promocode-btn') {
+      var promoSelection = document.getElementById('promo-selection');
+      promoSelection.classList.remove('hidden');
+	} else if (link.id === 'nav-rentals-btn') {
+      var rentalSelection = document.getElementById('rental-selection');
+      rentalSelection.classList.remove('hidden');
+	}
+  });
+});
+
+
+
+
+</script>
+
 <style>
 /* Body styles */
 body {

@@ -409,7 +409,6 @@
 			</div>
 		</div>
 	</div> 
-</body>
 </template>
 
 <script>

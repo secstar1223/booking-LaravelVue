@@ -8,25 +8,6 @@ defineProps({
     phpVersion: String,
 });
 
-export default {
-  name: 'LandingPage',
-  data() {
-    return {
-      testimonials: [
-        {
-          quote: 'Booking 24/7 has completely transformed the way I manage my bookings. It\'s so easy to use and my clients love it!',
-          author: 'John Smith',
-          job: 'Owner of Smith happty ending Salon'
-        },
-        {
-          quote: 'I\'ve tried several booking software solutions over the years, but Booking 24/7 is by far the best. It\'s simple, efficient, and has saved me so much time.',
-          author: 'Jane Doe',
-          job: 'Personal Trainer of Butts'
-        }
-      ]
-    }
-  }
-}
 </script>
 
 <template>
@@ -66,6 +47,27 @@ export default {
   </div>
 </template>
 
+<script>
+export default {
+  name: 'LandingPage',
+  data() {
+    return {
+      testimonials: [
+        {
+          quote: 'Booking 24/7 has completely transformed the way I manage my bookings. It\'s so easy to use and my clients love it!',
+          author: 'John Smith',
+          job: 'Owner of Smith happty ending Salon'
+        },
+        {
+          quote: 'I\'ve tried several booking software solutions over the years, but Booking 24/7 is by far the best. It\'s simple, efficient, and has saved me so much time.',
+          author: 'Jane Doe',
+          job: 'Personal Trainer of Butts'
+        }
+      ]
+    }
+  }
+}
+</script>
 
 
 <style>

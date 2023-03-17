@@ -35,18 +35,20 @@ defineProps({
         <li>Customizable booking forms</li>
       </ul>
     </section>
-    <section class="testimonials">
+
+ 
+  </div>
+      <section class="testimonials">
       <h2>What Our Customers Say</h2>
       <div class="testimonial" v-for="(testimonial, index) in testimonials" :key="index">
         <p>"{{ testimonial.quote }}"</p>
         <p class="author">- {{ testimonial.author }}, {{ testimonial.job }}</p>
       </div>
     </section>
-    <footer>
+  </div>
+     <footer>
       <p>&copy; 2023 Booking 24/7. All rights reserved.</p>
     </footer>
-  </div>
-  </div>
 </template>
 
 <script>
@@ -80,7 +82,6 @@ body {
 }
 
 .container {
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh; /* Set the height to 100% of the viewport height */

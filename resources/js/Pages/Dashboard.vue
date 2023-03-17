@@ -36,7 +36,7 @@
 				</ul>
 				<button id="nav-marketing-btn">Marketing</button>
 				<ul id="nav-marketing-menu" class="hidden">
-					<li><a href="#"id="nav-promocode-btn">PromoCode</a></li>
+					<li><a href="#" id="nav-promocode-btn">PromoCode</a></li>
 					<li><a href="abandon.html" id="nav-abandoned-btn">Abandoned</a></li>
 				</ul>
 				<button id="nav-products-btn">Products</button>

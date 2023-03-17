@@ -1,6 +1,9 @@
 import './bootstrap';
 import '../css/app.css';
 
+import { setupCalendar, Calendar, DatePicker } from 'v-calendar';
+import 'v-calendar/style.css';
+
 // Import our custom CSS
 import '../scss/app.scss'
 
@@ -20,6 +23,9 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(setupCalendar, {})
+            .component('VCalendar', Calendar)
+            .component('VDatePicker', DatePicker)
             .mount(el);
     },
     progress: {

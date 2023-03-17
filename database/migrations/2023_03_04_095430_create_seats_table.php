@@ -22,11 +22,12 @@ class CreateSeatsTable extends Migration
             /*
             [
                 {
-                    'name'=>'hour',
-                    'duration'=>3600,
-                    'order'=>0,
-                    'price'=> 1000, // price as an integer
-                    'currency'=>'USD',
+                    "id":13,
+                    "name":"hour",
+                    "duration":3600,
+                    "order":0,
+                    "price": 1000, // price as an integer
+                    "currency":"USD"
                 }
             ]
             */

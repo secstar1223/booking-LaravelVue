@@ -25,12 +25,14 @@ class SeatController extends Controller
             });
 
             $prices = array_map(function($price) {
-                $symbol = $this->currencies[strtoupper($price['currency'])] ?? $price['currency'];
                 return [
                     'id' => $price['id'],
                     'name' => $price['name'],
-                    'price' => $symbol . number_format($price['price'] / 100, 2),
+                    'price' => $price['price'],
+                    'currency' => $price['currency'],
+                    'symbol' => $this->currencies[strtoupper($price['currency'])] ?? $price['currency'],
                     'duration' => $price['duration'],
+                    'checked' => false,
                 ];
             }, $prices);
 
@@ -45,6 +47,30 @@ class SeatController extends Controller
 
         return Inertia::render('Seats/Index', [
             'seats' => $seats,
+            'language' => [
+                'seats_label' => 'Select Number of Waverunners(s)',
+                'duration_label' => 'Duration:',
+                'time_label' => 'Time:',
+                'book_now' => 'Book now',
+                'total_label' => 'Total: ',
+            ],//
+            'schedule' => [
+                'repeats_every' => 7,
+                'days' => [
+                    0 => [39600, 41400, 43200, 45000, 46800],
+                    1 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
+                    2 => [],
+                    3 => [],
+                    4 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
+                    5 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
+                    6 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
+                ],
+            ],
+            'schedule_exceptions' => [
+            ],
+            'options' => [
+                'time' => 24, // or 12
+            ]
         ]);
     }
 }

@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ event.name }}</h5>
           <p class="card-text">{{ event.description }}</p>
-          <a :href="'/events/' + event.id" class="btn btn-primary">View Details</a>
+          <a :href="'/events/' + event.id + '/seats'" class="btn btn-primary">View Details</a>
         </div>
       </div>
     </div>

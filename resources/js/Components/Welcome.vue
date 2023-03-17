@@ -183,7 +183,6 @@ a:hover {
 
 
 <template>
-<body>
 	<header>
 		<h1>Book It Dashboard</h1>
 	</header>
@@ -587,9 +586,6 @@ a:hover {
 			</div>
 		</div>
 	</div>
-<footer>
-	<p>&copy; 2023 BookIt.com</p>
-</footer>
 
 </template>
 

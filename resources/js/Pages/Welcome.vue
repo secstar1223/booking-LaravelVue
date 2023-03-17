@@ -20,6 +20,7 @@ defineProps({
     </template>
   </div> 
   <div class="landing-page">
+  <div class="container">
     <header>
       <h1>Booking 24/7</h1>
       <p>The Online Booking Solution</p>
@@ -44,6 +45,7 @@ defineProps({
     <footer>
       <p>&copy; 2023 Booking 24/7. All rights reserved.</p>
     </footer>
+  </div>
   </div>
 </template>
 
@@ -76,6 +78,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set the height to 100% of the viewport height */
+}
+
 
 header {
   background-color: #0077CC;

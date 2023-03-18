@@ -72,3 +72,5 @@ Route::post('/equipmentguides', function (Illuminate\Http\Request $request) {
         return redirect('/equipmentguides');
 });
 
+Route::post('/equipment', 'EquipmentController@store')->name('equipment.store');
+

@@ -240,8 +240,6 @@ small {
 
 </head>
 <body>
-{{ dd($equipments) }}
-
 	<header>
 		<h1>Book It Dashboard</h1>
 	</header>

@@ -40,3 +40,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/equipmentguides', function () {
+    return view('equipmentguides');
+})->name('equipmentguides');
+

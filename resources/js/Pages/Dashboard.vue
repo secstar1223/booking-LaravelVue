@@ -412,6 +412,7 @@
 </template>
 
 <script>
+export default {
 function hideOtherSections() {
   var otherSections = document.querySelectorAll('.right:not(.hidden)');
   otherSections.forEach(function(section) {
@@ -496,7 +497,7 @@ links.forEach(function(link) {
 });
 
 
-
+}
 
 </script>
 

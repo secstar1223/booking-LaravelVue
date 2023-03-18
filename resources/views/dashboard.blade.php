@@ -37,7 +37,6 @@ header {
 .leftnav {
   background-color: #4286f4;
   color: #fff;
-  width: 8.6666667%; /* 1/6th of the screen */
   padding: 15px;
 }
 
@@ -126,7 +125,6 @@ button{
   cursor: pointer;
   appearance: none;
   background-color: inherit;
-  width: 70px;
   height: 70px;
 }
 img {

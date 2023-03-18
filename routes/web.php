@@ -60,6 +60,7 @@ Route::get('/newrental', function () {
 
 
 Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
+Route::get('/equipmentguides', [EquipmentController::class, 'index']);
 
 
 

@@ -66,7 +66,7 @@
 			  <h2>Office Items</h2>
 			  <div class="customer-buttons">
 				<button>Taxes</button>
-				<button><a href="EquipmentGuides.html"><img src="img/config/equipmentguides.png" alt="equipmentPNG" border="0" /></a></button>
+				<button><a href="EquipmentGuides.html"></a></button>
 			  </div>
 			  <h2>Integrations</h2>
 			  <div class="customer-buttons">

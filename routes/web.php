@@ -69,5 +69,6 @@ Route::post('/equipmentguides', function (Illuminate\Http\Request $request) {
 
     $equipment = App\Models\equipment::create($data);
 
-    return redirect
+        return redirect('/equipmentguides');
+});
 

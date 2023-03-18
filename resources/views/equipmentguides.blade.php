@@ -292,7 +292,7 @@ small {
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>How Many</th>
+				<th>Quantity</th>
 				<th>Resource Tracking</th>
 				<th>Capacity per item</th>
 				<th>Action</th>

@@ -327,7 +327,7 @@ small {
 <div id="myModal" class="modal"> 
   <div class="modal-content">
     <h2>Edit Item</h2>
-    <form method="POST" action="{{ route('equipment.store') }}">
+    <form method="POST" action="{{ route('equipmentguides.store') }}">
       @csrf
       <fieldset>
         <legend>Item Name</legend>

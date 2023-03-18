@@ -41,8 +41,7 @@ class EquipmentGuidesController extends Controller
     public function index()
 {
     $equipments = Equipment::all();
-    dd($equipments);
-    return view('equipmentguides', compact('equipments'));
+    return view('equipmentguides', compact($equipments));
 }
 
 }

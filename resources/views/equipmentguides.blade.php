@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<?php
+// Start a PHP session
+session_start();
+?>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book It Dashboard</title>
+  
+  <style>
+  /* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* Header styles */
+header {
+  background-color: #4286f4;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+/* Container styles */
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+/* Left styles */
+.leftnav {
+  background-color: #4286f4;
+  color: #fff;
+  width: 8.6666667%; /* 1/6th of the screen */
+  padding: 15px;
+}
+
+.leftnav h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.leftnav .nav-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leftnav button {
+display: inline-block;
+outline: 0;
+border: 0;
+cursor: pointer;
+will-change: box-shadow,transform;
+background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );
+box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+padding: 0 32px;
+border-radius: 6px;
+color: #fff;
+height: 32px;
+font-size: 18px;
+text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+transition: box-shadow 0.15s ease,transform 0.15s ease;
+:hover {
+	box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
+	transform: translateY(-2px);
+}
+:active{
+	box-shadow: inset 0px 3px 7px #3c4fe0;
+	transform: translateY(2px);
+}
+}
+
+.leftnav button:hover {
+  background-color: #1e3d6b;
+}
+
+.leftnav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leftnav ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.leftnav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.leftnav .hidden:not(.popupava) {
+  display: none;
+}
+/* CSS for the popup modal */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 60%;
+}
+
+/* Style for the entire right-content section */ 
+.right-content {
+  padding: 10px;
+  border-radius: 30px;
+}
+
+/* Style for the welcome message */
+.right-content h2 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #214560;
+}
+
+/* Style for the new rental equipment button */
+.right-content button {
+  background-color: #214560;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Style for the table */
+.right-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Style for the table header */
+.right-content th {
+  background-color: #214560;
+  color: #fff;
+  font-size: 18px;
+  text-align: left;
+  padding: 10px;
+}
+
+/* Style for the table body */
+.right-content td {
+  font-size: 16px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style for the table actions column */
+.right-content td:last-child {
+  text-align: center;
+}
+
+/* Style for the edit button */
+.right-content button[onclick="openModal()"] {
+  background-color: #356dad;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Style for the hover effect on the edit button */
+.right-content button[onclick="openModal()"]:hover {
+  background-color: #F1C40F;
+}
+
+/* Style for the checkbox */
+.right-content input[type="checkbox"] {
+  transform: scale(1.5);
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 24px;
+  color: #01579b;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 18px;
+  color: #424242;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+input[type="color"] {
+  width: 60px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+small {
+  font-size: 12px;
+  color: #757575;
+  margin-bottom: 10px;
+}
+
+	</style>
+
+
+</head>
+<body>
+	<header>
+		<h1>Book It Dashboard</h1>
+	</header>
+<!-- Navagation Bar left side -->
+	<div class="container">
+		<div class="leftnav">
+			<h2>Navigation</h2>
+			<div class="nav-button-container">
+				<button id="nav-dashboard-btn">Dashboard</button>
+				<ul id="nav-dashboard-menu" class="hidden">
+					<li><a href="dashboard.html" id="nav-manifest-btn">Manifest</a></li>
+					<li><a href="dashboard.html" id="nav-capacity-btn">Capacity Report</a></li>
+				</ul>
+				<button id="nav-calendar-btn">Calendar</button>
+				<ul id="nav-calendar-menu" class="hidden">
+					<li><a href="dashboard.html" id="nav-calrentals-btn">Rentals</a></li>
+					<li><a href="dashboard.html" id="nav-calavilablity-btn">Availablity</a></li>
+				</ul>
+				<button id="nav-customers-btn">Customers</button>
+				<ul id="nav-customers-menu" class="hidden">
+					<li><a href="dashboard.html" id="nav-searchcustomers-btn">Search</a></li>
+					<li><a href="dashboard.html" id="nav-members-btn">Members</a></li>
+				</ul>
+				<button id="nav-reports-btn">Reports</button>
+				<ul id="nav-reports-menu" class="hidden">
+					<li><a href="dashboard.html" id="nav-sales-btn">sales</a></li>
+					<li><a href="dashboard.html" id="nav-profit-btn">profit</a></li>
+				</ul>
+				<button id="nav-marketing-btn">Marketing</button>
+				<ul id="nav-marketing-menu" class="hidden">
+					<li><a href="dashboard.html"id="nav-promocode-btn">PromoCode</a></li>
+					<li><a href="abandon.html" id="nav-abandoned-btn">Abandoned</a></li>
+				</ul>
+				<button id="nav-products-btn">Products</button>
+			<ul id="nav-products-menu" class="hidden">
+				<li><a href="dashboard.html" id="nav-rentals-btn">Rentals</a></li>
+				<li><a href="addon.html" id="nav-addon-btn">Add-ons</a></li>
+				<li><a href="dashboard.html" id="nav-membership-btn">Memberships</a></li>
+			</ul>
+				<button id="nav-configuration-btn">Configuration</button>
+			<ul id="nav-configuration-menu" class="hidden">
+			</ul>
+			</div>
+		</div>
+<!-- Right side to show current equipment -->	
+		<div class="right-content">
+		<h2>Welcome to your Dashboard!</h2>
+			<button onclick="openModal()">New Rental Equipment Pool</button>
+			<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>How Many</th>
+				<th>Resource Tracking</th>
+				<th>Capacity per item</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Delivery</td>
+				<td>4</td>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td><button onclick="openModal()">Edit</button></td>
+			</tr>
+			<tr>
+				<td>Yamaha wave runner sport</td>
+				<td>7</td>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td><button onclick="openModal()">Edit</button></td>
+			</tr>
+			<tr>
+				<td>Yamaha wave runner deluxe</td>
+				<td>2</td>
+				<td><input type="checkbox"></td>
+				<td>1</td>
+				<td><button onclick="openModal()">Edit</button></td>
+			</tr>
+		</tbody>
+	</table>
+			
+	<!-- The popup modal -->
+<div id="myModal" class="modal"> 
+  <div class="modal-content">
+    <h2>Edit Item</h2>
+    <form>
+      <fieldset>
+        <legend>Item Name</legend>
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+        </div>
+        <div>
+          <label for="short-name">Short Name:</label>
+          <input type="text" id="short-name" name="short-name" maxlength="10">
+          <small>10 characters max - used for availability calendar</small>
+        </div>
+        <div>
+          <label for="color">Color:</label>
+          <input type="color" id="color" name="color">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Item Details</legend>
+        <div>
+          <label for="quantity">How many <span id="name-label"></span> do you have:</label>
+          <input type="number" id="quantity" name="quantity" min="0">
+        </div>
+        <div>
+          <label for="capacity">Enter the capacity per <span id="name-label"></span>:</label>
+          <input type="number" id="capacity" name="capacity" min="0">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Resource Tracking</legend>
+        <div>
+          <label>
+            <input type="checkbox" name="resource-tracking"> Check for resource tracking
+          </label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Widget Description</legend>
+        <div>
+          <label for="description">Widget Description:<i>This is how equpimpent is described in widget</i></label><br>
+          <textarea id="description" name="description"></textarea>
+        </div>
+      </fieldset>
+      <button onclick="closeModal()">Save Changes</button>
+    </form>
+  </div>
+</div>
+		
+			
+
+	</div>
+</header>
+<!-- JavaScript to open and close the popup modal -->
+	<script>
+		var modal = document.getElementById("myModal");
+
+		function openModal() {
+			modal.style.display = "block";
+		}
+
+		function closeModal() {
+			modal.style.display = "none";
+		}
+		
+const nameInput = document.getElementById('name');
+		const nameLabel = document.getElementById('name-label');
+		nameInput.addEventListener('input', (event) => {
+			nameLabel.textContent = event.target.value;
+		});		
+
+<!--JS for NAVAGATION-->
+
+function hideOtherSections() {
+  var otherSections = document.querySelectorAll('.right:not(.hidden)');
+  otherSections.forEach(function(section) {
+    section.classList.add('hidden');
+  });
+}
+
+// Get all buttons with dropdown menus
+var buttons = document.querySelectorAll('.nav-button-container button');
+
+// Add event listeners to each button
+buttons.forEach(function(button) {
+  var menu = button.nextElementSibling;
+  if (menu) {
+    button.addEventListener('click', function() {
+      menu.classList.toggle('hidden');
+      if (button.id === 'nav-configuration-btn') {
+        hideOtherSections();
+        var customerSection = document.getElementById('customer-section');
+        customerSection.classList.toggle('hidden');
+      }
+    });
+  }
+});
+
+
+	</script>
+</body>
+</html>

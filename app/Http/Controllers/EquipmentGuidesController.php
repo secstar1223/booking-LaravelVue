@@ -18,6 +18,8 @@ class EquipmentGuidesController extends Controller
             'description' => 'required',
         ]);
 
+        $resourceTracking = $request->input('resource_tracking') === 'on';
+        
         // Create a new Equipment model with the validated data
         $equipment = new Equipment([
             'name' => $validatedData['name'],
@@ -26,7 +28,7 @@ class EquipmentGuidesController extends Controller
             'quantity' => $validatedData['quantity'],
             'capacity' => $validatedData['capacity'],
             'description' => $validatedData['description'],
-            'resource_tracking' => $request->input('resource_tracking', false),
+            'resource_tracking' => $resourceTracking,
         ]);
 
         // Save the Equipment model to the database

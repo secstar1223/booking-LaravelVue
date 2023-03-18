@@ -37,6 +37,13 @@ class EquipmentGuidesController extends Controller
         // Redirect the user back to the form
         return back();
     }
+    
+    public function index()
+{
+    $equipments = Equipment::all();
+    return view('equipmentguides', compact('equipments'));
+}
+
 }
 
 

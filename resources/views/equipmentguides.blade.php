@@ -327,53 +327,55 @@ small {
 <div id="myModal" class="modal"> 
   <div class="modal-content">
     <h2>Edit Item</h2>
-    <form>
+    <form method="POST" action="{{ route('items.store') }}">
+      @csrf
       <fieldset>
         <legend>Item Name</legend>
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name">
+          <input type="text" id="name" name="name" required>
         </div>
         <div>
           <label for="short-name">Short Name:</label>
-          <input type="text" id="short-name" name="short-name" maxlength="10">
+          <input type="text" id="short-name" name="short_name" maxlength="10" required>
           <small>10 characters max - used for availability calendar</small>
         </div>
         <div>
           <label for="color">Color:</label>
-          <input type="color" id="color" name="color">
+          <input type="color" id="color" name="color" required>
         </div>
       </fieldset>
       <fieldset>
         <legend>Item Details</legend>
         <div>
           <label for="quantity">How many <span id="name-label"></span> do you have:</label>
-          <input type="number" id="quantity" name="quantity" min="0">
+          <input type="number" id="quantity" name="quantity" min="0" required>
         </div>
         <div>
           <label for="capacity">Enter the capacity per <span id="name-label"></span>:</label>
-          <input type="number" id="capacity" name="capacity" min="0">
+          <input type="number" id="capacity" name="capacity" min="0" required>
         </div>
       </fieldset>
       <fieldset>
         <legend>Resource Tracking</legend>
         <div>
           <label>
-            <input type="checkbox" name="resource-tracking"> Check for resource tracking
+            <input type="checkbox" name="resource_tracking"> Check for resource tracking
           </label>
         </div>
       </fieldset>
       <fieldset>
         <legend>Widget Description</legend>
         <div>
-          <label for="description">Widget Description:<i>This is how equpimpent is described in widget</i></label><br>
-          <textarea id="description" name="description"></textarea>
+          <label for="description">Widget Description:<i>This is how equipment is described in widget</i></label><br>
+          <textarea id="description" name="description" required></textarea>
         </div>
       </fieldset>
-      <button onclick="closeModal()">Save Changes</button>
+      <button type="submit">Save Changes</button>
     </form>
   </div>
 </div>
+
 		
 			
 

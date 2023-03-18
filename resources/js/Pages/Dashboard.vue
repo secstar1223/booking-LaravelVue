@@ -500,7 +500,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* Body styles */
 body {
   font-family: Arial, sans-serif;

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
 
-class EquipmentGuideController extends Controller
+class EquipmentGuidesController extends Controller
 {
     public function store(Request $request)
     {

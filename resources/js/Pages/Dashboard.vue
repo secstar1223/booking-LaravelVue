@@ -526,7 +526,6 @@ header {
 .leftnav {
   background-color: #4286f4;
   color: #fff;
-  width: 8.6666667%; /* 1/6th of the screen */
   padding: 15px;
 }
 

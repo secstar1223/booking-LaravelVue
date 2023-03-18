@@ -42,7 +42,10 @@ Route::middleware([
 });
 
 
-Route::get('/equipmentguides', [EquipmentController::class, 'index']);
+Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index']);
+Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
+
+
 
 Route::get('/abandoned', function () {
     return view('abandoned');
@@ -57,8 +60,6 @@ Route::get('/newrental', function () {
 })->name('newrental');
 
 
-
-Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
 
 
 

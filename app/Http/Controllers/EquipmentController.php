@@ -9,7 +9,7 @@ class EquipmentController extends Controller
 {
     public function create()
     {
-        return view('equipment.create');
+        return view('equipmentguides.create');
     }
 
     public function store(Request $request)
@@ -36,13 +36,13 @@ class EquipmentController extends Controller
         $equipment->save();
 
         // Redirect to the equipment listing page
-        return redirect()->route('equipment.index')
+        return redirect()->route('equipmentguides.index')
                          ->with('success', 'Equipment created successfully!');
     }
 
     public function index()
     {
         $equipment = Equipment::all();
-        return view('equipment.index', compact('equipment'));
+        return view('equipmentguides', compact('equipment'));
     }
 }

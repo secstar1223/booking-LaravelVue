@@ -271,12 +271,12 @@ small {
 				<button id="nav-marketing-btn">Marketing</button>
 				<ul id="nav-marketing-menu" class="hidden">
 					<li><a href="{{ route('dashboard') }}"id="nav-promocode-btn">PromoCode</a></li>
-					//<li><a href="{{ route('abandoned') }}" id="nav-abandoned-btn">Abandoned</a></li>
+					<li><a href="{{ route('abandoned') }}" id="nav-abandoned-btn">Abandoned</a></li>
 				</ul>
 				<button id="nav-products-btn">Products</button>
 			<ul id="nav-products-menu" class="hidden">
 				<li><a href="{{ route('dashboard') }}" id="nav-rentals-btn">Rentals</a></li>
-				//<li><a href="{{ route('addon') }}" id="nav-addon-btn">Add-ons</a></li>
+				<li><a href="{{ route('addon') }}" id="nav-addon-btn">Add-ons</a></li>
 				<li><a href="{{ route('dashboard') }}" id="nav-membership-btn">Memberships</a></li>
 			</ul>
 				<button id="nav-configuration-btn">Configuration</button>
@@ -285,43 +285,32 @@ small {
 			</div>
 		</div>
 <!-- Right side to show current equipment -->	
-		<div class="right-content">
-		<h2>Welcome to your Dashboard!</h2>
-			<button onclick="openModal()">New Rental Equipment Pool</button>
-			<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Quantity</th>
-				<th>Resource Tracking</th>
-				<th>Capacity per item</th>
-				<th>Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Delivery</td>
-				<td>4</td>
-				<td><input type="checkbox"></td>
-				<td>1</td>
-				<td><button onclick="openModal()">Edit</button></td>
-			</tr>
-			<tr>
-				<td>Yamaha wave runner sport</td>
-				<td>7</td>
-				<td><input type="checkbox"></td>
-				<td>1</td>
-				<td><button onclick="openModal()">Edit</button></td>
-			</tr>
-			<tr>
-				<td>Yamaha wave runner deluxe</td>
-				<td>2</td>
-				<td><input type="checkbox"></td>
-				<td>1</td>
-				<td><button onclick="openModal()">Edit</button></td>
-			</tr>
-		</tbody>
-	</table>
+<div class="right-content">
+    <h2>Welcome to your Dashboard!</h2>
+    <button onclick="openModal()">New Rental Equipment Pool</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Resource Tracking</th>
+                <th>Capacity per item</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($equipments as $equipment)
+                <tr>
+                    <td>{{ $equipment->name }}</td>
+                    <td>{{ $equipment->quantity }}</td>
+                    <td><input type="checkbox" {{ $equipment->resource_tracking ? 'checked' : '' }}></td>
+                    <td>{{ $equipment->capacity }}</td>
+                    <td><button onclick="openModal()">Edit</button></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 			
 	<!-- The popup modal -->
 <div id="myModal" class="modal"> 

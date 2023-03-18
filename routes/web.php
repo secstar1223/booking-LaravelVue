@@ -55,3 +55,19 @@ Route::get('/addon', function () {
 Route::get('/newrental', function () {
     return view('newrental');
 })->name('newrental');
+
+Route::post('/equipmentguides', function (Illuminate\Http\Request $request) {
+    $data = $request->validate([
+        'name' => 'required|string',
+        'short_name' => 'required|string|max:10',
+        'color' => 'required|string',
+        'quantity' => 'required|integer|min:0',
+        'capacity' => 'required|integer|min:0',
+        'resource_tracking' => 'boolean',
+        'description' => 'required|string',
+    ]);
+
+    $equipment = App\Models\equipment::create($data);
+
+    return redirect
+

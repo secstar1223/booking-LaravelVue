@@ -271,12 +271,12 @@ small {
 				<button id="nav-marketing-btn">Marketing</button>
 				<ul id="nav-marketing-menu" class="hidden">
 					<li><a href="{{ route('dashboard') }}"id="nav-promocode-btn">PromoCode</a></li>
-					<li><a href="{{ route('abandoned') }}" id="nav-abandoned-btn">Abandoned</a></li>
+					//<li><a href="{{ route('abandoned') }}" id="nav-abandoned-btn">Abandoned</a></li>
 				</ul>
 				<button id="nav-products-btn">Products</button>
 			<ul id="nav-products-menu" class="hidden">
 				<li><a href="{{ route('dashboard') }}" id="nav-rentals-btn">Rentals</a></li>
-				<li><a href="{{ route('addon') }}" id="nav-addon-btn">Add-ons</a></li>
+				//<li><a href="{{ route('addon') }}" id="nav-addon-btn">Add-ons</a></li>
 				<li><a href="{{ route('dashboard') }}" id="nav-membership-btn">Memberships</a></li>
 			</ul>
 				<button id="nav-configuration-btn">Configuration</button>

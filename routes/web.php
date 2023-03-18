@@ -58,6 +58,7 @@ Route::get('/newrental', function () {
 
 
 
-Route::post('/equipmentguides', 'EquipmentGuidesController@store')->name('equipmentguides.store');
+Route::post('/equipmentguides', 'App\Http\Controllers\EquipmentGuidesController@store')->name('equipmentguides.store');
+
 
 

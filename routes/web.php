@@ -52,3 +52,6 @@ Route::get('/addon', function () {
     return view('addon');
 })->name('addon');
 
+Route::get('/newrental', function () {
+    return view('newrental');
+})->name('newrental');

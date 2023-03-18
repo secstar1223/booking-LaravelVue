@@ -1,48 +1,24 @@
-<?php
-
-namespace App\Http\EquipmentControllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Equipment;
+use App\Models\EquipmentGuide;
 
-class EquipmentController extends Controller
+class EquipmentGuideController extends Controller
 {
-    public function create()
-    {
-        return view('equipmentguides.create');
-    }
-
     public function store(Request $request)
     {
-        // Validate the form data
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'short_name' => 'required|max:10',
-            'color' => 'required',
-            'quantity' => 'required|numeric|min:0',
-            'capacity' => 'required|numeric|min:0',
-            'description' => 'required',
-        ]);
+        $equipmentGuide = new EquipmentGuide();
+        $equipmentGuide->name = $request->input('name');
+        $equipmentGuide->short_name = $request->input('short_name');
+        $equipmentGuide->color = $request->input('color');
+        $equipmentGuide->quantity = $request->input('quantity');
+        $equipmentGuide->capacity = $request->input('capacity');
+        $equipmentGuide->resource_tracking = $request->input('resource_tracking', false);
+        $equipmentGuide->description = $request->input('description');
 
-        // Save the equipment to the database
-        $equipment = new Equipment;
-        $equipment->name = $validatedData['name'];
-        $equipment->short_name = $validatedData['short_name'];
-        $equipment->color = $validatedData['color'];
-        $equipment->quantity = $validatedData['quantity'];
-        $equipment->capacity = $validatedData['capacity'];
-        $equipment->description = $validatedData['description'];
-        $equipment->resource_tracking = $request->input('resource_tracking', false);
-        $equipment->save();
+        $equipmentGuide->save();
 
-        // Redirect to the equipment listing page
-        return redirect()->route('equipmentguides.index')
-                         ->with('success', 'Equipment created successfully!');
-    }
-
-    public function index()
-    {
-        $equipment = Equipment::all();
-        return view('equipmentguides', compact('equipment'));
+        return redirect('/equipmentguides')->with('success', 'Equipment guide created successfully.');
     }
 }
+

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
 <x-head title="Welcome"/>
 
 <div v-if="{{ $canLogin }}" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
@@ -48,9 +47,8 @@
     <p>&copy; 2023 Booking 24/7. All rights reserved.</p>
 </footer>
 
-@endsection
 
-@section('scripts')
+
 <script>
 let app = new Vue({
 el: '#app',
@@ -63,4 +61,3 @@ testimonials: {!! json_encode($testimonials) !!}
 }
 });
 </script>
-@endsection

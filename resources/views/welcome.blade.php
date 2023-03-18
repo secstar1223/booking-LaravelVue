@@ -38,13 +38,8 @@
 
 
 <script>
-let app = new Vue({
-el: '#app',
-data: {
-canLogin: {{ $canLogin }},
-canRegister: {{ $canRegister }},
-laravelVersion: '{{ App::version() }}',
-phpVersion: '{{ PHP_VERSION }}',
-}
-});
+  const canLogin = {{ $canLogin }};
+  const canRegister = {{ $canRegister }};
+  const laravelVersion = '{{ App::version() }}';
+  const phpVersion = '{{ PHP_VERSION }}';
 </script>

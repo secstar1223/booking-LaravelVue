@@ -1,14 +1,9 @@
-<?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Equipment extends Model
+class EquipmentGuide extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'short_name',
@@ -16,6 +11,6 @@ class Equipment extends Model
         'quantity',
         'capacity',
         'resource_tracking',
-        'description'
+        'description',
     ];
 }

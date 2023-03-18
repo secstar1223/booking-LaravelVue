@@ -44,3 +44,11 @@ Route::get('/equipmentguides', function () {
     return view('equipmentguides');
 })->name('equipmentguides');
 
+Route::get('/abandoned', function () {
+    return view('abandoned');
+})->name('abandoned');
+
+Route::get('/addon', function () {
+    return view('addon');
+})->name('addon');
+

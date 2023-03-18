@@ -139,21 +139,21 @@ a:hover {
 
 
 <div class="landing-page">
-    <div class="container">
-        <header>
-            <h1>Booking 24/7</h1>
-            <p>The Online Booking Solution</p>
-            <a href="#" class="cta-btn">Book Now</a>
-        </header>
-        <section class="benefits">
-            <h2>Why Choose Booking 24/7?</h2>
-            <ul>
-                <li>24/7 availability</li>
-                <li>Easy booking process</li>
-                <li>Automatic reminders</li>
-                <li>Customizable booking forms</li>
-            </ul>
-        </section>
+  <div class="container">
+    <header>
+      <h1>Booking 24/7</h1>
+      <p>The Online Booking Solution</p>
+      <a href="#" class="cta-btn">Contact Us </a>
+    </header>
+    <section class="benefits">
+      <h2>Why Choose Booking 24/7?</h2>
+      <ul>
+        <li>24/7 availability</li>
+        <li>Easy booking process</li>
+        <li>Resource Tracking</li>
+        <li>Customizable booking forms</li>
+      </ul>
+    </section>
     </div>
 </div>
 

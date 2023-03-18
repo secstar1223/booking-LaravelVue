@@ -18,17 +18,6 @@
             </ul>
         </section>
     </div>
-    <section class="testimonials">
-        <h2>What Our Customers Say</h2>
-        <div class="testimonial-wrapper">
-            @foreach($testimonials as $testimonial)
-                <div class="testimonial">
-                    <p>"{{ $testimonial['quote'] }}"</p>
-                    <p class="author">- {{ $testimonial['author'] }}, {{ $testimonial['job'] }}</p>
-                </div>
-            @endforeach
-        </div>
-    </section>
 </div>
 
 <footer>
@@ -45,7 +34,6 @@ canLogin: {{ $canLogin }},
 canRegister: {{ $canRegister }},
 laravelVersion: '{{ App::version() }}',
 phpVersion: '{{ PHP_VERSION }}',
-testimonials: {!! json_encode($testimonials) !!}
 }
 });
 </script>

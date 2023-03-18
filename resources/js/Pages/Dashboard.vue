@@ -614,7 +614,6 @@ button{
   cursor: pointer;
   appearance: none;
   background-color: inherit;
-  width: 70px;
   height: 70px;
 }
 img {

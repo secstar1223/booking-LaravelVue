@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,10 +16,11 @@ class SeatController extends Controller
 
     public function index(Request $request, $id)
     {
+        $event = Event::where('id', $id)->where('team_id', 1)->first();
         $seats = Seat::where('event_id', $id)->where('team_id', 1)->orderBy('order')->get();
 
         $seats = $seats->map(function ($seat) {
-            $prices = json_decode($seat->prices, true);
+            $prices = $seat->prices;
 
             usort($prices, function($a, $b) {
                 return $a['order'] > $b['order'];
@@ -39,6 +41,7 @@ class SeatController extends Controller
             return [
                 'id' => $seat->id,
                 'name' => $seat->name,
+                'minimum_order' => $seat->minimum_order,
                 'max_capacity' => $seat->max_capacity,
                 'prices' => $prices,
                 'quantity' => 0,
@@ -47,30 +50,10 @@ class SeatController extends Controller
 
         return Inertia::render('Seats/Index', [
             'seats' => $seats,
-            'language' => [
-                'seats_label' => 'Select Number of Waverunners(s)',
-                'duration_label' => 'Duration:',
-                'time_label' => 'Time:',
-                'book_now' => 'Book now',
-                'total_label' => 'Total: ',
-            ],//
-            'schedule' => [
-                'repeats_every' => 7,
-                'days' => [
-                    0 => [39600, 41400, 43200, 45000, 46800],
-                    1 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
-                    2 => [],
-                    3 => [],
-                    4 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
-                    5 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
-                    6 => [36000, 37800, 39600, 41400, 43200, 45000, 46800],
-                ],
-            ],
-            'schedule_exceptions' => [
-            ],
-            'options' => [
-                'time' => 24, // or 12
-            ]
+            'language' => $event->language,
+            'schedule' => $event->schedule,
+            'schedule_exceptions' => $event->schedule_exceptions,
+            'options' => $event->options,
         ]);
     }
 }

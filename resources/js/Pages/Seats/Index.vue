@@ -7,6 +7,9 @@
 
     <div class="card card-body" v-for="seat in state.seats" :key="seat.id">
         <div class="row">
+            <div class="col-md-12">
+                
+            </div>
             <div class="col-md-2">
                 <button @click="decrementQuantity(seat.id)">-</button>
                 <input type="number" v-model="seat.quantity" @change="updateTotal" min="0" :max="seat.max_capacity">
@@ -23,7 +26,7 @@
             <div class="col-md-10">
                 <div class="mt-3">
                     <div >
-                        <button v-for="(price, index) in seat.prices" :key="price.id" type="button" class="btn btn-outline-secondary" :class="{ active: price.checked }" @click="togglePrice(price)">
+                        <button v-for="(price, index) in seat.prices" :key="price.id" type="button" class="btn btn-outline-secondary" :class="{ active: price.checked }" @click="togglePrice(seat, price)">
                             {{ price.name }} - {{ displayPrice(price) }}
                         </button>
                     </div>
@@ -34,12 +37,12 @@
 
     <div class="row">
         <div class="col-md-8">
-            <VDatePicker mode="date" borderless columns="2" :modelValue="state.selected_date" @update:modelValue="updateDate" :min-date="new Date()" :disabled-dates="state.disabled_dates" />
+            <VDatePicker mode="date" borderless expanded columns="2" :attributes="state.attributes" :timezone="state.timezone" :locale="{ id: 'en', firstDayOfWeek: 2, masks: { weekdays: 'WW' } }" is-required :modelValue="state.selected_date" @update:modelValue="updateDate" :min-date="new Date()" :disabled-dates="state.disabled_dates" />
         </div>
         <div class="col-md-4">
             {{ language.time_label }}
             <select>
-                <option v-for="(time) in state.times" :value="time">{{time}}</option>
+                <option v-for="(time) in state.times" :key="time" :value="time">{{time}}</option>
             </select>
             <br>
             {{ language.total_label }}{{ displayPrice(state.total) }}<br>
@@ -84,28 +87,105 @@ export default {
             seats: props.seats,
             selected_date: new Date(),
             disabled_dates: [{
+                start: new Date(2022),
                 repeat: {
-                    every: [props.schedule.repeats_every, 'days'],
-                    weekdays: props.schedule.days.filter((value) => value.length === 0).map((value, key) => key + 1),
+                    every: 'week',
+                    weekdays: props.schedule.days.map((value, key) => (value.length === 0 ? key+1 : 0 )).filter((value) => value !== 0),
                 }
             }],
             can_book: false,
-            total: { 
+            total: {
                 price: 0,
                 symbol: '$'
             },
-            times: ['Select a date'],
+            total_duration: 0,
+            times: [],
+            timezone: 'utc',
+            attributes: (typeof props.schedule.messages == 'object' ? Object.keys(props.schedule.messages) : props.schedule.messages.map((value, key) => key)).map((key) => ({
+                key: 'message' + key, 
+                popover: {
+                    label: props.schedule.messages[key],
+                },
+                dates: {
+                    start: new Date(2022),
+                    repeat: {
+                        every: 'week',
+                        weekdays: parseInt(key)+1,
+                    }
+                }
+            })),
+/*            [
+                {
+                    key: 3,
+                    //content: 'green',
+                    //bar: 'green',
+                    popover: {
+                        label: "Closed Tuesdays & Wednesdays",
+                    },
+                    dates: {
+                        start: new Date(2022),
+                        repeat: {
+                            every: 'week',
+                            weekdays: props.schedule.days.map((value, key) => (value.length === 0 ? key+1 : 0 )).filter((value) => value !== 0),
+                        }
+                    }
+                }
+            ],*/
         })
 
+        //console.log(state.attributes)
+
         const bookNow = () => {
-            
+            console.log(state.seats)
+            for (let i = 0; i < state.seats.length; i++) {
+                if (state.seats[i].quantity > 0 &&  state.seats[i].quantity < state.seats[i].minimum_order) {
+                    //
+                }
+
+                /*if (state.seats[i].quantity > 0) {
+                    for (let j = 0; j < state.seats[i].prices.length; j++) {
+                        if (state.seats[i].prices[j].checked) {
+                            total_price += state.seats[i].prices[j].price * state.seats[i].quantity
+
+                            if (state.seats[i].prices[j].duration > total_duration) {
+                                total_duration = state.seats[i].prices[j].duration
+                            }
+                        }
+                    }
+                }*/
+            }
         }
 
         const updateDate = (new_date) => {
-            console.log(new_date)
             state.selected_date = new_date
-            return state.selected_date
+            updateTimes()
         }
+
+        const updateTimes = () => {
+            state.times = [];
+
+            let today = new Date()
+            let time = Math.floor(today.getTime() / 1000)
+            today.setUTCHours(0,0,0,0)
+            time = time - Math.floor(today.getTime() / 1000)
+            today.setUTCHours(23,59,59,999)
+            today = Math.floor(today.getTime() / 1000)
+
+            let times = props.schedule.days[state.selected_date.getDay()]
+
+            let selected_time = Math.floor(state.selected_date.getTime() / 1000)
+            if (selected_time < today) {
+                times = times.filter((value) => time < value)
+            }
+
+            state.times = times.map((value) => {
+                let pad = (value) => (value < 10 ? '0' + value : value)
+                let hours = Math.floor(value / 60 / 60)
+                let minutes = Math.floor((value - hours * 60 * 60) / 60)
+                return (props.options.time == 12 ? (hours > 12 ? hours - 12 : hours) : pad(hours >= 24 ? 0 : hours)) + ':' + pad(minutes) + (props.options.time == 12 ? (hours > 11 && hours != 24 ? ' pm' : ' am') : '')
+            })
+        }
+        updateTimes()
 
         const updateTotal = () => {
             let total_duration = 0
@@ -114,6 +194,8 @@ export default {
             for (let i = 0; i < state.seats.length; i++) {
                 if (state.seats[i].quantity > state.seats[i].max_capacity) {
                     state.seats[i].quantity = state.seats[i].max_capacity
+                } else if (state.seats[i].quantity < 0) {
+                    state.seats[i].quantity = 0
                 }
 
                 if (state.seats[i].quantity > 0) {
@@ -130,7 +212,7 @@ export default {
             }
 
             state.total.price = total_price
-            console.log(state.total)
+            state.total_duration = total_duration
         }
 
         const displayPrice = (price) => {
@@ -143,6 +225,7 @@ export default {
                     state.seats[i].quantity++
                 }
             }
+
             updateTotal()
         }
 
@@ -152,19 +235,23 @@ export default {
                     state.seats[i].quantity--
                 }
             }
+
             updateTotal()
         }
 
-        const togglePrice = (price) => {
+        const togglePrice = (seat, price) => {
             for (let i = 0; i < state.seats.length; i++) {
-                for (let j = 0; j < state.seats[i].prices.length; j++) {
-                    if (state.seats[i].prices[j].duration == price.duration) {
-                        state.seats[i].prices[j].checked = true
-                    } else {
-                        state.seats[i].prices[j].checked = false
+                if (props.options.fixed_duration || state.seats[i].id == seat.id) {
+                    for (let j = 0; j < state.seats[i].prices.length; j++) {
+                        if (state.seats[i].prices[j].duration == price.duration) {
+                            state.seats[i].prices[j].checked = true
+                        } else {
+                            state.seats[i].prices[j].checked = false
+                        }
                     }
                 }
             }
+
             updateTotal()
         }
 
@@ -173,6 +260,7 @@ export default {
             bookNow,
             updateDate,
             updateTotal,
+            updateTimes,
             displayPrice,
             incrementQuantity,
             decrementQuantity,

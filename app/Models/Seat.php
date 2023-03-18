@@ -11,10 +11,37 @@ class Seat extends Model
     protected $fillable = [
         'name',
         'description',
+        'minimum_order',
         'max_capacity',
         'order',
-        'price',
+        'prices',
     ];
+
+    /**
+     * Get the prices attribute and unserialize it.
+     *
+     * @param  mixed  $value
+     * @return array|null
+     */
+    public function getPricesAttribute($value)
+    {
+        if (is_null($value)) {
+            return null;
+        }
+
+        return json_decode($value, true);
+    }
+
+    /**
+     * Set the prices attribute and serialize it.
+     *
+     * @param  mixed  $value
+     * @return void
+     */
+    public function setPricesAttribute($value)
+    {
+        $this->attributes['prices'] = json_encode($value);
+    }
 
     public function eventSession()
     {

@@ -16,20 +16,47 @@ class CreateSeatsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->integer('minimum_order')->default(0);
             $table->integer('max_capacity')->default(0);
             $table->integer('order')->default(0);
             $table->text('prices');
             /*
-            [
-                {
-                    "id":13,
-                    "name":"hour",
-                    "duration":3600,
-                    "order":0,
-                    "price": 1000, // price as an integer
-                    "currency":"USD"
-                }
-            ]
+[{
+"id":13,
+"name":"hour",
+"duration":3600,
+"order":0,
+"price": 1000,
+"currency":"USD"
+},{
+"id":234,
+"name":"4 hours",
+"duration": 14400,
+"order":0,
+"price": 4000,
+"currency":"USD"
+},{
+"id":3542,
+"name":"8 hours",
+"duration":28800,
+"order":0,
+"price": 7000,
+"currency":"USD"
+},{
+"id":3456,
+"name":"24 hour",
+"duration":86400,
+"order":0,
+"price": 14000,
+"currency":"USD"
+},{
+"id":123453,
+"name":"48 hour",
+"duration":172800,
+"order":0,
+"price": 28000,
+"currency":"USD"
+}]
             */
             $table->unsignedBigInteger('team_id');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');

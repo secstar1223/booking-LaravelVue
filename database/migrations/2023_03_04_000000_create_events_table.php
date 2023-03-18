@@ -22,15 +22,17 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->text('description');
+            $table->text('language');
+/*
+{"seats_label":"Select Number of Waverunners(s)","duration_label":"Duration:","time_label":"Time:","book_now":"Book now","total_label":"Total: ","start_label":"Start time: ","end_label":"End time: "}
+*/
+            $table->text('options');
+/*
+{"time":12,"lead_time":24,"cutoff_time":0,"fixed_duration":true,"fixed_timezone":true,"timezone_offset":0}
+*/
             $table->text('schedule');
             /*
-            {'mon' => [
-                '15:30',
-                '16:30',
-            ],
-            'tue' => [
-
-            ]}
+{"repeats_every":7,"days":[[0,32400,39600,41400,43200,45000,46800,82800,86400],[32400,36000,37800,39600,41400,43200,45000,46800,82800],[],[],[36000,37800,39600,41400,43200,45000,46800,82800],[36000,37800,39600,41400,43200,45000,46800,82800],[36000,37800,39600,41400,43200,45000,46800,82800]],"messages":{"2":"Closed Tuesdays & Wednesdays","3":"Closed Tuesdays & Wednesdays"}}
             */
             $table->text('schedule_exceptions');
             /*

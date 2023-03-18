@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\EquipmentGuidesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +59,7 @@ Route::get('/newrental', function () {
 
 
 
-Route::post('/equipmentguides', 'App\Http\Controllers\EquipmentGuidesController@store')->name('equipmentguides.store');
+Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
 
 
 

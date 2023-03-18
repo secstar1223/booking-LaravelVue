@@ -556,7 +556,7 @@ a:hover {
 			<div id="rental-selection" class="right hidden" >
 			  <div class="customer-buttons">
 			  
-					<button onclick="window.location.href='newrental.html'">+ New Rental</button>
+					<button onclick="window.location.href='{{ route('newrental') }}'">+ New Rental</button>
 
 					<table>
 					  <thead>
@@ -572,19 +572,19 @@ a:hover {
 						  <td>Product 1</td>
 						  <td>Equipment 1</td>
 						  <td><a href="widget.html">Get Your Widget</a></td>
-						  <td><a href="newrental.html">View/Edit</a></td>
+						  <td><a href="{{ route('newrental') }}">View/Edit</a></td>
 						</tr>
 						<tr>
 						  <td>Product 2</td>
 						  <td>Equipment 2</td>
 						  <td><a href="widget.html">Get Your Widget</a></td>
-						  <td><a href="newrental.html">View/Edit</a></td>
+						  <td><a href="{{ route('newrental') }}">View/Edit</a></td>
 						</tr>
 						<tr>
 						  <td>Product 3</td>
 						  <td>Equipment 3</td>
 						  <td><a href="widget.html">Get Your Widget</a></td>
-						  <td><a href="newrental.html">View/Edit</a></td>
+						  <td><a href="{{ route('newrental') }}">View/Edit</a></td>
 						</tr>
 					  </tbody>
 					</table>

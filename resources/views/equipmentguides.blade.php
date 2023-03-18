@@ -250,34 +250,34 @@ small {
 			<div class="nav-button-container">
 				<button id="nav-dashboard-btn">Dashboard</button>
 				<ul id="nav-dashboard-menu" class="hidden">
-					<li><a href="dashboard.html" id="nav-manifest-btn">Manifest</a></li>
-					<li><a href="dashboard.html" id="nav-capacity-btn">Capacity Report</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-manifest-btn">Manifest</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-capacity-btn">Capacity Report</a></li>
 				</ul>
 				<button id="nav-calendar-btn">Calendar</button>
 				<ul id="nav-calendar-menu" class="hidden">
-					<li><a href="dashboard.html" id="nav-calrentals-btn">Rentals</a></li>
-					<li><a href="dashboard.html" id="nav-calavilablity-btn">Availablity</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-calrentals-btn">Rentals</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-calavilablity-btn">Availablity</a></li>
 				</ul>
 				<button id="nav-customers-btn">Customers</button>
 				<ul id="nav-customers-menu" class="hidden">
-					<li><a href="dashboard.html" id="nav-searchcustomers-btn">Search</a></li>
-					<li><a href="dashboard.html" id="nav-members-btn">Members</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-searchcustomers-btn">Search</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-members-btn">Members</a></li>
 				</ul>
 				<button id="nav-reports-btn">Reports</button>
 				<ul id="nav-reports-menu" class="hidden">
-					<li><a href="dashboard.html" id="nav-sales-btn">sales</a></li>
-					<li><a href="dashboard.html" id="nav-profit-btn">profit</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-sales-btn">sales</a></li>
+					<li><a href="{{ route('dashboard') }}" id="nav-profit-btn">profit</a></li>
 				</ul>
 				<button id="nav-marketing-btn">Marketing</button>
 				<ul id="nav-marketing-menu" class="hidden">
-					<li><a href="dashboard.html"id="nav-promocode-btn">PromoCode</a></li>
-					<li><a href="abandon.html" id="nav-abandoned-btn">Abandoned</a></li>
+					<li><a href="{{ route('dashboard') }}"id="nav-promocode-btn">PromoCode</a></li>
+					<li><a href="{{ route('abandoned') }}" id="nav-abandoned-btn">Abandoned</a></li>
 				</ul>
 				<button id="nav-products-btn">Products</button>
 			<ul id="nav-products-menu" class="hidden">
-				<li><a href="dashboard.html" id="nav-rentals-btn">Rentals</a></li>
-				<li><a href="addon.html" id="nav-addon-btn">Add-ons</a></li>
-				<li><a href="dashboard.html" id="nav-membership-btn">Memberships</a></li>
+				<li><a href="{{ route('dashboard') }}" id="nav-rentals-btn">Rentals</a></li>
+				<li><a href="{{ route('addon') }}" id="nav-addon-btn">Add-ons</a></li>
+				<li><a href="{{ route('dashboard') }}" id="nav-membership-btn">Memberships</a></li>
 			</ul>
 				<button id="nav-configuration-btn">Configuration</button>
 			<ul id="nav-configuration-menu" class="hidden">

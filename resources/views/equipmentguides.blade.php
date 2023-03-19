@@ -299,12 +299,12 @@ small {
             </tr>
         </thead>
         <tbody>
-            @foreach ($equipments as $equipment)
+            @foreach ($equipments as $equip)
                 <tr>
-                    <td>{{ $equipment->name }}</td>
-                    <td>{{ $equipment->quantity }}</td>
-                    <td><input type="checkbox" {{ $equipment->resource_tracking ? 'checked' : '' }}></td>
-                    <td>{{ $equipment->capacity }}</td>
+                    <td>{{ $equip->name }}</td>
+                    <td>{{ $equip->quantity }}</td>
+                    <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
+                    <td>{{ $equip->capacity }}</td>
                     <td><button onclick="openModal()">Edit</button></td>
                 </tr>
             @endforeach

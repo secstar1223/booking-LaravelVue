@@ -46,11 +46,7 @@ class EquipmentGuidesController extends Controller
 
 }
 
-public function show($id)
-{
-    $equipment = Equipment::find($id);
-    return response()->json($equipment);
-}
+
 
 
 

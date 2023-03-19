@@ -16,7 +16,7 @@ public function up()
         $table->text('name');
         $table->text('description');
         $table->string('image')->nullable();
-        $table->timestamps();
+        $table->timestamps(); 
     });
     
 }

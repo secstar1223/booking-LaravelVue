@@ -375,36 +375,56 @@ small {
 <!-- JavaScript to open and close the popup modal -->
 	<script>
 		var modal = document.getElementById("myModal");
-
+        
 function openModal(button) {
-    // Retrieve the equipment ID from the button's data attribute
-    var equipId = button.dataset.equipId;
-    
-    // Make an AJAX request to retrieve the equipment details
-    $.ajax({
-        url: '/equipments/' + equipId,
-        type: 'GET',
-        success: function(response) {
-            // Pre-populate the form fields with the retrieved data
-            $('#name').val(response.name);
-            $('#short-name').val(response.short_name);
-            $('#color').val(response.color);
-            $('#quantity').val(response.quantity);
-            $('#capacity').val(response.capacity);
-            $('#description').val(response.description);
-            if (response.resource_tracking) {
-                $('input[name="resource_tracking"]').prop('checked', true);
-            } else {
-                $('input[name="resource_tracking"]').prop('checked', false);
+    // If the button parameter is defined, it means that the function was called
+    // by clicking on the "Edit" button
+    if (button) {
+        // Retrieve the equipment ID from the button's data attribute
+        var equipId = button.dataset.equipId;
+
+        // Make an AJAX request to retrieve the equipment details
+        $.ajax({
+            url: '/equipments/' + equipId,
+            type: 'GET',
+            success: function(response) {
+                // Pre-populate the form fields with the retrieved data
+                $('#name').val(response.name);
+                $('#short-name').val(response.short_name);
+                $('#color').val(response.color);
+                $('#quantity').val(response.quantity);
+                $('#capacity').val(response.capacity);
+                $('#description').val(response.description);
+                if (response.resource_tracking) {
+                    $('input[name="resource_tracking"]').prop('checked', true);
+                } else {
+                    $('input[name="resource_tracking"]').prop('checked', false);
+                }
+                // Show the modal
+                modal.style.display = "block";
+            },
+            error: function() {
+                alert('Error retrieving equipment details');
             }
-            // Show the modal
-            modal.style.display = "block";
-        },
-        error: function() {
-            alert('Error retrieving equipment details');
-        }
-    });
+        });
+    } else {
+        // If the button parameter is not defined, it means that the function was
+        // called by clicking on the "New Rental Equipment Pool" button
+
+        // Set the form fields to their default values
+        $('#name').val('');
+        $('#short-name').val('');
+        $('#color').val('#000000');
+        $('#quantity').val(0);
+        $('#capacity').val(0);
+        $('#description').val('');
+        $('input[name="resource_tracking"]').prop('checked', false);
+
+        // Show the modal
+        modal.style.display = "block";
+    }
 }
+
 
 
 		function closeModal() {

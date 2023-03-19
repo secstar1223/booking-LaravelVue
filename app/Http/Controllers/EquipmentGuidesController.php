@@ -63,9 +63,20 @@ class EquipmentGuidesController extends Controller
 
 public function show($id)
 {
-    $equipment = Equipment::find($id);
-    return response()->json($equipment);
+    if (request()->query('remove')) {
+        $equipment = Equipment::find($id);
+        if ($equipment) {
+            $equipment->delete();
+            return response()->json(['message' => 'Equipment deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Equipment not found'], 404);
+        }
+    } else {
+        $equipment = Equipment::find($id);
+        return response()->json($equipment);
+    }
 }
+
 
 
 

@@ -9,6 +9,8 @@ class EquipmentGuidesController extends Controller
 {
     public function store(Request $request)
 {
+    dd($request); // dump and die the contents of $request
+
     $data = $request->validate([
         'name' => 'required|max:255',
         'short_name' => 'required|max:10',

@@ -36,7 +36,6 @@ class EquipmentGuidesController extends Controller
             'resource_tracking' => $resourceTracking,
         ]);
     } else {
-            dd('made it to new equipment'); // dump and die the contents of $request
         // Create a new Equipment model with the validated data
         $equipment = new Equipment([
             'name' => $data['name'],

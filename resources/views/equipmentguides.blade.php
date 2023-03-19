@@ -385,7 +385,7 @@ function openModal(button) {
 
         // Make an AJAX request to retrieve the equipment details
         $.ajax({
-            url: '/equipments/' + equipId,
+            url: '/equipmentguides/' + equipId,
             type: 'GET',
             success: function(response) {
                 // Pre-populate the form fields with the retrieved data

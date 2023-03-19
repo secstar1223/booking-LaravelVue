@@ -46,6 +46,8 @@ Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index'])->nam
 
 Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
 
+Route::get('/equipmentguides/{id}', [EquipmentGuidesController::class, 'show']);
+
 
 
 

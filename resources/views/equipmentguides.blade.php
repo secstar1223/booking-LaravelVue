@@ -474,6 +474,9 @@ function deleteRow(equipId) {
         $.ajax({
             url: '/equipmentguides/' + equipId,
             type: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(response) {
                 $('tr[data-equip-id="' + equipId + '"]').remove();
             },
@@ -483,6 +486,7 @@ function deleteRow(equipId) {
         });
     }
 }
+
 
 	</script>
 </body>

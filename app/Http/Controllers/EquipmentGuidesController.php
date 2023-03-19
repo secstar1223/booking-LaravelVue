@@ -9,7 +9,7 @@ class EquipmentGuidesController extends Controller
 {
     public function store(Request $request)
 {
-    dd($request); // dump and die the contents of $request
+    
 
     $data = $request->validate([
         'name' => 'required|max:255',
@@ -36,6 +36,7 @@ class EquipmentGuidesController extends Controller
             'resource_tracking' => $resourceTracking,
         ]);
     } else {
+            dd('made it to new equipment'); // dump and die the contents of $request
         // Create a new Equipment model with the validated data
         $equipment = new Equipment([
             'name' => $data['name'],

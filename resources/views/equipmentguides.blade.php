@@ -298,6 +298,7 @@ small {
                 <th>Resource Tracking</th>
                 <th>Capacity per item</th>
                 <th>Action</th>
+                <th>Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -308,6 +309,7 @@ small {
             <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
             <td>{{ $equip->capacity }}</td>
             <td><button onclick="openModal(this)" data-equip-id="{{ $equip->id }}">Edit</button></td>
+            td><a href="#" onclick="deleteRow({{ $equip->id }})">Remove</a></td> 
           </tr>
         @endforeach
         </tbody>
@@ -468,6 +470,20 @@ buttons.forEach(function(button) {
   }
 });
 
+function deleteRow(equipId) {
+    if (confirm('Are you sure you want to delete this equipment?')) {
+        $.ajax({
+            url: '/equipmentguides/' + equipId,
+            type: 'DELETE',
+            success: function(response) {
+                $('tr[data-equip-id="' + equipId + '"]').remove();
+            },
+            error: function() {
+                alert('Error deleting equipment');
+            }
+        });
+    }
+}
 
 	</script>
 </body>

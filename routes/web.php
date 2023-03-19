@@ -42,7 +42,8 @@ Route::middleware([
 });
 
 
-Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index']);
+Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index'])->name('equipmentguides');
+
 Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
 
 

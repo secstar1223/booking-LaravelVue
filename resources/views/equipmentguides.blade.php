@@ -469,7 +469,6 @@ buttons.forEach(function(button) {
     });
   }
 });
-
 function deleteRow(equipId) {
     if (confirm('Are you sure you want to delete this equipment?')) {
         $.ajax({

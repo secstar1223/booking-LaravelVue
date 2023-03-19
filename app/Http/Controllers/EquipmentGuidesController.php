@@ -49,6 +49,7 @@ class EquipmentGuidesController extends Controller
 public function show($id)
 {
     $equipment = Equipment::find($id);
+     dd($equipment); // temporary debugging statement
     return response()->json($equipment);
 }
 

@@ -320,6 +320,7 @@ small {
     <h2>Edit Item</h2>
     <form method="POST" action="{{ route('equipmentguides.store') }}">
       @csrf
+    <input type="hidden" id="equip-id" name="equip_id">
       <fieldset>
         <legend>Item Name</legend>
         <div>
@@ -382,6 +383,9 @@ function openModal(button) {
     if (button) {
         // Retrieve the equipment ID from the button's data attribute
         var equipId = button.dataset.equipId;
+
+        // Set the hidden input field with the equipment ID
+        $('#equip-id').val(equipId);
 
         // Make an AJAX request to retrieve the equipment details
         $.ajax({

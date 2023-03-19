@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EquipmentGuidesController extends Controller
 {
@@ -40,9 +41,9 @@ class EquipmentGuidesController extends Controller
     
     public function start()
 {
-    $equipments = Equipment::all();
-    dd($equipments); // dump the variable to check its contents
-   return view('equipmentguides')->with('equipments', $equipments);
+    $equipments = DB::table('equipment')->get();
+    dd($equipments);
+    return view('equipmentguides', compact('equipments'));
 
 }
 

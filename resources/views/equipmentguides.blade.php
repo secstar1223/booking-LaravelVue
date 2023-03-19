@@ -470,22 +470,23 @@ buttons.forEach(function(button) {
     });
   }
 });
-function deleteRow(row, equipId) {
-    if (confirm('Are you sure you want to delete this row?')) {
+function deleteRow(equipId) {
+    if (confirm('Are you sure you want to delete this equipment?')) {
         $.ajax({
             url: '/equipmentguides/' + equipId,
             type: 'DELETE',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            success: function() {
-                $(row).closest('tr').remove(); // Remove the row from the table
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                $('tr[data-equip-id="' + equipId + '"]').remove();
             },
             error: function() {
-                alert('Error deleting row');
+                alert('Error deleting equipment');
             }
         });
     }
 }
-
 
 	</script>
 </body>

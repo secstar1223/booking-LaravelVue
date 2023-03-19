@@ -48,6 +48,9 @@ Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->na
 
 Route::get('/equipmentguides/{id}', [EquipmentGuidesController::class, 'show']);
 
+Route::delete('/equipmentguides/{id}', [EquipmentGuidesController::class, 'destroy']);
+
+
 
 
 

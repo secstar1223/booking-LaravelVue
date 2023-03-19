@@ -305,7 +305,7 @@ small {
             <td>{{ $equip->quantity }}</td>
             <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
             <td>{{ $equip->capacity }}</td>
-            <button onclick="openModal(this)" data-equip-id="{{ $equip->id }}">Edit</button>
+            <td><button onclick="openModal(this)" data-equip-id="{{ $equip->id }}">Edit</button></td>
           </tr>
         @endforeach
         </tbody>

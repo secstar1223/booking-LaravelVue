@@ -48,7 +48,6 @@ class EquipmentGuidesController extends Controller
 
 public function show($id)
 {
-        dd('controller executed'); // temporary debugging statement
     $equipment = Equipment::find($id);
      dd($equipment); // temporary debugging statement
     return response()->json($equipment);

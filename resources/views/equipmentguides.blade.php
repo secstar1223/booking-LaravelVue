@@ -299,15 +299,15 @@ small {
             </tr>
         </thead>
         <tbody>
-          @foreach ($equipments as $equip)
-              <tr>
-                   <td>{{ $equip->name }}</td>
-                  <td>{{ $equip->quantity }}</td>
-                    <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
-                    <td>{{ $equip->capacity }}</td>
-                    <td><button onclick="openModal()">Edit</button></td>
-                </tr>
-            @endforeach
+         @foreach ($equipments as $equip)
+          <tr>
+            <td>{{ $equip->name }}</td>
+            <td>{{ $equip->quantity }}</td>
+            <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
+            <td>{{ $equip->capacity }}</td>
+            <td><button onclick="openModal()" data-equip-id="{{ $equip->id }}">Edit</button></td>
+          </tr>
+        @endforeach
         </tbody>
     </table>
 </div>
@@ -374,9 +374,42 @@ small {
 	<script>
 		var modal = document.getElementById("myModal");
 
-		function openModal() {
-			modal.style.display = "block";
-		}
+		function openModal(equipId) {
+          // Get the modal element
+          var modal = document.getElementById("myModal");
+
+          // Get the form fields
+          var nameField = document.getElementById("name");
+          var shortNameField = document.getElementById("short-name");
+          var colorField = document.getElementById("color");
+          var quantityField = document.getElementById("quantity");
+          var capacityField = document.getElementById("capacity");
+          var resourceTrackingField = document.getElementsByName("resource_tracking")[0];
+          var descriptionField = document.getElementById("description");
+
+          // Make an AJAX call to retrieve the equipment data
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              // Parse the response data as JSON
+              var equipData = JSON.parse(this.responseText);
+
+              // Populate the form fields with the equipment data
+              nameField.value = equipData.name;
+              shortNameField.value = equipData.short_name;
+              colorField.value = equipData.color;
+              quantityField.value = equipData.quantity;
+              capacityField.value = equipData.capacity;
+              resourceTrackingField.checked = equipData.resource_tracking;
+              descriptionField.value = equipData.description;
+          }
+      };
+      xhr.open("GET", "/equipments/" + equipId, true);
+      xhr.send();
+
+    // Show the modal
+    modal.style.display = "block";
+}
 
 		function closeModal() {
 			modal.style.display = "none";

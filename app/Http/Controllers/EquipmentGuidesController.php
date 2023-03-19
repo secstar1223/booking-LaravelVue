@@ -8,36 +8,51 @@ use Illuminate\Support\Facades\DB;
 class EquipmentGuidesController extends Controller
 {
     public function store(Request $request)
-    {
-        // Validate form data
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'short_name' => 'required|max:10',
-            'color' => 'required',
-            'quantity' => 'required|integer|min:0',
-            'capacity' => 'required|integer|min:0',
-            'description' => 'required',
-        ]);
+{
+    $data = $request->validate([
+        'name' => 'required|max:255',
+        'short_name' => 'required|max:10',
+        'color' => 'required',
+        'quantity' => 'required|integer|min:0',
+        'capacity' => 'required|integer|min:0',
+        'description' => 'required',
+        'resource_tracking' => 'nullable',
+        'equip_id' => 'nullable', // Add this validation rule
+    ]);
 
-        $resourceTracking = $request->input('resource_tracking') === 'on';
-        
+    $resourceTracking = $request->input('resource_tracking') === 'on';
+    
+    if ($request->has('equip_id')) {
+        $equipment = Equipment::findOrFail($request->equip_id);
+        $equipment->update([
+            'name' => $data['name'],
+            'short_name' => $data['short_name'],
+            'color' => $data['color'],
+            'quantity' => $data['quantity'],
+            'capacity' => $data['capacity'],
+            'description' => $data['description'],
+            'resource_tracking' => $resourceTracking,
+        ]);
+    } else {
         // Create a new Equipment model with the validated data
         $equipment = new Equipment([
-            'name' => $validatedData['name'],
-            'short_name' => $validatedData['short_name'],
-            'color' => $validatedData['color'],
-            'quantity' => $validatedData['quantity'],
-            'capacity' => $validatedData['capacity'],
-            'description' => $validatedData['description'],
+            'name' => $data['name'],
+            'short_name' => $data['short_name'],
+            'color' => $data['color'],
+            'quantity' => $data['quantity'],
+            'capacity' => $data['capacity'],
+            'description' => $data['description'],
             'resource_tracking' => $resourceTracking,
         ]);
 
         // Save the Equipment model to the database
         $equipment->save();
-
-        // Redirect the user back to the form
-        return back();
     }
+
+    // Redirect the user back to the form
+    return back();
+}
+
     
     public function index()
 {

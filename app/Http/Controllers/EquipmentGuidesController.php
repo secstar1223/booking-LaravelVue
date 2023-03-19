@@ -42,7 +42,7 @@ class EquipmentGuidesController extends Controller
 {
     $equipments = Equipment::all();
     dd($equipments); // dump the variable to check its contents
-    return view('equipmentguides', compact('equipments'));
+   return view('equipmentguides')->with('equipments', $equipments);
 
 }
 

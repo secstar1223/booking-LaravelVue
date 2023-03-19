@@ -41,6 +41,7 @@ class EquipmentGuidesController extends Controller
     public function index()
 {
     $equipments = Equipment::all();
+    dd($equipments); // dump the variable to check its contents
     return view('equipmentguides', compact('equipments'));
 
 }

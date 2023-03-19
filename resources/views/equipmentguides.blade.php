@@ -304,7 +304,7 @@ small {
         </thead>
         <tbody>
          @foreach ($equipments as $equip)
-          <tr>
+          <tr id="equip-{{ $equip->id }}">
             <td>{{ $equip->name }}</td>
             <td>{{ $equip->quantity }}</td>
             <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
@@ -480,6 +480,10 @@ function deleteRow(equipId) {
             },
             success: function(response) {
                 $('tr[data-equip-id="' + equipId + '"]').remove();
+                // Remove the table row from the browser
+                $('#equip-' + equipId).remove();
+                // Show a success message
+                alert('Equipment successfully deleted');
             },
             error: function() {
                 alert('Error deleting equipment');

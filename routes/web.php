@@ -44,10 +44,8 @@ Route::middleware([
 
 Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index']);
 Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
-Route::get('/equipments/{id}', function($id) {
-    $equip = Equipment::findOrFail($id);
-    return response()->json($equip);
-});
+Route::get('/equipments/{id}', [EquipmentGuidesController::class, 'show']);
+
 
 
 

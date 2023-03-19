@@ -77,6 +77,12 @@ public function show($id)
     }
 }
 
+public function destroy($id)
+    {
+        $equipment = Equipment::find($id);
+        $equipment->delete();
+        return response()->json(['message' => 'Equipment deleted successfully']);
+    }
 
 
 

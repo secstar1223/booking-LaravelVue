@@ -10,6 +10,8 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book It Dashboard</title>
   
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
   /* Body styles */
 body {

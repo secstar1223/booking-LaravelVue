@@ -24,7 +24,7 @@ class EquipmentGuidesController extends Controller
 
     $resourceTracking = $request->input('resource_tracking') === 'on';
     
-    if ($request->has('equip_id')) {
+    if (!empty($request->equip_id)) {
         $equipment = Equipment::findOrFail($request->equip_id);
         $equipment->update([
             'name' => $data['name'],

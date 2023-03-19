@@ -309,7 +309,7 @@ small {
             <td><input type="checkbox" {{ $equip->resource_tracking ? 'checked' : '' }}></td>
             <td>{{ $equip->capacity }}</td>
             <td><button onclick="openModal(this)" data-equip-id="{{ $equip->id }}">Edit</button></td>
-            td><a href="#" onclick="deleteRow({{ $equip->id }})">Remove</a></td> 
+            <td><a href="#" onclick="deleteRow({{ $equip->id }})">Remove</a></td> 
           </tr>
         @endforeach
         </tbody>

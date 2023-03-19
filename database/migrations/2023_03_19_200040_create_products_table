@@ -18,6 +18,7 @@ public function up()
         $table->string('image')->nullable();
         $table->timestamps();
     });
+    
 }
 
 

@@ -38,7 +38,7 @@ class EquipmentGuidesController extends Controller
         return back();
     }
     
-    public function index()
+    public function start()
 {
     $equipments = Equipment::all();
     dd($equipments); // dump the variable to check its contents

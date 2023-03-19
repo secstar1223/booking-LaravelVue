@@ -17,7 +17,7 @@ class CreateEquipmentTypesTable extends Migration
             $table->integer('max')->nullable();
             $table->integer('min_required')->nullable();
             $table->string('category')->nullable();
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

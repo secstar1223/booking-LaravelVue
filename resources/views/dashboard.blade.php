@@ -570,7 +570,7 @@ a:hover {
 					  <tbody>
 						<tr>
 						  <td>Product 1</td>
-						  <<td>Equipment 1<br>Equipment 2</td>
+						  <td>Equipment 1<br>Equipment 2</td>
 						  <td><a href="widget.html">Get Your Widget</a></td>
 						  <td><a href="{{ route('newrental') }}">View/Edit</a></td>
 						</tr>

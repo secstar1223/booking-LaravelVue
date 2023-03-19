@@ -39,9 +39,9 @@ class EquipmentGuidesController extends Controller
         return back();
     }
     
-    public function start()
+    public function index()
 {
-    $equipments = DB::table('equipment')->get();
+    $equipments = Equipment::all();
     dd($equipments);
     return view('equipmentguides', compact('equipments'));
 

@@ -49,7 +49,7 @@ class EquipmentGuidesController extends Controller
 public function show($id)
 {
     $equipment = Equipment::find($id);
-    return $equipment;
+    return response()->json($equipment);
 }
 
 

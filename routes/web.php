@@ -6,7 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\EquipmentGuidesController;
-use App\Http\Controllers\RentalProductsController;
+use App\Http\Controllers\NewRentalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ Route::get('/addon', function () {
 Route::get('/newrental', function () {
     return view('newrental');
 })->name('newrental');
-
+Route::post('/newrental', [NewRentalController::class, 'store'])->name('newrental.store');
 
 
 

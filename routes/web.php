@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\EquipmentGuidesController;
+use App\Http\Controllers\RentalProductsController;
 
 /*
 |--------------------------------------------------------------------------

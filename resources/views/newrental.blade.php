@@ -525,7 +525,7 @@ input[type="color"] {
 	  <div id="details" class="hidden">
 		<div class="right-content">
           <h2 class="edit-product-heading">Edit Product</h2>
-          <form class="product-form" action="/newrental" method="POST">
+          <form class="product-form" action="/newrental" method="POST" enctype="multipart/form-data">
              @csrf
               <div class="form-group">
                 <label for="product-name" class="form-label">Product Name:</label>
@@ -536,8 +536,8 @@ input[type="color"] {
                 <input type="text" id="description" name="description" class="form-input">
               </div>
               <div class="form-group">
-                <label for="widget-image" class="form-label">Widget Image:</label>
-                <button class="change-image-button">Change Image</button>
+                 <label for="widget-image" class="form-label">Widget Image:</label>
+                 <input type="file" name="widget-image" id="widget-image">
               </div>
               <button class="delete-product-button">Delete this product</button>
               <button type="submit" class="submit-product-button">Submit</button>

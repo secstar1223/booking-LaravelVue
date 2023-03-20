@@ -7,18 +7,23 @@ use Illuminate\Support\Facades\DB;
 
 class NewRentalController extends Controller
 {
-        public function store(Request $request)
+       public function store(Request $request)
     {
         $product = new Product;
         $product->name = $request->input('product-name');
         $product->description = $request->input('description');
-        // Upload the image file and save the path to the database
-        $product->image = 'path/to/image'; 
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $filename);
+            $product->image = $filename;
+        }
+
         $product->save();
 
-        return redirect('/')->with('success', 'Product created successfully.');
+        return redirect('/newrental');
     }
-
 }
 
 

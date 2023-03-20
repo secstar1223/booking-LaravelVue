@@ -526,6 +526,7 @@ input[type="color"] {
 		<div class="right-content">
           <h2 class="edit-product-heading">Edit Product</h2>
           <form class="product-form" action="/newrental" method="POST">
+           @csrf
             <div class="form-group">
         <label for="product-name" class="form-label">Product Name:</label>
         <input type="text" id="product-name" name="product-name" class="form-input">
@@ -539,6 +540,7 @@ input[type="color"] {
         <button class="change-image-button">Change Image</button>
       </div>
       <button class="delete-product-button">Delete this product</button>
+      <button type="submit" class="submit-product-button">Submit</button>
     </form>
   </div>
 </div>

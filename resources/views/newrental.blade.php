@@ -525,7 +525,7 @@ input[type="color"] {
 	  <div id="details" class="hidden">
 		<div class="right-content">
           <h2 class="edit-product-heading">Edit Product</h2>
-          <form class="product-form">
+          <form class="product-form" action="/newrental" method="POST">
             <div class="form-group">
         <label for="product-name" class="form-label">Product Name:</label>
         <input type="text" id="product-name" name="product-name" class="form-input">

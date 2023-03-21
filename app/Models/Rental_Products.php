@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RentalProducts extends Model
+class Rental_Products extends Model
 {    protected $table = 'rental_products';
     protected $fillable = [
         'name',

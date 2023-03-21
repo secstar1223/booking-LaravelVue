@@ -29,6 +29,7 @@ Route::get('/', function () {
 
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}/seats', [SeatController::class, 'index'])->name('events.seats.index');
+Route::get('/events/{id}/reserve', [SeatController::class, 'reserve'])->name('events.seats.reserve');
 
 Route::middleware([
     'auth:sanctum',

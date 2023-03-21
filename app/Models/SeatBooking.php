@@ -12,6 +12,7 @@ class SeatBooking extends Model
         'start_date',
         'end_date',
         'seat_number',
+        'was_reserved',
     ];
 
     public function eventSession()

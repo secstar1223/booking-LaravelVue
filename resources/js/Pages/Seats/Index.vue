@@ -4,11 +4,17 @@
         <div class="col-md-12">
             <h1>{{language.seats_label}}</h1>
         </div>
-
+        <div v-if="state.error_message" class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                {{ state.error_message }}
+            </div>
+        </div>
     <div class="card card-body" v-for="seat in state.seats" :key="seat.id">
         <div class="row">
-            <div class="col-md-12">
-                
+            <div v-if="seat.error_message" class="col-md-12">
+                <div class="alert alert-danger" role="alert">
+                    {{ seat.error_message }}
+                </div>
             </div>
             <div class="col-md-2">
                 <button @click="decrementQuantity(seat.id)">-</button>
@@ -60,6 +66,10 @@ import { reactive, ref } from 'vue'
 
 export default {
     props: {
+        event_id: {
+            type: Number,
+            required: true,
+        },
         seats: {
             type: Array,
             required: true,
@@ -94,6 +104,7 @@ export default {
                 }
             }],
             can_book: false,
+            has_errors: false,
             total: {
                 price: 0,
                 symbol: '$'
@@ -135,25 +146,54 @@ export default {
 
         //console.log(state.attributes)
 
-        const bookNow = () => {
-            console.log(state.seats)
+        const checkHasErrors = () => {
+            let has_errors = false
+            let has_seats_ordered = false
+            state.error_message = ''
             for (let i = 0; i < state.seats.length; i++) {
-                if (state.seats[i].quantity > 0 &&  state.seats[i].quantity < state.seats[i].minimum_order) {
-                    //
-                }
+                state.seats[i].error_message = ''
+                if (state.seats[i].quantity > 0) {
+                    if (state.seats[i].quantity < state.seats[i].minimum_order) {
+                        has_errors = true
+                        state.seats[i].error_message = 'Minimum order of _ seats.'.replace('_', state.seats[i].minimum_order)
+                    } else {
+                        has_seats_ordered = true
+                    }
 
-                /*if (state.seats[i].quantity > 0) {
+                    let found_checked = false
                     for (let j = 0; j < state.seats[i].prices.length; j++) {
                         if (state.seats[i].prices[j].checked) {
-                            total_price += state.seats[i].prices[j].price * state.seats[i].quantity
-
-                            if (state.seats[i].prices[j].duration > total_duration) {
-                                total_duration = state.seats[i].prices[j].duration
-                            }
+                            found_checked = true
+                            break;
                         }
                     }
-                }*/
+
+                    if (!found_checked) {
+                        has_errors = true
+                        state.seats[i].error_message = 'Please select a duration.'
+                    }
+                }
             }
+
+            if (!has_seats_ordered) {
+                has_errors = true
+                state.error_message = 'Please select the seats you want to book.'
+            }
+
+            state.has_errors = has_errors
+            return has_errors
+        }
+
+        const bookNow = () => {
+            if (checkHasErrors()) {
+                return
+            }
+
+            fetch('/events/' + props.event_id + '/reserve')
+                .then((response) => response.json())
+                .then((data) => {
+                    
+                });
         }
 
         const updateDate = (new_date) => {

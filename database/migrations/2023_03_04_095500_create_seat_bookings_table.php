@@ -17,9 +17,10 @@ class CreateSeatBookingsTable extends Migration
             $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('seat_id');
             $table->unsignedBigInteger('customer_id');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->unsignedBigInteger('start_date');
+            $table->unsignedBigInteger('end_date');
             $table->integer('seat_number');
+            $table->integer('was_reserved');
             $table->timestamps();
 
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');

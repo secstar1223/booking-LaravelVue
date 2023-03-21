@@ -10,7 +10,7 @@ class NewRentalController extends Controller
 {
        public function store(Request $request)
     {
-        $rental_product = new Rental_Product;
+        $rental_product = new Rental_Products;
         $rental_product->name = $request->input('product-name');
         $rental_product->description = $request->input('description');
 

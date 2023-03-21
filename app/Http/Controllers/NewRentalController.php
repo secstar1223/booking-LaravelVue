@@ -10,18 +10,18 @@ class NewRentalController extends Controller
 {
        public function store(Request $request)
     {
-        $product = new Product;
-        $product->name = $request->input('product-name');
-        $product->description = $request->input('description');
+        $rental_product = new Rental_Product;
+        $rental_product->name = $request->input('product-name');
+        $rental_product->description = $request->input('description');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/images', $filename);
-            $product->image = $filename;
+            $rental_product->image = $filename;
         }
 
-        $product->save();
+        $rental_product->save();
 
         return redirect('/newrental');
     }

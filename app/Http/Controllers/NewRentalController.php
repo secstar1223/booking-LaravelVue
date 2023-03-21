@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Rental_Product;
+use App\Models\Rental_Products;
 use App\Models\Rental_Equipment_Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

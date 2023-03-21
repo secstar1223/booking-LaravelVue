@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\EquipmentGuidesController;
+use App\Http\Controllers\NewRentalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +42,35 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index'])->name('equipmentguides');
+
+Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
+
+Route::get('/equipmentguides/{id}', [EquipmentGuidesController::class, 'show']);
+
+Route::delete('/equipmentguides/{id}', [EquipmentGuidesController::class, 'destroy']);
+
+
+
+
+
+
+Route::get('/abandoned', function () {
+    return view('abandoned');
+})->name('abandoned');
+
+Route::get('/addon', function () {
+    return view('addon');
+})->name('addon');
+
+Route::get('/newrental', function () {
+    return view('newrental');
+})->name('newrental');
+Route::post('/newrental', [NewRentalController::class, 'store'])->name('newrental.store');
+
+
+
+
 

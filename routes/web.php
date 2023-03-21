@@ -44,6 +44,7 @@ Route::middleware([
 });
 
 
+/*adding equipment routes*/
 Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index'])->name('equipmentguides');
 
 Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
@@ -65,10 +66,15 @@ Route::get('/addon', function () {
     return view('addon');
 })->name('addon');
 
+
+
+/*new rental routes NOTE some routes go to pages that dont exsist, the controller will return to correct page*/
 Route::get('/newrental', function () {
     return view('newrental');
 })->name('newrental');
 Route::post('/newrental', [NewRentalController::class, 'store'])->name('newrental.store');
+
+Route::post('/newrental/rentalequipmenttype', [NewRentalController::class, 'rentalequipmenttype'])->name('newrental.rentalequipmenttype);
 
 
 

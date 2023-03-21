@@ -17,6 +17,14 @@ session_start();
   display: none;
 }
 
+.advanced-info-row {
+  display: none;
+}
+
+.expanded {
+  display: table-row;
+}
+
  /* Body styles */
 body {
   font-family: Arial, sans-serif;
@@ -125,6 +133,10 @@ transition: box-shadow 0.15s ease,transform 0.15s ease;
   font-size: 16px;
   color: #555;
 }
+.contentrental{
+	margin: 20px;
+}
+
 .rental-options{
 display: flex;
 flex-direction: column;
@@ -229,7 +241,7 @@ text-decoration: underline;
 .delete-product-button {
   display: inline-block;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   color: #fff;
   background-color: #f44336;
@@ -237,12 +249,32 @@ text-decoration: underline;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  heigth: 40px;
 }
 
 .delete-product-button:hover {
   background-color: #d32f2f;
 }
 
+.submit-product-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #074808;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-product-button:hover {
+  background-color: #d32f2f;
+}
+
+.left-btn { float: left; }
+.right-btn { float: right; }
 
 .equipment-content button {
   background-color: #214560;
@@ -311,9 +343,10 @@ text-decoration: underline;
 }
 
 .equipment-content a {
-  color: #d32f2f;
+  color: #f8f8f8;
   text-decoration: none;
 }
+
 
 
 
@@ -539,11 +572,18 @@ input[type="color"] {
                  <label for="widget-image" class="form-label">Widget Image:</label>
                  <input type="file" name="widget-image" id="widget-image">
               </div>
+			  <div>
+			  <div class="right-btn">
               <button class="delete-product-button">Delete this product</button>
+			  </div>
+			  <div class="left-btn">
               <button type="submit" class="submit-product-button">Submit</button>
+			  </div>
+			  </div>
             </form>
         </div>
     </div>
+
 
 <!--Equipment button on menu -->
       <div id="equipment" class="hidden">
@@ -579,6 +619,50 @@ input[type="color"] {
 				<a href="#">Remove</a>
 			  </td>
 			</tr>
+			<tr id="advancerow" class="advanced-info-row hidden">
+			  <td colspan="3">
+				<!-- Advanced information goes here -->
+					<h2>Advance</h2>
+					<form>
+					  <div>
+						<label for="description">Description:</label>
+						<input type="text" id="description" name="description">
+					  </div>
+					  <div>
+						<label for="widget-image">Widget image:</label>
+						<input type="file" id="widget-image" name="widget-image">
+						<img id="image-placeholder" src="#" alt="Widget image">
+					  </div>
+					  <div>
+						<label for="widget-display">Widget display:</label>
+						<input type="checkbox" id="widget-display" name="widget-display">
+						<label for="widget-display">Hide</label>
+					  </div>
+					  <div>
+						<label for="min-value">Min value:</label>
+						<input type="number" id="min-value" name="min-value">
+					  </div>
+					  <div>
+						<label for="max-value">Max value:</label>
+						<input type="number" id="max-value" name="max-value">
+					  </div>
+					  <div>
+						<input type="checkbox" id="require-min" name="require-min">
+						<label for="require-min">Require min</label>
+					  </div>
+					  <div>
+						<label for="category">Category:</label>
+						<select id="category" name="category">
+						  <option value="adult">Adult</option>
+						  <option value="child">Child</option>
+						  <option value="other">Other</option>
+						</select>
+					  </div>
+					  <button type="button" id="save-btn">Save</button>
+					</form>
+					<a href="#" id="close-btn">Close</a>
+			  </td>
+			</tr>
 			<tr>
 			  <td>
 				<input type="text" id="my-edit-box" value="deluxe">
@@ -591,9 +675,53 @@ input[type="color"] {
 				</select>
 			  </td>
 			  <td>
-				<button id="advance-btn2">Advance</button>
+				<button id="advance-btn">Advance</button>
 				<button>Save</button>
 				<a href="#">Remove</a>
+			  </td>
+			</tr>
+			<tr id="advancerow" class="advanced-info-row hidden">
+			  <td colspan="3">
+				<!-- Advanced information goes here -->
+					<h2>Advance</h2>
+					<form>
+					  <div>
+						<label for="description">Description:</label>
+						<input type="text" id="description" name="description">
+					  </div>
+					  <div>
+						<label for="widget-image">Widget image:</label>
+						<input type="file" id="widget-image" name="widget-image">
+						<img id="image-placeholder" src="#" alt="Widget image">
+					  </div>
+					  <div>
+						<label for="widget-display">Widget display:</label>
+						<input type="checkbox" id="widget-display" name="widget-display">
+						<label for="widget-display">Hide</label>
+					  </div>
+					  <div>
+						<label for="min-value">Min value:</label>
+						<input type="number" id="min-value" name="min-value">
+					  </div>
+					  <div>
+						<label for="max-value">Max value:</label>
+						<input type="number" id="max-value" name="max-value">
+					  </div>
+					  <div>
+						<input type="checkbox" id="require-min" name="require-min">
+						<label for="require-min">Require min</label>
+					  </div>
+					  <div>
+						<label for="category">Category:</label>
+						<select id="category" name="category">
+						  <option value="adult">Adult</option>
+						  <option value="child">Child</option>
+						  <option value="other">Other</option>
+						</select>
+					  </div>
+					  <button type="button" id="save-btn">Save</button>
+					</form>
+					<a href="#" id="close-btn">Close</a>
 			  </td>
 			</tr>
 		  </tbody>
@@ -602,49 +730,7 @@ input[type="color"] {
 	</div>
 	
 		
-		<div id="popup-container">
-		  <div id="popup">
-			<h2>Advance</h2>
-			<form>
-			  <div>
-				<label for="description">Description:</label>
-				<input type="text" id="description" name="description">
-			  </div>
-			  <div>
-				<label for="widget-image">Widget image:</label>
-				<input type="file" id="widget-image" name="widget-image">
-				<img id="image-placeholder" src="#" alt="Widget image">
-			  </div>
-			  <div>
-				<label for="widget-display">Widget display:</label>
-				<input type="checkbox" id="widget-display" name="widget-display">
-				<label for="widget-display">Hide</label>
-			  </div>
-			  <div>
-				<label for="min-value">Min value:</label>
-				<input type="number" id="min-value" name="min-value">
-			  </div>
-			  <div>
-				<label for="max-value">Max value:</label>
-				<input type="number" id="max-value" name="max-value">
-			  </div>
-			  <div>
-				<input type="checkbox" id="require-min" name="require-min">
-				<label for="require-min">Require min</label>
-			  </div>
-			  <div>
-				<label for="category">Category:</label>
-				<select id="category" name="category">
-				  <option value="adult">Adult</option>
-				  <option value="child">Child</option>
-				  <option value="other">Other</option>
-				</select>
-			  </div>
-			  <button type="button" id="save-btn">Save</button>
-			</form>
-			<a href="#" id="close-btn">Close</a>
-		  </div>
-		</div>
+		
 
 
 
@@ -1124,14 +1210,31 @@ for (let i = 0; i < links.length; i++) {
   });
 }
 
-const popupContainer = document.getElementById('popup-container');
-const popup = document.getElementById('popup');
+
+// this is to expand the row when clicking advance button in the 
+//Equipment type link
+const advanceBtns = document.querySelectorAll("#advance-btn");
+const advancerow = document.getElementById("advancerow");
+
+advanceBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const nextRow = btn.parentElement.parentElement.nextElementSibling;
+    if (nextRow.id === "advancerow") {
+      nextRow.classList.add("expanded");
+    }
+  });
+});
+//end of equipment link type
+
+
+//const popupContainer = document.getElementById('popup-container');
+//const popup = document.getElementById('popup');
 const closeBtn = document.getElementById('close-btn');
 const saveBtn = document.getElementById('save-btn');
 const imageInput = document.getElementById('widget-image');
 const imagePlaceholder = document.getElementById('image-placeholder');
-const advanceBtn = document.getElementById('advance-btn');
-const advanceBtn2 = document.getElementById('advance-btn2');
+//const advanceBtn = document.getElementById('advance-btn');
+//const advanceBtn2 = document.getElementById('advance-btn2');
 const newAvailabilityBtn = document.getElementById('new-availability-button');
 const availabilityPopup = document.getElementById('ava-popup');
 
@@ -1183,8 +1286,8 @@ function handleImageInputChange() {
 closeBtn.addEventListener('click', hidePopup);
 saveBtn.addEventListener('click', hidePopup);
 imageInput.addEventListener('change', handleImageInputChange);
-advanceBtn.addEventListener('click', showPopup);
-advanceBtn2.addEventListener('click', showPopup);
+//advanceBtn.addEventListener('click', showPopup);
+//advanceBtn2.addEventListener('click', showPopup);
 
 // Hide popup on page load
 //popupContainer.style.display = 'none';
@@ -1490,6 +1593,7 @@ links.forEach(function(link) {
 	}
   });
 });
+
 
 </script>
 </body>

@@ -36,26 +36,26 @@ class CreateEventsTable extends Migration
             */
             $table->text('schedule_exceptions');
             /*
-            [
-                {
-                    'available' => false,
-                    'date' => '16-02-23',
-                    'time' => 'all day',
-                    'description' => 'Day off',
-                },
-                {
-                    'available' => false,
-                    'date' => '13-02-23',
-                    'time' => '16:30',
-                    'description' => '',
-                },
-                {
-                    'available' => true,
-                    'date' => '21-02-23',
-                    'time' => '20:00',
-                    'description' => 'Special show',
-                }
-            ]
+[
+    {
+        'available' => false,
+        'date' => '16-02-23',
+        'time' => 'all day',
+        'description' => 'Day off',
+    },
+    {
+        'available' => false,
+        'date' => '13-02-23',
+        'time' => '16:30',
+        'description' => '',
+    },
+    {
+        'available' => true,
+        'date' => '21-02-23',
+        'time' => '20:00',
+        'description' => 'Special show',
+    }
+]
             */
             $table->timestamps();
         });

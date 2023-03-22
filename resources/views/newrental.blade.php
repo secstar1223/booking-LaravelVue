@@ -377,6 +377,10 @@ label {
   margin-bottom: 5px;
 }
 
+.tall-input {
+  height: 200px;
+}
+
 input[type="text"],
 textarea {
   font-size: 16px;
@@ -384,8 +388,6 @@ textarea {
   margin-bottom: 10px;
   border-radius: 3px;
   border: 1px solid #ccc;
-  width:200px;
-  height:200px;
 }
 
 input[type="number"],
@@ -729,7 +731,7 @@ input[type="color"] {
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <label for="description">Description: <input type="text" id="description" name="description"></label>
+        <label for="description">Description: <input type="text" class="tall-input" id="description" name="description"></label>
       </div>
       <div class="form-group">
         <label for="min-value">Min value:

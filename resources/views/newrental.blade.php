@@ -623,43 +623,52 @@ input[type="color"] {
 			  <td colspan="3">
 				<!-- Advanced information goes here -->
 					<h2>Advance</h2>
-					<form>
-					  <div>
-						<label for="description">Description:</label>
-						<input type="text" id="description" name="description">
-					  </div>
-					  <div>
-						<label for="widget-image">Widget image:</label>
-						<input type="file" id="widget-image" name="widget-image">
-						<img id="image-placeholder" src="#" alt="Widget image">
-					  </div>
-					  <div>
-						<label for="widget-display">Widget display:</label>
-						<input type="checkbox" id="widget-display" name="widget-display">
-						<label for="widget-display">Hide</label>
-					  </div>
-					  <div>
-						<label for="min-value">Min value:</label>
-						<input type="number" id="min-value" name="min-value">
-					  </div>
-					  <div>
-						<label for="max-value">Max value:</label>
-						<input type="number" id="max-value" name="max-value">
-					  </div>
-					  <div>
-						<input type="checkbox" id="require-min" name="require-min">
-						<label for="require-min">Require min</label>
-					  </div>
-					  <div>
-						<label for="category">Category:</label>
-						<select id="category" name="category">
-						  <option value="adult">Adult</option>
-						  <option value="child">Child</option>
-						  <option value="other">Other</option>
-						</select>
-					  </div>
-					  <button type="button" id="save-btn">Save</button>
-					</form>
+										<h2>Advance</h2>
+<form class="advance-form">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description">
+      </div>
+      <div class="form-group">
+        <label for="widget-image">Widget image:</label>
+        <div class="image-upload">
+          <input type="file" id="widget-image" name="widget-image" accept="image/*">
+          <img id="image-placeholder" src="#" alt="Widget image">
+          <label for="widget-image" class="upload-btn">Choose File</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="widget-display">Widget display:</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="widget-display" name="widget-display">
+          <label for="widget-display" class="checkbox-label">Hide</label>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="min-value">Min value:</label>
+        <input type="number" id="min-value" name="min-value">
+        <label for="max-value">Max value:</label>
+        <input type="number" id="max-value" name="max-value">
+      </div>
+      <div class="form-group">
+          <label for="require-min" class="checkbox-label">Require min<input type="checkbox" id="require-min" name="require-min"></label>
+      </div>
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <option value="adult">Adult</option>
+          <option value="child">Child</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button type="button" id="save-btn">Save</button>
+</form>
 					<a href="#" id="close-btn">Close</a>
 			  </td>
 			</tr>

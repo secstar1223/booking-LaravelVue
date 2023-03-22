@@ -741,26 +741,26 @@ input[type="color"] {
  </div>
 </div>
     <div class="col">
-    <div class="form-group">
-        <label for="widget-image">Widget image:</label>
-        <div class="image-upload">
-          
-          <img id="image-placeholder" src="#" alt="Widget image">
-          <label for="widget-image" class="upload-btn">Choose File</label>
-          <input type="file" id="widget-image" name="widget-image" accept="image/*">
+        <div class="form-group">
+            <label for="widget-image">Widget image:</label>
+            <div class="image-upload">
+                <img id="image-placeholder" src="#" alt="Widget image">
+            </div>
+            <label for="widget-image" class="upload-btn">Choose File</label>
+            <input type="file" id="widget-image" name="widget-image" accept="image/*">
         </div>
         <div class="form-group">
-        <label for="widget-display">Widget display:
-        <div class="checkbox-group">
-          <input type="checkbox" id="widget-display" name="widget-display">
-          <label for="widget-display" class="checkbox-label">Hide</label></label>
+            <label for="widget-display">Widget display:
+            <div class="checkbox-group">
+                <input type="checkbox" id="widget-display" name="widget-display">
+                <label for="widget-display" class="checkbox-label">Hide</label></label>
+           </div>    
         </div>
-      
     </div>
-  </div>
   <button type="button" id="save-btn">Save</button>
-  <a href="#" id="close-btn">Close</a><br><hr>
+   <a href="#" id="close-btn">Close</a><br><hr>
 </form>
+ 
 					
 			  </td>
 			</tr>

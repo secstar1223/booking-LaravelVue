@@ -393,6 +393,73 @@ input[type="color"] {
   border-radius: 3px;
 }
 
+.advance-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+  font-size: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 50%;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.image-upload {
+  position: relative;
+}
+
+.image-upload input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.image-upload img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #3e8e41;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.checkbox-label {
+  margin-left: 5px;
+}
+
+#save-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50
+
 </style>
 </head>
 <body>

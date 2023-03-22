@@ -378,6 +378,16 @@ label {
 }
 
 input[type="text"],
+textarea {
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  width:200px;
+  height:200px;
+}
+
 input[type="number"],
 textarea {
   font-size: 16px;
@@ -385,6 +395,7 @@ textarea {
   margin-bottom: 10px;
   border-radius: 3px;
   border: 1px solid #ccc;
+  width:50px;
 }
 
 input[type="color"] {

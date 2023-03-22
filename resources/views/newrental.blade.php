@@ -622,37 +622,35 @@ input[type="color"] {
 			<tr id="advancerow" class="advanced-info-row hidden">
 			  <td colspan="3">
 				<!-- Advanced information goes here -->
-					<h2>Advance</h2>
 										<h2>Advance</h2>
 <form class="advance-form">
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description">
+        <label for="description">Description: <input type="text" id="description" name="description"></label>
       </div>
       <div class="form-group">
-        <label for="widget-image">Widget image:</label>
+        <label for="widget-image">Widget image:
         <div class="image-upload">
           <input type="file" id="widget-image" name="widget-image" accept="image/*">
-          <img id="image-placeholder" src="#" alt="Widget image">
+          <img id="image-placeholder" src="#" alt="Widget image"></label>
           <label for="widget-image" class="upload-btn">Choose File</label>
         </div>
       </div>
       <div class="form-group">
-        <label for="widget-display">Widget display:</label>
+        <label for="widget-display">Widget display:
         <div class="checkbox-group">
           <input type="checkbox" id="widget-display" name="widget-display">
-          <label for="widget-display" class="checkbox-label">Hide</label>
+          <label for="widget-display" class="checkbox-label">Hide</label></label>
         </div>
       </div>
     </div>
     <div class="col">
       <div class="form-group">
-        <label for="min-value">Min value:</label>
-        <input type="number" id="min-value" name="min-value">
-        <label for="max-value">Max value:</label>
-        <input type="number" id="max-value" name="max-value">
+        <label for="min-value">Min value:
+        <input type="number" id="min-value" name="min-value"></label>
+        <label for="max-value">Max value:
+        <input type="number" id="max-value" name="max-value"></label>
       </div>
       <div class="form-group">
           <label for="require-min" class="checkbox-label">Require min<input type="checkbox" id="require-min" name="require-min"></label>
@@ -669,7 +667,7 @@ input[type="color"] {
   </div>
   <button type="button" id="save-btn">Save</button>
 </form>
-					<a href="#" id="close-btn">Close</a>
+					<a href="#" id="close-btn">Close</a><hr>
 			  </td>
 			</tr>
 			<tr>

@@ -95,6 +95,7 @@ transition: box-shadow 0.15s ease,transform 0.15s ease;
 justify-content: flex-end;
   margin-right: -10px;
   margin-left: -10px;
+  flex:2;
 }
 
 .col {
@@ -414,6 +415,8 @@ input[type="color"] {
 
 .image-upload {
   position: relative;
+  border: 1px solid black; /* Set border style */
+  display: inline-block; /* Prevents div from expanding to full width */
 }
 
 .image-upload input[type="file"] {
@@ -459,6 +462,12 @@ input[type="color"] {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #4CAF50
+  }
+  
+#image-placeholder {
+  width: 100px; /* Set width and height of image */
+  height: 100px;
+}
 
 </style>
 </head>
@@ -733,10 +742,10 @@ input[type="color"] {
 </div>
     <div class="col">
     <div class="form-group">
-        <label for="widget-image">Widget image:
+        <label for="widget-image">Widget image:</label>
         <div class="image-upload">
           
-          <img id="image-placeholder" src="#" alt="Widget image"></label>
+          <img id="image-placeholder" src="#" alt="Widget image">
           <label for="widget-image" class="upload-btn">Choose File</label>
           <input type="file" id="widget-image" name="widget-image" accept="image/*">
         </div>
@@ -750,8 +759,9 @@ input[type="color"] {
     </div>
   </div>
   <button type="button" id="save-btn">Save</button>
+  <a href="#" id="close-btn">Close</a><br><hr>
 </form>
-					<a href="#" id="close-btn">Close</a><hr>
+					
 			  </td>
 			</tr>
 			<tr>

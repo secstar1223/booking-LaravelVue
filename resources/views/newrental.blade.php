@@ -92,15 +92,16 @@ transition: box-shadow 0.15s ease,transform 0.15s ease;
 /* Use Flexbox to create two columns */
 .row {
   display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+justify-content: flex-end;
+  margin-right: -10px;
+  margin-left: -10px;
 }
 
 .col {
   flex: 1;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
+  justify-content: flex-end;
 }
 
 .leftnav button:hover {
@@ -646,9 +647,10 @@ input[type="color"] {
       <div class="form-group">
         <label for="widget-image">Widget image:
         <div class="image-upload">
-          <input type="file" id="widget-image" name="widget-image" accept="image/*">
+          
           <img id="image-placeholder" src="#" alt="Widget image"></label>
           <label for="widget-image" class="upload-btn">Choose File</label>
+          <input type="file" id="widget-image" name="widget-image" accept="image/*">
         </div>
       </div>
       <div class="form-group">

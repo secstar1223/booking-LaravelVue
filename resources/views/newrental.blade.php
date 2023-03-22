@@ -477,7 +477,7 @@ input[type="color"] {
   
 #image-placeholder {
   width: 100px; /* Set width and height of image */
-  height: 100px;
+  height: 400px;
 }
 
 </style>

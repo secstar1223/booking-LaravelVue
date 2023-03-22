@@ -378,7 +378,7 @@ label {
 }
 
 .tall-input {
-  height: 200px;
+  height: 100px;
 }
 
 input[type="text"],

@@ -89,6 +89,20 @@ transition: box-shadow 0.15s ease,transform 0.15s ease;
 }
 }
 
+/* Use Flexbox to create two columns */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col {
+  flex: 1;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 .leftnav button:hover {
   background-color: #1e3d6b;
 }

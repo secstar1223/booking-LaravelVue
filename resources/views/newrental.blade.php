@@ -756,9 +756,9 @@ input[type="color"] {
                 <label for="widget-display" class="checkbox-label">Hide</label></label>
            </div>    
         </div>
+          <button type="button" id="save-btn">Save</button>
+          <button type="button" id="close-btn">Close</button>
     </div>
-  <button type="button" id="save-btn">Save</button>
-   <a href="#" id="close-btn">Close</a><br><hr>
 </form>
  
 					

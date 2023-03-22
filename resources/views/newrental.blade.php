@@ -430,6 +430,8 @@ input[type="color"] {
   position: relative;
   border: 1px solid black; /* Set border style */
   display: inline-block; /* Prevents div from expanding to full width */
+  height:250px;
+  width:200px;
 }
 
 .image-upload input[type="file"] {

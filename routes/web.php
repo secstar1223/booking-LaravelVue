@@ -74,7 +74,7 @@ Route::get('/newrental', function () {
 })->name('newrental');
 Route::post('/newrental', [NewRentalController::class, 'store'])->name('newrental.store');
 
-Route::post('/newrental/rentalequipmenttype', [NewRentalController::class, 'rentalequipmenttype'])->name('newrental.rentalequipmenttype);
+Route::post('/newrental/rentalequipmenttype', [NewRentalController::class, 'rentalequipmenttype'])->name('newrental.rentalequipmenttype');
 
 
 

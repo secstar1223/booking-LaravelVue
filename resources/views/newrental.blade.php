@@ -645,24 +645,6 @@ input[type="color"] {
         <label for="description">Description: <input type="text" id="description" name="description"></label>
       </div>
       <div class="form-group">
-        <label for="widget-image">Widget image:
-        <div class="image-upload">
-          
-          <img id="image-placeholder" src="#" alt="Widget image"></label>
-          <label for="widget-image" class="upload-btn">Choose File</label>
-          <input type="file" id="widget-image" name="widget-image" accept="image/*">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="widget-display">Widget display:
-        <div class="checkbox-group">
-          <input type="checkbox" id="widget-display" name="widget-display">
-          <label for="widget-display" class="checkbox-label">Hide</label></label>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group">
         <label for="min-value">Min value:
         <input type="number" id="min-value" name="min-value"></label>
         <label for="max-value">Max value:
@@ -678,7 +660,26 @@ input[type="color"] {
           <option value="child">Child</option>
           <option value="other">Other</option>
         </select>
-      </div>
+      </div> 
+   </div>
+ </div>
+</div>
+    <div class="col">
+    <div class="form-group">
+        <label for="widget-image">Widget image:
+        <div class="image-upload">
+          
+          <img id="image-placeholder" src="#" alt="Widget image"></label>
+          <label for="widget-image" class="upload-btn">Choose File</label>
+          <input type="file" id="widget-image" name="widget-image" accept="image/*">
+        </div>
+        <div class="form-group">
+        <label for="widget-display">Widget display:
+        <div class="checkbox-group">
+          <input type="checkbox" id="widget-display" name="widget-display">
+          <label for="widget-display" class="checkbox-label">Hide</label></label>
+        </div>
+      
     </div>
   </div>
   <button type="button" id="save-btn">Save</button>

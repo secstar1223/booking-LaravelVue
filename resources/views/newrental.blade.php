@@ -746,7 +746,6 @@ input[type="color"] {
             <div class="image-upload">
                 <img id="image-placeholder" src="#" alt="Widget image">
             </div>
-            <label for="widget-image" class="upload-btn">Choose File</label>
             <input type="file" id="widget-image" name="widget-image" accept="image/*">
         </div>
         <div class="form-group">

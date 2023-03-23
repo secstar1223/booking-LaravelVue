@@ -659,7 +659,21 @@ input[type="color"] {
 		</div>
 	</div>	
 </div>
+<!--*************START********************************-->
 <!-- Details option stuff -->
+<!--*************START********************************-->
+
+<script>
+<!--PRODUCT DETAILS AREA-->
+<!--This will return the ID value of the product so we can use it in the next section Equipemnt Type-->
+    $(document).ready(function() {
+        $('#addmore').click(function() {
+            $('body').append($('#equipment-type-form').html());
+        });
+    });
+	
+<!--PRODUCT DETAILS AREA END-->
+</script>
     <div class="contentrental">
 	  <div id="details" class="hidden">
 		<div class="right-content">
@@ -689,161 +703,103 @@ input[type="color"] {
             </form>
         </div>
     </div>
+<!--*************END********************************-->
+<!-- Details option stuff -->
+<!--*************END********************************-->
 
-
-<!--Equipment button on menu -->
+<!--*************START********************************-->
+<!-- Equipment Type button items
+<!--*************START********************************-->
       <div id="equipment" class="hidden">
-	  <div class="equipment-content">
-		<table>
-		  <thead>
-		  <tr>
-			  <td colspan="3">
-				<button><a id="addmore" href="#">+ Add equipment type</a></button>
-			  </td>
-			</tr>
-			<tr>
-			  <th>Display Name</th>
-			  <th>Equipment Pool</th>
-			  <th>Actions</th>
-			</tr>
-		  </thead>
-		  <tbody>
-			<tr>
-			  <td>
-				<input type="text" id="my-edit-box" value="Sport">
-			  </td>
-			  <td>
-				<select>
-				  <option value="pool1">sport</option>
-				  <option value="pool2">deluxe</option>
-				  <option value="pool3">high output</option>
-				</select>
-			  </td>
-			  <td>
-				<button id="advance-btn">Advance</button>
-				<button>Save</button>
-				<a href="#">Remove</a>
-			  </td>
-			</tr>
-			<tr id="advancerow" class="advanced-info-row hidden">
-			  <td colspan="3">
-				<!-- Advanced information goes here -->
-										<h2>Advance</h2>
-<form class="advance-form">
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label for="description">Description: <input type="text" class="tall-input" id="description" name="description"></label>
+	      <div class="equipment-content">
+		      <table>
+		          <thead>
+		              <tr>
+			              <td colspan="3">
+				              <button><a id="addmore" href="#">+ Add equipment type</a></button>
+			              </td>
+			          </tr>
+			          <tr>
+			              <th>Display Name</th>
+			              <th>Equipment Pool</th>
+			              <th>Actions</th>
+			          </tr>
+		          </thead>
+		          <tbody>
+			          <tr>
+			              <td>
+				              <input type="text" id="my-edit-box" value="Sport">
+                              <input type="hidden" id="product-id" name="product-id" value=""><!--id from product-->
+			              </td>
+			              <td>
+				              <select>
+				                  <option value="pool1">sport</option>
+				                  <option value="pool2">deluxe</option>
+				                  <option value="pool3">high output</option>
+				              </select>
+			              </td>
+			              <td>
+				              <button id="advance-btn">Advance</button>
+				              <button>Save</button>
+				              <a href="#">Remove</a>
+			              </td>
+			        </tr>
+			        <tr id="advancerow" class="advanced-info-row hidden">
+			            <td colspan="3">
+				            <h2>Advance</h2>
+                                <form class="advance-form">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="description">Description: <input type="text" class="tall-input" id="description" name="description"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="min-value">Min value:
+                                                <input type="number" id="min-value" name="min-value"></label>
+                                                <label for="max-value">Max value:
+                                                <input type="number" id="max-value" name="max-value"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="require-min" class="checkbox-label">Require min<input type="checkbox" id="require-min" name="require-min"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category">Category:</label>
+                                                <select id="category" name="category">
+                                                    <option value="adult">Adult</option>
+                                                    <option value="child">Child</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div> 
+                                      </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="widget-image">Widget image:</label>
+                                            <div class="image-upload">
+                                                <img id="image-placeholder" src="#" alt="Widget image">
+                                            </div>
+                                        <input type="file" id="widget-image" name="widget-image" accept="image/*">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="widget-display">Widget display:
+                                          <div class="checkbox-group">
+                                                <input type="checkbox" id="widget-display" name="widget-display">
+                                                <label for="widget-display" class="checkbox-label">Hide</label></label>
+                                          </div>    
+                                    </div>
+                                        <button type="button" id="save-btn">Save</button>
+                                        <button type="button" id="close-btn">Close</button>
+                                </div>
+                            </form>		
+			           </td>
+			      </tr>
+		      </tbody>
+          </table>
       </div>
-      <div class="form-group">
-        <label for="min-value">Min value:
-        <input type="number" id="min-value" name="min-value"></label>
-        <label for="max-value">Max value:
-        <input type="number" id="max-value" name="max-value"></label>
-      </div>
-      <div class="form-group">
-          <label for="require-min" class="checkbox-label">Require min<input type="checkbox" id="require-min" name="require-min"></label>
-      </div>
-      <div class="form-group">
-        <label for="category">Category:</label>
-        <select id="category" name="category">
-          <option value="adult">Adult</option>
-          <option value="child">Child</option>
-          <option value="other">Other</option>
-        </select>
-      </div> 
-   </div>
- </div>
-</div>
-    <div class="col">
-        <div class="form-group">
-            <label for="widget-image">Widget image:</label>
-            <div class="image-upload">
-                <img id="image-placeholder" src="#" alt="Widget image">
-            </div>
-            <input type="file" id="widget-image" name="widget-image" accept="image/*">
-        </div>
-        <div class="form-group">
-            <label for="widget-display">Widget display:
-            <div class="checkbox-group">
-                <input type="checkbox" id="widget-display" name="widget-display">
-                <label for="widget-display" class="checkbox-label">Hide</label></label>
-           </div>    
-        </div>
-          <button type="button" id="save-btn">Save</button>
-          <button type="button" id="close-btn">Close</button>
-    </div>
-</form>
- 
-					
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type="text" id="my-edit-box" value="deluxe">
-			  </td>
-			  <td>
-				<select>
-				  <option value="pool1">sport</option>
-				  <option value="pool2">deluxe</option>
-				  <option value="pool3">high output</option>
-				</select>
-			  </td>
-			  <td>
-				<button id="advance-btn">Advance</button>
-				<button>Save</button>
-				<a href="#">Remove</a>
-			  </td>
-			</tr>
-			<tr id="advancerow" class="advanced-info-row hidden">
-			  <td colspan="3">
-				<!-- Advanced information goes here -->
-					<h2>Advance</h2>
-					<form>
-					  <div>
-						<label for="description">Description:</label>
-						<input type="text" id="description" name="description">
-					  </div>
-					  <div>
-						<label for="widget-image">Widget image:</label>
-						<input type="file" id="widget-image" name="widget-image">
-						<img id="image-placeholder" src="#" alt="Widget image">
-					  </div>
-					  <div>
-						<label for="widget-display">Widget display:</label>
-						<input type="checkbox" id="widget-display" name="widget-display">
-						<label for="widget-display">Hide</label>
-					  </div>
-					  <div>
-						<label for="min-value">Min value:</label>
-						<input type="number" id="min-value" name="min-value">
-					  </div>
-					  <div>
-						<label for="max-value">Max value:</label>
-						<input type="number" id="max-value" name="max-value">
-					  </div>
-					  <div>
-						<input type="checkbox" id="require-min" name="require-min">
-						<label for="require-min">Require min</label>
-					  </div>
-					  <div>
-						<label for="category">Category:</label>
-						<select id="category" name="category">
-						  <option value="adult">Adult</option>
-						  <option value="child">Child</option>
-						  <option value="other">Other</option>
-						</select>
-					  </div>
-					  <button type="button" id="save-btn">Save</button>
-					</form>
-					<a href="#" id="close-btn">Close</a>
-			  </td>
-			</tr>
-		  </tbody>
-		</table>
-		</div>
-	</div>
-	
+  </div>
+<!--*************END********************************-->
+<!-- Equipment Type Button stuff -->
+<!--*************END********************************-->	
 		
 		
 

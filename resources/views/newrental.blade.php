@@ -666,13 +666,33 @@ input[type="color"] {
 <script>
 <!--PRODUCT DETAILS AREA-->
 <!--This will return the ID value of the product so we can use it in the next section Equipemnt Type-->
-    $(document).ready(function() {
+   $(document).ready(function() {
         $('#addmore').click(function() {
             $('body').append($('#equipment-type-form').html());
         });
+
+        $('.product-form').on('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    $('#product-id').val(data.id);
+                    $('#details').addClass('hidden');
+                    $('#equipment').removeClass('hidden');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        });
     });
-	
-<!--PRODUCT DETAILS AREA END-->
 </script>
     <div class="contentrental">
 	  <div id="details" class="hidden">

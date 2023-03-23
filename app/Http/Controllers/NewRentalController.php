@@ -23,7 +23,7 @@ class NewRentalController extends Controller
 
         $rental_product->save();
 
-        return redirect('/newrental');
+         return response()->json(['id' => $rental_product->id]);
     }
     
     

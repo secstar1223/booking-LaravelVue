@@ -829,14 +829,14 @@ var rowCount = document.getElementById("my-element").dataset.rowCount;
 
 // this is to expand the row when clicking advance button in the 
 //Equipment type link
-const advanceBtns = document.querySelectorAll("#advance-btn");
+const advanceBtns = document.querySelectorAll("[id^='advance-btn']");
 const advancerows = document.querySelectorAll(".advancerow");
 
 advanceBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    const rowCount = btn.dataset.rowCount;
-    const advancerow = document.querySelector(`.advancerow-${rowCount}`);
-    
+    const btnName = btn.getAttribute('id').replace('advance-btn', '');
+    const advancerow = document.querySelector(`.advancerow${btnName}`);
+
     if (advancerow) {
       if (advancerow.classList.contains("expanded")) {
         advancerow.classList.remove("expanded");
@@ -848,6 +848,7 @@ advanceBtns.forEach((btn) => {
     }
   });
 });
+
 
 
 

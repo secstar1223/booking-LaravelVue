@@ -2,6 +2,8 @@
 <?php
 // Start a PHP session
 session_start();
+session(['rowCount' => $rowCount]);
+$rowCount = session('rowCount', 0);
 ?>
 
 <html lang="en">
@@ -747,66 +749,68 @@ input[type="color"] {
 			          </tr>
 		          </thead>
 		          <tbody>
-			          <tr>
-			              <td>
-				              <input type="text" id="my-edit-box" value="Sport">
-                              <input type="hidden" id="product-id" name="product-id" value=""><!--id from product-->
-			              </td>
-			              <td>
-                          <select name="equipment">
-                            @foreach (\App\Models\Equipment::pluck('name') as $equipment)
-                              <option value="{{ $equipment }}">{{ $equipment }}</option>
-                            @endforeach
-                          </select>
-			              </td>
-			              <td>
-				              <button id="advance-btn">Advance</button>
-				              <button id="save-btn" style="background-color: #00cc00;">Save</button>
-				              <a href="#">Remove</a>
-			              </td>
-			        </tr>
-			        <tr id="advancerow" class="advanced-info-row hidden">
-			            <td colspan="3">
-				            <h2>Advance</h2>
-                                <form class="advance-form">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="description">Description: <input type="text" class="tall-input" id="description" name="description"></label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="min-value">Min value:
-                                                <input type="number" id="min-value" name="min-value"></label>
-                                                <label for="max-value">Max value:
-                                                <input type="number" id="max-value" name="max-value"></label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="require-min" class="checkbox-label">Require min<input type="checkbox" id="require-min" name="require-min"></label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="category">Category:</label>
-                                                <select id="category" name="category">
-                                                    <option value="adult">Adult</option>
-                                                    <option value="child">Child</option>
-                                                    <option value="other">Other</option>
-                                                </select>
-                                            </div> 
-                                      </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="widget-image">Widget image:</label>
-                                            <div class="image-upload">
-                                                <img id="image-placeholder" src="#" alt="Widget image">
-                                            </div>
-                                        <input type="file" id="widget-image" name="widget-image" accept="image/*">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="widget-display">Widget display:
-                                          <div class="checkbox-group">
-                                                <input type="checkbox" id="widget-display" name="widget-display">
-                                                <label for="widget-display" class="checkbox-label">Hide</label></label>
-                                          </div>    
+			          <tr id="row_{{ $rowCount }}">
+    <td>
+        <input type="text" id="my-edit-box_{{ $rowCount }}" value="Sport">
+        <input type="hidden" id="product-id_{{ $rowCount }}" name="product-id_{{ $rowCount }}" value=""><!--id from product-->
+    </td>
+    <td>
+        <select name="equipment_{{ $rowCount }}">
+            @foreach (\App\Models\Equipment::pluck('name') as $equipment)
+                <option value="{{ $equipment }}">{{ $equipment }}</option>
+            @endforeach
+        </select>
+    </td>
+    <td>
+        <button id="advance-btn_{{ $rowCount }}">Advance</button>
+        <button id="save-btn_{{ $rowCount }}" style="background-color: #00cc00;">Save</button>
+        <a href="#">Remove</a>
+    </td>
+</tr>
+<tr id="advancerow_{{ $rowCount }}" class="advanced-info-row hidden">
+    <td colspan="3">
+        <h2>Advance</h2>
+        <form class="advance-form">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="description_{{ $rowCount }}">Description: <input type="text" class="tall-input" id="description_{{ $rowCount }}" name="description_{{ $rowCount }}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-value_{{ $rowCount }}">Min value:
+                        <input type="number" id="min-value_{{ $rowCount }}" name="min-value_{{ $rowCount }}"></label>
+                        <label for="max-value_{{ $rowCount }}">Max value:
+                        <input type="number" id="max-value_{{ $rowCount }}" name="max-value_{{ $rowCount }}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="require-min_{{ $rowCount }}" class="checkbox-label">Require min<input type="checkbox" id="require-min_{{ $rowCount }}" name="require-min_{{ $rowCount }}"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="category_{{ $rowCount }}">Category:</label>
+                        <select id="category_{{ $rowCount }}" name="category_{{ $rowCount }}">
+                            <option value="adult">Adult</option>
+                            <option value="child">Child</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div> 
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="widget-image_{{ $rowCount }}">Widget image:</label>
+                    <div class="image-upload">
+                        <img id="image-placeholder_{{ $rowCount }}" src="#" alt="Widget image">
+                    </div>
+                    <input type="file" id="widget-image_{{ $rowCount }}" name="widget-image_{{ $rowCount }}" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="widget-display_{{ $rowCount }}">Widget display:
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="widget-display_{{ $rowCount }}" name="widget-display_{{ $rowCount }}">
+                        <label for="widget-display_{{ $rowCount }}" class="checkbox-label">Hide</label></label>
+                        <div id="my-element" data-row-count="{{ $rowCount }}"></div>
+                    </div>    
+
                                     </div>
                                 </div>
                             </form>		
@@ -838,7 +842,14 @@ advanceBtns.forEach((btn) => {
   });
 });
 
+//this is to pass the rowcount from sessions to JS Var
+var rowCount = document.getElementById("my-element").dataset.rowCount;
+
+
+
   $('#addmore').on('click', function() {
+  rowCount++;
+  
     var newRow = `
       <tr>
         <td>
@@ -906,6 +917,7 @@ advanceBtns.forEach((btn) => {
         </td>
       </tr>
     `;
+    newRow = newRow.replace(/(id="|for="|aria-labelledby=")(.*?)(")/g, '$1$2-' + rowCount + '$3');
     $('#add-equipment-table').append(newRow);
   });
 

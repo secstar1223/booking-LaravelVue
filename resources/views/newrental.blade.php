@@ -823,28 +823,27 @@ input[type="color"] {
   </div>
   
   <script>
+  
+//this is to pass the rowcount from sessions to JS Var
+var rowCount = document.getElementById("my-element").dataset.rowCount;
+
 // this is to expand the row when clicking advance button in the 
 //Equipment type link
-const advanceBtns = document.querySelectorAll("#advance-btn");
-const advancerow = document.getElementById("advancerow");
+const advanceBtns = document.querySelectorAll(".advance-btn-{{ $rowCount }}");
+const advancerows = document.querySelectorAll(".advancerow-{{ $rowCount }}");
 
-advanceBtns.forEach((btn) => {
+advanceBtns.forEach((btn, index) => {
   btn.addEventListener("click", () => {
-    const nextRow = btn.parentElement.parentElement.nextElementSibling;
-    if (nextRow.id === "advancerow") {
-      if (nextRow.classList.contains("expanded")) {
-        nextRow.classList.remove("expanded");
-        btn.innerText = "Advance";
-      } else {
-        nextRow.classList.add("expanded");
-        btn.innerText = "Collapse";
-      }
+    const nextRow = advancerows[index];
+    if (nextRow.classList.contains("expanded")) {
+      nextRow.classList.remove("expanded");
+      btn.innerText = "Advance";
+    } else {
+      nextRow.classList.add("expanded");
+      btn.innerText = "Collapse";
     }
   });
 });
-
-//this is to pass the rowcount from sessions to JS Var
-var rowCount = document.getElementById("my-element").dataset.rowCount;
 
 
 

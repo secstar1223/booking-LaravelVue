@@ -838,7 +838,7 @@ advanceBtns.forEach((btn) => {
   });
 });
 
-  $('#add-equipment-btn').on('click', function() {
+  $('#addmore').on('click', function() {
     var newRow = `
       <tr>
         <td>
@@ -906,7 +906,7 @@ advanceBtns.forEach((btn) => {
         </td>
       </tr>
     `;
-    $('#equipment-table').append(newRow);
+    $('#add-equipment-table').append(newRow);
   });
 
 </script>

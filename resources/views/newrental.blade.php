@@ -730,6 +730,28 @@ input[type="color"] {
 <!--*************START********************************-->
 <!-- Equipment Type button items
 <!--*************START********************************-->
+<script>
+// this is to expand the row when clicking advance button in the 
+//Equipment type link
+const advanceBtns = document.querySelectorAll("#advance-btn");
+const advancerow = document.getElementById("advancerow");
+
+advanceBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const nextRow = btn.parentElement.parentElement.nextElementSibling;
+    if (nextRow.id === "advancerow") {
+      if (nextRow.classList.contains("expanded")) {
+        nextRow.classList.remove("expanded");
+        btn.innerText = "Advance";
+      } else {
+        nextRow.classList.add("expanded");
+        btn.innerText = "Collapse";
+      }
+    }
+  });
+});
+
+</script>
       <div id="equipment" class="hidden">
 	      <div class="equipment-content">
 		      <table>
@@ -1223,7 +1245,7 @@ input[type="color"] {
 
 		<h3>Email Variables</h3>
 
-		<label for="whats-included">What's Included:</label>
+		<label for="whats-included">Whats Included:</label>
 		<input type="text" id="whats-included" placeholder="Tell customers what all is included in this package"style="width: 400px; height: 100px;"><br>
 
 		<label for="what-to-know">What to Know:</label>
@@ -1302,20 +1324,7 @@ for (let i = 0; i < links.length; i++) {
 }
 
 
-// this is to expand the row when clicking advance button in the 
-//Equipment type link
-const advanceBtns = document.querySelectorAll("#advance-btn");
-const advancerow = document.getElementById("advancerow");
 
-advanceBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const nextRow = btn.parentElement.parentElement.nextElementSibling;
-    if (nextRow.id === "advancerow") {
-      nextRow.classList.add("expanded");
-    }
-  });
-});
-//end of equipment link type
 
 
 //const popupContainer = document.getElementById('popup-container');
@@ -1385,48 +1394,6 @@ imageInput.addEventListener('change', handleImageInputChange);
 
 
 
-const addEquipmentTypeLink = document.getElementById('addmore');
-const tableBody = document.querySelector('table tbody');
-let rowCount = 2; // number of existing rows
-
-addEquipmentTypeLink.addEventListener('click', () => {
-  // create new row
-  const newRow = document.createElement('tr');
-  const displayNameCell = document.createElement('td');
-  const displayNameInput = document.createElement('input');
-  displayNameInput.type = 'text';
-  displayNameInput.id = `my-edit-box-${rowCount}`;
-  displayNameInput.value = '';
-  displayNameCell.appendChild(displayNameInput);
-
-  const equipmentPoolCell = document.createElement('td');
-  const equipmentPoolSelect = document.createElement('select');
-  equipmentPoolSelect.innerHTML ='<option value="pool1">sport</option><option value="pool2">deluxe</option><option value="pool3">high output</option>';
-  equipmentPoolCell.appendChild(equipmentPoolSelect);
-
-  const actionsCell = document.createElement('td');
-  const advanceBtn = document.createElement('button');
-  advanceBtn.id = `advance-btn-${rowCount}`;
-  advanceBtn.innerText = 'Advance';
-  const saveBtn = document.createElement('button');
-  saveBtn.innerText = 'Save';
-  const removeLink = document.createElement('a');
-  removeLink.href = '#';
-  removeLink.innerText = 'Remove';
-  actionsCell.appendChild(advanceBtn);
-  actionsCell.appendChild(saveBtn);
-  actionsCell.appendChild(removeLink); 
-
-  // add new row to table
-  newRow.appendChild(displayNameCell);
-  newRow.appendChild(equipmentPoolCell);
-  newRow.appendChild(actionsCell);
-  <!-- tableBody.insertBefore(newRow, addEquipmentTypeLink.parentNode); -->
-  tableBody.appendChild(newRow);
-  <!-- newRow.style.display = 'table-row'; -->
-
-  rowCount++; // increment the row count
-});
 
 // Get the season link, pop-up, select element, and save button
 var seasonLink = document.getElementById("seasonbtn");

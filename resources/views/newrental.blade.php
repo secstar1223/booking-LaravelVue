@@ -663,6 +663,36 @@ input[type="color"] {
 <!-- Details option stuff -->
 <!--*************START********************************-->
 
+
+    <div class="contentrental">
+	  <div id="details" class="hidden">
+		<div class="right-content">
+          <h2 class="edit-product-heading">Edit Product</h2>
+          <form class="product-form" action="/newrental" method="POST" enctype="multipart/form-data">
+             @csrf
+              <div class="form-group">
+                <label for="product-name" class="form-label">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" class="form-input">
+              </div>
+              <div class="form-group">
+                <label for="description" class="form-label">Description:</label>
+                <input type="text" id="description" name="description" class="form-input">
+              </div>
+              <div class="form-group">
+                 <label for="widget-image" class="form-label">Widget Image:</label>
+                 <input type="file" name="widget-image" id="widget-image">
+              </div>
+			  <div>
+			  <div class="right-btn">
+              <button class="delete-product-button">Delete this product</button>
+			  </div>
+			  <div class="left-btn">
+              <button type="submit" class="submit-product-button">Submit</button>
+			  </div>
+			  </div>
+            </form>
+        </div>
+    </div>
 <script>
 <!--PRODUCT DETAILS AREA-->
 <!--This will return the ID value of the product so we can use it in the next section Equipemnt Type-->
@@ -694,35 +724,6 @@ input[type="color"] {
         });
     });
 </script>
-    <div class="contentrental">
-	  <div id="details" class="hidden">
-		<div class="right-content">
-          <h2 class="edit-product-heading">Edit Product</h2>
-          <form class="product-form" action="/newrental" method="POST" enctype="multipart/form-data">
-             @csrf
-              <div class="form-group">
-                <label for="product-name" class="form-label">Product Name:</label>
-                <input type="text" id="product-name" name="product-name" class="form-input">
-              </div>
-              <div class="form-group">
-                <label for="description" class="form-label">Description:</label>
-                <input type="text" id="description" name="description" class="form-input">
-              </div>
-              <div class="form-group">
-                 <label for="widget-image" class="form-label">Widget Image:</label>
-                 <input type="file" name="widget-image" id="widget-image">
-              </div>
-			  <div>
-			  <div class="right-btn">
-              <button class="delete-product-button">Delete this product</button>
-			  </div>
-			  <div class="left-btn">
-              <button type="submit" class="submit-product-button">Submit</button>
-			  </div>
-			  </div>
-            </form>
-        </div>
-    </div>
 <!--*************END********************************-->
 <!-- Details option stuff -->
 <!--*************END********************************-->
@@ -730,28 +731,7 @@ input[type="color"] {
 <!--*************START********************************-->
 <!-- Equipment Type button items
 <!--*************START********************************-->
-<script>
-// this is to expand the row when clicking advance button in the 
-//Equipment type link
-const advanceBtns = document.querySelectorAll("#advance-btn");
-const advancerow = document.getElementById("advancerow");
 
-advanceBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const nextRow = btn.parentElement.parentElement.nextElementSibling;
-    if (nextRow.id === "advancerow") {
-      if (nextRow.classList.contains("expanded")) {
-        nextRow.classList.remove("expanded");
-        btn.innerText = "Advance";
-      } else {
-        nextRow.classList.add("expanded");
-        btn.innerText = "Collapse";
-      }
-    }
-  });
-});
-
-</script>
       <div id="equipment" class="hidden">
 	      <div class="equipment-content">
 		      <table>
@@ -839,6 +819,29 @@ advanceBtns.forEach((btn) => {
           </table>
       </div>
   </div>
+  
+  <script>
+// this is to expand the row when clicking advance button in the 
+//Equipment type link
+const advanceBtns = document.querySelectorAll("#advance-btn");
+const advancerow = document.getElementById("advancerow");
+
+advanceBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const nextRow = btn.parentElement.parentElement.nextElementSibling;
+    if (nextRow.id === "advancerow") {
+      if (nextRow.classList.contains("expanded")) {
+        nextRow.classList.remove("expanded");
+        btn.innerText = "Advance";
+      } else {
+        nextRow.classList.add("expanded");
+        btn.innerText = "Collapse";
+      }
+    }
+  });
+});
+
+</script>
 <!--*************END********************************-->
 <!-- Equipment Type Button stuff -->
 <!--*************END********************************-->	

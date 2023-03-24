@@ -734,12 +734,11 @@ input[type="color"] {
 
       <div id="equipment" class="hidden">
 	      <div class="equipment-content">
-		      <table>
+          <button><a id="addmore" href="#">+ Add equipment type</a></button>
+		      <table id="add-equipment-table">
 		          <thead>
 		              <tr>
-			              <td colspan="3">
-				              <button><a id="addmore" href="#">+ Add equipment type</a></button>
-			              </td>
+				              
 			          </tr>
 			          <tr>
 			              <th>Display Name</th>
@@ -838,6 +837,77 @@ advanceBtns.forEach((btn) => {
     }
   });
 });
+
+  $('#add-equipment-btn').on('click', function() {
+    var newRow = `
+      <tr>
+        <td>
+          <input type="text" id="my-edit-box" value="Sport">
+          <input type="hidden" id="product-id" name="product-id" value=""><!--id from product-->
+        </td>
+        <td>
+          <select name="equipment">
+            @foreach (\App\Models\Equipment::pluck('name') as $equipment)
+              <option value="{{ $equipment }}">{{ $equipment }}</option>
+            @endforeach
+          </select>
+        </td>
+        <td>
+          <button id="advance-btn">Advance</button>
+          <button id="save-btn" style="background-color: #00cc00;">Save</button>
+          <a href="#">Remove</a>
+        </td>
+      </tr>
+      <tr id="advancerow" class="advanced-info-row hidden">
+        <td colspan="3">
+          <h2>Advance</h2>
+<form class="advance-form">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="description">Description: <input type="text" class="tall-input" id="description" name="description"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="min-value">Min value:
+                                                <input type="number" id="min-value" name="min-value"></label>
+                                                <label for="max-value">Max value:
+                                                <input type="number" id="max-value" name="max-value"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="require-min" class="checkbox-label">Require min<input type="checkbox" id="require-min" name="require-min"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category">Category:</label>
+                                                <select id="category" name="category">
+                                                    <option value="adult">Adult</option>
+                                                    <option value="child">Child</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div> 
+                                      </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="widget-image">Widget image:</label>
+                                            <div class="image-upload">
+                                                <img id="image-placeholder" src="#" alt="Widget image">
+                                            </div>
+                                        <input type="file" id="widget-image" name="widget-image" accept="image/*">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="widget-display">Widget display:
+                                          <div class="checkbox-group">
+                                                <input type="checkbox" id="widget-display" name="widget-display">
+                                                <label for="widget-display" class="checkbox-label">Hide</label></label>
+                                          </div>    
+                                    </div>
+                                </div>
+                            </form>		
+        </td>
+      </tr>
+    `;
+    $('#equipment-table').append(newRow);
+  });
 
 </script>
 <!--*************END********************************-->

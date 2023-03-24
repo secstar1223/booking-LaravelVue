@@ -762,7 +762,7 @@ input[type="color"] {
 			              </td>
 			              <td>
 				              <button id="advance-btn">Advance</button>
-				              <button>Save</button>
+				              <button id="save-btn" style="background-color: #00cc00;">Save</button>
 				              <a href="#">Remove</a>
 			              </td>
 			        </tr>
@@ -809,8 +809,6 @@ input[type="color"] {
                                                 <label for="widget-display" class="checkbox-label">Hide</label></label>
                                           </div>    
                                     </div>
-                                        <button type="button" id="save-btn">Save</button>
-                                        <button type="button" id="close-btn">Close</button>
                                 </div>
                             </form>		
 			           </td>

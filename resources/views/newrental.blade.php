@@ -2,8 +2,9 @@
 <?php
 // Start a PHP session
 session_start();
-session(['rowCount' => $rowCount]);
-$rowCount = session('rowCount', 0);
+//session(['rowCount' => $rowCount]);
+//$rowCount = session('rowCount', 0);
+$rowCount = 0;
 ?>
 
 <html lang="en">

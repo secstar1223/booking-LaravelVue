@@ -1400,7 +1400,7 @@ for (let i = 0; i < links.length; i++) {
 
 //const popupContainer = document.getElementById('popup-container');
 //const popup = document.getElementById('popup');
-const closeBtn = document.getElementById('close-btn');
+//const closeBtn = document.getElementById('close-btn');
 const saveBtn = document.getElementById('save-btn');
 const imageInput = document.getElementById('widget-image');
 const imagePlaceholder = document.getElementById('image-placeholder');

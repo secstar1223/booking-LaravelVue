@@ -754,11 +754,11 @@ input[type="color"] {
                               <input type="hidden" id="product-id" name="product-id" value=""><!--id from product-->
 			              </td>
 			              <td>
-				              <select>
-				                  <option value="pool1">sport</option>
-				                  <option value="pool2">deluxe</option>
-				                  <option value="pool3">high output</option>
-				              </select>
+                          <select name="equipment">
+                            @foreach (\App\Models\Equipment::pluck('name') as $equipment)
+                              <option value="{{ $equipment }}">{{ $equipment }}</option>
+                            @endforeach
+                          </select>
 			              </td>
 			              <td>
 				              <button id="advance-btn">Advance</button>

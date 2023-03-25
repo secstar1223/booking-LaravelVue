@@ -54,4 +54,8 @@ class Team extends JetstreamTeam
     public function taxRules() {
         return $this->hasMany(TaxRule::class);
     }
+
+    public function rentalProducts() {
+        return $this->hasMany(RentalProduct::class);
+    }
 }

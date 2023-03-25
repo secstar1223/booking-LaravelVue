@@ -3,13 +3,12 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\SeatController;
 use App\Http\Controllers\EquipmentGuidesController;
 use App\Http\Controllers\NewRentalController;
 
-use App\Http\Controllers\TaxRuleController;
-use App\Http\Controllers\TaxGroupController;
+use App\Http\Controllers\TaxRulesController;
+use App\Http\Controllers\TaxGroupsController;
+use App\Http\Controllers\DurationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +30,11 @@ Route::get('/', function () {
     ]);
 });
 
-
+/*
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}/seats', [SeatController::class, 'index'])->name('events.seats.index');
 Route::get('/events/{id}/reserve', [SeatController::class, 'reserve'])->name('events.seats.reserve');
+*/
 
 Route::middleware([
     'auth:sanctum',
@@ -45,19 +45,24 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/tax-rules', [TaxRuleController::class, 'index'])->name('tax-rules.index');
-    Route::get('/tax-rules/create', [TaxRuleController::class, 'create'])->name('tax-rules.create');
-    Route::post('/tax-rules', [TaxRuleController::class, 'store'])->name('tax-rules.store');
-    Route::get('/tax-rules/{taxRule}/edit', [TaxRuleController::class, 'edit'])->name('tax-rules.edit');
-    Route::put('/tax-rules/{taxRule}', [TaxRuleController::class, 'update'])->name('tax-rules.update');
-    Route::delete('/tax-rules/{taxRule}', [TaxRuleController::class, 'destroy'])->name('tax-rules.delete');
+    Route::get('/tax-rules', [TaxRulesController::class, 'index'])->name('tax-rules.index');
+    Route::get('/tax-rules/create', [TaxRulesController::class, 'create'])->name('tax-rules.create');
+    Route::post('/tax-rules', [TaxRulesController::class, 'store'])->name('tax-rules.store');
+    Route::get('/tax-rules/{taxRule}/edit', [TaxRulesController::class, 'edit'])->name('tax-rules.edit');
+    Route::put('/tax-rules/{taxRule}', [TaxRulesController::class, 'update'])->name('tax-rules.update');
+    Route::delete('/tax-rules/{taxRule}', [TaxRulesController::class, 'destroy'])->name('tax-rules.delete');
 
-    Route::get('/tax-groups', [TaxGroupController::class, 'index'])->name('tax-groups.index');
-    Route::get('/tax-groups/create', [TaxGroupController::class, 'create'])->name('tax-groups.create');
-    Route::post('/tax-groups', [TaxGroupController::class, 'store'])->name('tax-groups.store');
-    Route::get('/tax-groups/{taxGroup}/edit', [TaxGroupController::class, 'edit'])->name('tax-groups.edit');
-    Route::put('/tax-groups/{taxGroup}', [TaxGroupController::class, 'update'])->name('tax-groups.update');
-    Route::delete('/tax-groups/{taxGroup}', [TaxGroupController::class, 'destroy'])->name('tax-groups.delete');
+    Route::get('/tax-groups', [TaxGroupsController::class, 'index'])->name('tax-groups.index');
+    Route::get('/tax-groups/create', [TaxGroupsController::class, 'create'])->name('tax-groups.create');
+    Route::post('/tax-groups', [TaxGroupsController::class, 'store'])->name('tax-groups.store');
+    Route::get('/tax-groups/{taxGroup}/edit', [TaxGroupsController::class, 'edit'])->name('tax-groups.edit');
+    Route::put('/tax-groups/{taxGroup}', [TaxGroupsController::class, 'update'])->name('tax-groups.update');
+    Route::delete('/tax-groups/{taxGroup}', [TaxGroupsController::class, 'destroy'])->name('tax-groups.delete');
+
+    Route::get('/rentals/{rentalProduct}/durations', [DurationsController::class, 'index'])->name('durations.index');
+    Route::post('/rentals/{rentalProduct}/durations', [DurationsController::class, 'store'])->name('durations.store');
+    Route::put('/rentals/{rentalProduct}/durations/{duration}', [DurationsController::class, 'update'])->name('durations.update');
+    Route::delete('/rentals/{rentalProduct}/durations/{duration}', [DurationsController::class, 'destroy'])->name('durations.delete');
 });
 
 

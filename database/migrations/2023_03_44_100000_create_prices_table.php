@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreign('duration_id')->references('id')->on('durations')->onDelete('cascade');
             $table->index('duration_id');
             $table->unsignedBigInteger('equipment_id');
-            $table->foreign('equipment_id')->references('id')->on('equipments')->onDelete('cascade');
+            $table->foreign('equipment_id')->references('id')->on('equipment')->onDelete('cascade');
             $table->index('equipment_id');
             $table->unsignedBigInteger('tax_group_id');
             $table->foreign('tax_group_id')->references('id')->on('tax_groups')->onDelete('cascade');

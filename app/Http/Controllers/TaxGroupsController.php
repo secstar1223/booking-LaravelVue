@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class TaxGroupController extends Controller
+class TaxGroupsController extends Controller
 {
     public function index()
     {

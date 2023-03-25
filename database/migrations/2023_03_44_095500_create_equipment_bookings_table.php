@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->index(['team_id','equipment_id']);
             $table->index('customer_id');
-            $table->foreign('equipment_id')->references('id')->on('equipments');
+            $table->foreign('equipment_id')->references('id')->on('equipment');
             $table->foreign('team_id')->references('id')->on('teams');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->unsignedBigInteger('start_time');

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class TaxRuleController extends Controller
+class TaxRulesController extends Controller
 {
     public function index()
     {

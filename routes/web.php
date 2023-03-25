@@ -8,6 +8,9 @@ use App\Http\Controllers\SeatController;
 use App\Http\Controllers\EquipmentGuidesController;
 use App\Http\Controllers\NewRentalController;
 
+use App\Http\Controllers\TaxRuleController;
+use App\Http\Controllers\TaxGroupController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +44,20 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/tax-rules', [TaxRuleController::class, 'index'])->name('tax-rules.index');
+    Route::get('/tax-rules/create', [TaxRuleController::class, 'create'])->name('tax-rules.create');
+    Route::post('/tax-rules', [TaxRuleController::class, 'store'])->name('tax-rules.store');
+    Route::get('/tax-rules/{taxRule}/edit', [TaxRuleController::class, 'edit'])->name('tax-rules.edit');
+    Route::put('/tax-rules/{taxRule}', [TaxRuleController::class, 'update'])->name('tax-rules.update');
+    Route::delete('/tax-rules/{taxRule}', [TaxRuleController::class, 'destroy'])->name('tax-rules.delete');
+
+    Route::get('/tax-groups', [TaxGroupController::class, 'index'])->name('tax-groups.index');
+    Route::get('/tax-groups/create', [TaxGroupController::class, 'create'])->name('tax-groups.create');
+    Route::post('/tax-groups', [TaxGroupController::class, 'store'])->name('tax-groups.store');
+    Route::get('/tax-groups/{taxGroup}/edit', [TaxGroupController::class, 'edit'])->name('tax-groups.edit');
+    Route::put('/tax-groups/{taxGroup}', [TaxGroupController::class, 'update'])->name('tax-groups.update');
+    Route::delete('/tax-groups/{taxGroup}', [TaxGroupController::class, 'destroy'])->name('tax-groups.delete');
 });
 
 

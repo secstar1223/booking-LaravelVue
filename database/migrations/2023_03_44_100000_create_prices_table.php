@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('equipment_id');
             $table->foreign('equipment_id')->references('id')->on('equipments')->onDelete('cascade');
             $table->index('equipment_id');
+            $table->unsignedBigInteger('tax_group_id');
+            $table->foreign('tax_group_id')->references('id')->on('tax_groups')->onDelete('cascade');
+            $table->index('tax_group_id');
 
             $table->integer('total');
             $table->integer('deposit');

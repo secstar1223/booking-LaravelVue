@@ -46,4 +46,12 @@ class Team extends JetstreamTeam
     public function events() {
         return $this->hasMany(Event::class);
     }
+
+    public function taxGroups() {
+        return $this->hasMany(TaxGroup::class);
+    }
+
+    public function taxRules() {
+        return $this->hasMany(TaxRule::class);
+    }
 }

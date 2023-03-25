@@ -13,9 +13,18 @@ public function up()
 {
 Schema::create('rental_products', function (Blueprint $table) {
     $table->id();
+    $table->unsignedBigInteger('team_id');
+    $table->index('team_id');
+    $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+
     $table->string('name');
     $table->text('description');
     $table->string('image')->nullable();
+    $table->text('language'); // json blob like below.
+/*
+{"seats_label":"Select Number of Waverunners(s)","duration_label":"Duration:","time_label":"Time:","book_now":"Book now","total_label":"Total: ","start_label":"Start time: ","end_label":"End time: "}
+*/
+    $table->text('options'); // json blob like i dunno?
     $table->timestamps();
 });
 }

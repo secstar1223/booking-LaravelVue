@@ -13,7 +13,7 @@ class CreateRentalEquipmentTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('rental_equipment_type', function (Blueprint $table) {
+        Schema::create('rental_equipment_types', function (Blueprint $table) {
             $table->id();
             $table->string('display_name');
             $table->string('equipment_pool');
@@ -35,12 +35,8 @@ class CreateRentalEquipmentTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rental_equipment_type');
+        Schema::dropIfExists('rental_equipment_types');
     }
 }
-This migration file will create a rental_equipment_type table with columns id, display_name, equipment_pool, description, widget_image, widget_display, min_value, max_value, require_min, category, and timestamps. The id column will be the primary key of the table, and the timestamps column will automatically track the creation and modification times of each row.
-
-
-
 
 

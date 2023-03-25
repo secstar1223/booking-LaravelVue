@@ -4,25 +4,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SeatBooking extends Model
+class EquipmentBooking extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'start_date',
-        'end_date',
-        'seat_number',
-        'was_reserved',
+        'start_time',
+        'end_time',
+        'equipment_number',
+        'is_order_reserved',
     ];
 
-    public function eventSession()
+    public function equipment()
     {
-        return $this->belongsTo(EventSession::class);
+        return $this->belongsTo(Equipment::class);
     }
 
-    public function seat()
+    public function team()
     {
-        return $this->belongsTo(Seat::class);
+        return $this->belongsTo(Team::class);
     }
 
     public function customer()

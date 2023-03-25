@@ -21,6 +21,8 @@ Schema::create('rental_products', function (Blueprint $table) {
     $table->text('description');
     $table->string('image')->nullable();
     $table->text('language'); // json blob like below.
+    $table->string('timezone');
+    $table->boolean('display_product_timezone');
 /*
 {"seats_label":"Select Number of Waverunners(s)","duration_label":"Duration:","time_label":"Time:","book_now":"Book now","total_label":"Total: ","start_label":"Start time: ","end_label":"End time: "}
 */

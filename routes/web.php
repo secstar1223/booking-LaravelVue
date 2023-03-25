@@ -9,6 +9,7 @@ use App\Http\Controllers\NewRentalController;
 use App\Http\Controllers\TaxRulesController;
 use App\Http\Controllers\TaxGroupsController;
 use App\Http\Controllers\DurationsController;
+use App\Http\Controllers\AvailabilityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,13 @@ Route::middleware([
     Route::post('/rentals/{rentalProduct}/durations', [DurationsController::class, 'store'])->name('durations.store');
     Route::put('/rentals/{rentalProduct}/durations/{duration}', [DurationsController::class, 'update'])->name('durations.update');
     Route::delete('/rentals/{rentalProduct}/durations/{duration}', [DurationsController::class, 'destroy'])->name('durations.delete');
+
+    Route::get('/rentals/{rentalProduct}/availability', [AvailabilityController::class, 'index'])->name('availability.index');
+    Route::get('/rentals/{rentalProduct}/availability/create', [AvailabilityController::class, 'create'])->name('availability.create');
+    Route::post('/rentals/{rentalProduct}/availability', [AvailabilityController::class, 'store'])->name('availability.store');
+    Route::get('/rentals/{rentalProduct}/availability/{taxGroup}/edit', [AvailabilityController::class, 'edit'])->name('availability.edit');
+    Route::put('/rentals/{rentalProduct}/availability/{taxGroup}', [AvailabilityController::class, 'update'])->name('availability.update');
+    Route::delete('/rentals/{rentalProduct}/availability/{taxGroup}', [AvailabilityController::class, 'destroy'])->name('availability.delete');
 });
 
 

@@ -19,8 +19,6 @@ return new class extends Migration
             $table->integer('starts_every');
             $table->integer('buffer_time');
             $table->text('starts_specific');
-            $table->string('created_timezone');
-            $table->boolean('display_created_timezone');
 
             $table->timestamps();
         });

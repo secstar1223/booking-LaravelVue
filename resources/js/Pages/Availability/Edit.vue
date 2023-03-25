@@ -1,6 +1,11 @@
 <template>
+<AppLayout title="Durations">
+    <template #header>
+      <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        Edit Tax Rule
+      </h2>
+    </template>
     <div>
-      <h1>Edit Tax Rule {{ taxRule.id }}</h1>
       <form @submit.prevent="form.put(`/tax-rules/${taxRule.id}`)">
         <label>
           Name:
@@ -32,10 +37,12 @@
         <button>Update Tax Rule</button>
       </form>
     </div>
-  </template>
+</AppLayout>
+</template>
   
   <script setup>
   import { useForm } from '@inertiajs/vue3'
+  import AppLayout from '@/Layouts/AppLayout.vue';
   
   const props = defineProps({
     taxRule: {

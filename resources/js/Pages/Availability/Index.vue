@@ -3,22 +3,32 @@
 import { Link } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue';
 
+const props = defineProps({
+    rentalProductId: {
+        type: Number,
+        required: true
+    },
+    availabilities: {
+        type: Array,
+        required: true
+    }
+})
 </script>
 
 <template>
-<AppLayout title="Durations">
+<AppLayout title="Availability">
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        Tax Rules
+        Availability
       </h2>
     </template>
     <div>
         <table style="width:100%;">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Type</th>
+                    <th>Repeats</th>
+                    <th>Times</th>
+                    <th>Applies to</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -34,16 +44,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 </tr>
             </tbody>
         </table>
-        <Link href="/tax-rules/create" as="button" type="button">Create a new tax rule</Link>
+        <Link :href="`/rentals/1/availability/create`" as="button" type="button">Create a new Availability</Link>
     </div>
 </AppLayout>
 </template>
-  
-<script>
-export default {
-    props: {
-        taxRules: Array,
-    },
-};
-</script>
   

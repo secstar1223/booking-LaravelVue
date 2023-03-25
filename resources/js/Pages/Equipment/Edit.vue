@@ -1,18 +1,12 @@
-<script setup>
-
-import { useForm } from '@inertiajs/vue3'
-
-const form = useForm({
-    name: '',
-    type: 'fixed',
-    amount: 0,
-})
-</script>
-
 <template>
+<AppLayout title="Durations">
+    <template #header>
+      <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        Edit Tax Rule
+      </h2>
+    </template>
     <div>
-      <h1>Create a Tax Rule</h1>
-      <form @submit.prevent="form.post('/tax-rules')">
+      <form @submit.prevent="form.put(`/tax-rules/${taxRule.id}`)">
         <label>
           Name:
           <input type="text" v-model="form.name">
@@ -40,8 +34,27 @@ const form = useForm({
           <div v-if="form.errors.amount">{{ form.errors.amount }}</div>
         </label>
         <br>
-        <button>Create Tax Rule</button>
+        <button>Update Tax Rule</button>
       </form>
     </div>
+</AppLayout>
 </template>
-
+  
+  <script setup>
+  import { useForm } from '@inertiajs/vue3'
+  import AppLayout from '@/Layouts/AppLayout.vue';
+  
+  const props = defineProps({
+    taxRule: {
+      type: Object,
+      required: true
+    }
+  })
+  
+  const form = useForm({
+    name: props.taxRule.name,
+    type: props.taxRule.type,
+    amount: props.taxRule.amount,
+  })
+  </script>
+  

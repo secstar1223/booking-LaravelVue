@@ -10,6 +10,8 @@ class RentalProduct extends Model {
         'image',
         'language',
         'options',
+        'timezone',
+        'display_product_timezone',
     ];
 
     /**

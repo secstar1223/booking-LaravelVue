@@ -13,11 +13,17 @@ return new class extends Migration
             $table->unsignedBigInteger('rental_product_id');
             $table->foreign('rental_product_id')->references('id')->on('rental_products')->onDelete('cascade');
             $table->index('rental_product_id');
-            $table->enum('availability_type', ['once', 'daily', 'weekly', 'monthly']);
-            $table->integer('first_time');
-            $table->integer('last_time');
+            $table->enum('times', ['repeats','specific']);
+            $table->integer('start_time');
+            $table->integer('end_time');
             $table->integer('starts_every');
-            $table->integer('buffer_time');
+            $table->boolean('mon');
+            $table->boolean('tue');
+            $table->boolean('wed');
+            $table->boolean('thu');
+            $table->boolean('fri');
+            $table->boolean('sat');
+            $table->boolean('sun');
             $table->text('starts_specific');
 
             $table->timestamps();

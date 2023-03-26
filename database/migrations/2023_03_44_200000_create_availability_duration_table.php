@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('availabilities_durations', function (Blueprint $table) {
+        Schema::create('availability_duration', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('availability_id');
             $table->foreign('availability_id')->references('id')->on('availabilities')->onDelete('cascade');

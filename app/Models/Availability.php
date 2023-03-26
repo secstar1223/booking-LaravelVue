@@ -5,14 +5,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Availability extends Model
 {
+    protected $casts = [
+        'starts_specific' => 'json',
+    ];
+
     protected $fillable = [
-        'availability_type',
-        'first_time',
-        'last_time',
+        'times',
+        'start_time',
+        'end_time',
         'starts_every',
+        'mon',
+        'tue',
+        'wed',
+        'thu',
+        'fri',
+        'sat',
+        'sun',
         'starts_specific',
-        'created_timezone',
-        'display_created_timezone',
     ];
 
     public function rentalProduct()

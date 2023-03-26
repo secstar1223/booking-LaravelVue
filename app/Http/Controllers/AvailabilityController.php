@@ -14,7 +14,7 @@ class AvailabilityController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if ($rentalProduct->team->id !== $team->id) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
@@ -38,33 +38,97 @@ class AvailabilityController extends Controller
         }
 
         return Inertia::render('Availability/Index', [
+            'rentalProductId' => $rentalProduct->id,
             'availabilities' => $availabilities,
         ]);
     }
 
-    public function create()
+    public function create(RentalProduct $rentalProduct)
     {
-        return Inertia::render('Availability/Create');
+        $user = auth()->user();
+        $team = $user->currentTeam;
+
+        if ($rentalProduct->team->id !== $team->id) {
+            return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
+        }
+
+        $durations = [];
+        foreach ($rentalProduct->durations as $duration) {
+            $durations[] = [
+                'id' => $duration->id,
+                'name' => $duration->name,
+            ];
+        }
+
+        return Inertia::render('Availability/Create', [
+            'rentalProductId' => $rentalProduct->id,
+            'durations' => $durations,
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(RentalProduct $rentalProduct, Request $request)
     {
+        $user = auth()->user();
+        $team = $user->currentTeam;
+
+        if ($rentalProduct->team->id !== $team->id) {
+            return response()->json(['errors' => [
+                'days' => 'The specified rental product does not exist or is not associated with the current team.',
+            ]]);
+        }
+
         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'amount' => 'required|numeric',
-            'type' => 'required|string|in:fixed,percent',
+            'mon' => 'required|bool',
+            'tue' => 'required|bool',
+            'wed' => 'required|bool',
+            'thu' => 'required|bool',
+            'fri' => 'required|bool',
+            'sat' => 'required|bool',
+            'sun' => 'required|bool',
+            'times' => 'required|string|in:repeats,specific',
+            'starts_every' => 'required|numeric',
+            'start_time' => 'required|numeric',
+            'end_time' => 'required|numeric',
+            'starts_specific' => 'array',
+            'durations' => 'required|array',
         ]);
 
-        $teamId = auth()->user()->currentTeam->id;
-    
+        $invalid_time = false;
+        $validatedData['starts_specific'] = array_map(function($time) use ($invalid_time) {
+            if ($time > 86400) {
+                $time -= 86400;
+                if ($time > 86400) {
+                    $invalid_time = true;
+                }
+            }
+
+            return $time;
+        }, $validatedData['starts_specific']);
+
+        sort($validatedData['starts_specific']);
+
         $availability = new Availability();
-        $availability->name = $validatedData['name'];
-        $availability->amount = $validatedData['amount'];
-        $availability->type = $validatedData['type'];
-        $availability->team_id = $teamId;
+        $availability->mon = $validatedData['mon'];
+        $availability->tue = $validatedData['tue'];
+        $availability->wed = $validatedData['wed'];
+        $availability->thu = $validatedData['thu'];
+        $availability->fri = $validatedData['fri'];
+        $availability->sat = $validatedData['sat'];
+        $availability->sun = $validatedData['sun'];
+        $availability->times = $validatedData['times'];
+        $availability->starts_every = ($validatedData['times'] == 'specific' ? 0 : $validatedData['starts_every']);
+        $availability->start_time = ($validatedData['times'] == 'specific' ? $validatedData['starts_specific'][0] : $validatedData['start_time']);//$validatedData['start_time'];
+        $availability->end_time = ($validatedData['times'] == 'specific' ? $validatedData['starts_specific'][count($validatedData['starts_specific'])-1] : $validatedData['end_time']);//$validatedData['end_time'];
+        $availability->starts_specific = $validatedData['starts_specific'];
+        $availability->rentalProduct()->associate($rentalProduct);
         $availability->save();
 
-        return redirect()->route('tax-rules.index');
+        $durations = $rentalProduct->durations()->whereIn('id', $validatedData['durations'])->get();
+        foreach ($durations as $duration) {
+            $availability->durations()->attach($duration);
+        }
+
+        return response()->json(['success' => true]);
     }
 
     public function edit(Availability $availability)

@@ -16,6 +16,9 @@ return new class extends Migration
 
             $table->string('name');
             $table->integer('duration');
+            $table->integer('duration_total');
+            $table->integer('buffer_before');
+            $table->integer('buffer_after');
 
             $table->timestamps();
         });

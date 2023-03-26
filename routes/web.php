@@ -10,6 +10,7 @@ use App\Http\Controllers\TaxRulesController;
 use App\Http\Controllers\TaxGroupsController;
 use App\Http\Controllers\DurationsController;
 use App\Http\Controllers\AvailabilityController;
+use App\Http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,14 @@ Route::middleware([
     Route::get('/rentals/{rentalProduct}/availability/{taxGroup}/edit', [AvailabilityController::class, 'edit'])->name('availability.edit');
     Route::put('/rentals/{rentalProduct}/availability/{taxGroup}', [AvailabilityController::class, 'update'])->name('availability.update');
     Route::delete('/rentals/{rentalProduct}/availability/{taxGroup}', [AvailabilityController::class, 'destroy'])->name('availability.delete');
+    
+    
+    Route::get('/asset', [AssetController::class, 'index'])->name('asset.index');
+    Route::get('/asset/create', [AssetController::class, 'create'])->name('asset.create');
+    Route::post('/asset', [AssetController::class, 'store'])->name('asset.store');
+    Route::get('/asset/{taxRule}/edit', [AssetController::class, 'edit'])->name('asset.edit');
+    Route::put('/asset/{taxRule}', [AssetController::class, 'update'])->name('asset.update');
+    Route::delete('/asset/{taxRule}', [AssetController::class, 'destroy'])->name('asset.delete');
 });
 
 

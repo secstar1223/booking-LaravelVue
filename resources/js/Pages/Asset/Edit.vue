@@ -15,11 +15,8 @@
         <br>
         <label>
           Resource Tracking:
-          <select v-model="form.type">
-            <option value="fixed">Yes</option>
-            <option value="percent">No</option>
-          </select>
-          <div v-if="form.errors.type">{{ form.errors.type }}</div>
+        <input type="checkbox" v-model="form.resource_tracking">
+        <div v-if="form.errors.type">{{ form.errors.type }}</div>
         </label>
         <br>
         <label>

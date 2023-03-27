@@ -10,15 +10,13 @@ return new class extends Migration
     {
         Schema::create('durations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rental_product_id');
-            $table->foreign('rental_product_id')->references('id')->on('rental_products')->onDelete('cascade');
-            $table->index('rental_product_id');
+            $table->unsignedBigInteger('detailID');
+            $table->foreign('detailID')->references('id')->on('details')->onDelete('cascade');
+            $table->index('detailID');
 
             $table->string('name');
             $table->integer('duration');
-            $table->integer('duration_total');
-            $table->integer('buffer_before');
-            $table->integer('buffer_after');
+            $table->integer('buffer');
 
             $table->timestamps();
         });

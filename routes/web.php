@@ -9,6 +9,8 @@ use App\Http\Controllers\NewRentalController;
 use App\Http\Controllers\TaxRulesController;
 use App\Http\Controllers\TaxGroupsController;
 use App\Http\Controllers\DurationsController;
+use App\Http\Controllers\EquipmentTypesController;
+use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\AssetController;
 
@@ -60,60 +62,46 @@ Route::middleware([
     Route::get('/tax-groups/{taxGroup}/edit', [TaxGroupsController::class, 'edit'])->name('tax-groups.edit');
     Route::put('/tax-groups/{taxGroup}', [TaxGroupsController::class, 'update'])->name('tax-groups.update');
     Route::delete('/tax-groups/{taxGroup}', [TaxGroupsController::class, 'destroy'])->name('tax-groups.delete');
+   
 
-    Route::get('/rentals/{rentalProduct}/durations', [DurationsController::class, 'index'])->name('durations.index');
-    Route::post('/rentals/{rentalProduct}/durations', [DurationsController::class, 'store'])->name('durations.store');
-    Route::put('/rentals/{rentalProduct}/durations/{duration}', [DurationsController::class, 'update'])->name('durations.update');
-    Route::delete('/rentals/{rentalProduct}/durations/{duration}', [DurationsController::class, 'destroy'])->name('durations.delete');
+	Route::get('/rentals', [DetailsController::class, 'index'])->name('details.index');
+    Route::get('/rentals/create', [DetailsController::class, 'create'])->name('details.create');
+    Route::post('/rentals', [DetailsController::class, 'store'])->name('details.store');
+    Route::get('/rentals/{details}/edit', [DetailsController::class, 'edit'])->name('details.edit');
+    Route::put('/rentals/{details}', [DetailsController::class, 'update'])->name('details.update');
+    Route::delete('/rentals/{details}', [DetailsController::class, 'destroy'])->name('details.delete');
 
-    Route::get('/rentals/{rentalProduct}/availability', [AvailabilityController::class, 'index'])->name('availability.index');
-    Route::get('/rentals/{rentalProduct}/availability/create', [AvailabilityController::class, 'create'])->name('availability.create');
-    Route::post('/rentals/{rentalProduct}/availability', [AvailabilityController::class, 'store'])->name('availability.store');
-    Route::get('/rentals/{rentalProduct}/availability/{taxGroup}/edit', [AvailabilityController::class, 'edit'])->name('availability.edit');
-    Route::put('/rentals/{rentalProduct}/availability/{taxGroup}', [AvailabilityController::class, 'update'])->name('availability.update');
-    Route::delete('/rentals/{rentalProduct}/availability/{taxGroup}', [AvailabilityController::class, 'destroy'])->name('availability.delete');
+	Route::get('/rentals/{details}/equipmenttypes', [EquipmentTypesController::class, 'index'])->name('equipment-type.index');
+    Route::post('/rentals/{details}/equipmenttypes', [EquipmentTypesController::class, 'store'])->name('equipment-type.store');
+    Route::put('/rentals/{details}/equipmenttypes/{equipmenttype}', [EquipmentTypesController::class, 'update'])->name('equipment-type.update');
+    Route::delete('/rentals/{details}/equipmenttypes/{equipmenttype}', [EquipmentTypesController::class, 'destroy'])->name('equipment-type.delete');
+   
+
+    Route::get('/rentals/{details}/durations', [DurationsController::class, 'index'])->name('durations.index');
+    Route::post('/rentals/{details}/durations', [DurationsController::class, 'store'])->name('durations.store');
+    Route::put('/rentals/{details}/durations/{duration}', [DurationsController::class, 'update'])->name('durations.update');
+    Route::delete('/rentals/{details}/durations/{duration}', [DurationsController::class, 'destroy'])->name('durations.delete');
+
+    Route::get('/rentals/{details}/availability', [AvailabilityController::class, 'index'])->name('availability.index');
+    Route::get('/rentals/{details}/availability/create', [AvailabilityController::class, 'create'])->name('availability.create');
+    Route::post('/rentals/{details}/availability', [AvailabilityController::class, 'store'])->name('availability.store');
+    Route::get('/rentals/{details}/availability/{taxGroup}/edit', [AvailabilityController::class, 'edit'])->name('availability.edit');
+    Route::put('/rentals/{details}/availability/{taxGroup}', [AvailabilityController::class, 'update'])->name('availability.update');
+    Route::delete('/rentals/{details}/availability/{taxGroup}', [AvailabilityController::class, 'destroy'])->name('availability.delete');
     
     
     Route::get('/asset', [AssetController::class, 'index'])->name('asset.index');
     Route::get('/asset/create', [AssetController::class, 'create'])->name('asset.create');
     Route::post('/asset', [AssetController::class, 'store'])->name('asset.store');
-    Route::get('/asset/{taxRule}/edit', [AssetController::class, 'edit'])->name('asset.edit');
-    Route::put('/asset/{taxRule}', [AssetController::class, 'update'])->name('asset.update');
-    Route::delete('/asset/{taxRule}', [AssetController::class, 'destroy'])->name('asset.delete');
+    Route::get('/asset/{asset}/edit', [AssetController::class, 'edit'])->name('asset.edit');
+    Route::put('/asset/{asset}', [AssetController::class, 'update'])->name('asset.update');
+    Route::delete('/asset/{asset}', [AssetController::class, 'destroy'])->name('asset.delete');
+	
+	Route::get('/rentals/{details}/prices', [PricesController::class, 'index'])->name('prices.index');
+    Route::post('/rentals/{details}/prices', [PricesController::class, 'store'])->name('prices.store');
+    Route::put('/rentals/{details}/prices/{equipmenttype}', [PricesController::class, 'update'])->name('prices.update');
+      
 });
-
-
-/*adding equipment routes*/
-Route::get('/equipmentguides', [EquipmentGuidesController::class, 'index'])->name('equipmentguides');
-
-Route::post('/equipmentguides', [EquipmentGuidesController::class, 'store'])->name('equipmentguides.store');
-
-Route::get('/equipmentguides/{id}', [EquipmentGuidesController::class, 'show']);
-
-Route::delete('/equipmentguides/{id}', [EquipmentGuidesController::class, 'destroy']);
-
-
-
-
-
-
-Route::get('/abandoned', function () {
-    return view('abandoned');
-})->name('abandoned');
-
-Route::get('/addon', function () {
-    return view('addon');
-})->name('addon');
-
-
-
-/*new rental routes NOTE some routes go to pages that dont exsist, the controller will return to correct page*/
-Route::get('/newrental', function () {
-    return view('newrental');
-})->name('newrental');
-Route::post('/newrental', [NewRentalController::class, 'store'])->name('newrental.store');
-
-Route::post('/newrental/rentalequipmenttype', [NewRentalController::class, 'rentalequipmenttype'])->name('newrental.rentalequipmenttype');
 
 
 

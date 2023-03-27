@@ -34,7 +34,7 @@ class AssetController extends Controller
 
         $teamId = auth()->user()->currentTeam->id;
     
-        $asset = new Assete();
+        $asset = new Asset();
         $asset->name = $validatedData['name'];
         $asset->amount = $validatedData['amount'];
         $asset->type = $validatedData['resource_tracking'];

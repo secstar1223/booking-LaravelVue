@@ -15,7 +15,7 @@ class AssetController extends Controller
         $asset = $team->assets;
 
         return Inertia::render('Asset/Index', [
-            'asset' => $asset,
+            'assets' => $asset,
         ]);
     }
 

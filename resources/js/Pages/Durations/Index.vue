@@ -1,10 +1,9 @@
-
 <script setup>
 import { reactive } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 const props = defineProps({
-    rentalProductId: {
+    detailID: {
         type: Number,
         required: true
     },
@@ -36,11 +35,11 @@ function saveDuration(durationId) {
     duration = duration[0]
 
     let method = 'PUT'
-    let url = '/rentals/' + props.rentalProductId + '/durations/' + duration.id
+    let url = '/rentals/' + props.detailsID + '/durations/' + duration.id
 
     if (duration.is_new) {
         method = 'POST'
-        url = '/rentals/' + props.rentalProductId + '/durations'
+        url = '/rentals/' + props.detailsID + '/durations'
     }
 
     var status = 0
@@ -81,7 +80,7 @@ function deleteDuration(durationId) {
     duration = duration[0]
 
     let method = 'DELETE'
-    let url = '/rentals/' + props.rentalProductId + '/durations/' + duration.id
+    let url = '/rentals/' + props.detailsID + '/durations/' + duration.id
 
     fetch(url, {
         method,

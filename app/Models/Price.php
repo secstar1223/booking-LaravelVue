@@ -7,17 +7,18 @@ class Price extends Model {
     protected $fillable = [
         'total',
         'deposit',
-        'tax',
-        'tax_type',
-        'currency',
     ];
 
-    public function equipment()
+    public function equipmenttype()
     {
-        return $this->belongsTo(Equipment::class);
+        return $this->belongsTo(Equipmenttype::class);
     }
 
     public function duration() {
         return $this->belongsTo(Duration::class);
+    }
+	
+	public function details() {
+        return $this->belongsTo(Details::class);
     }
 };

@@ -29,7 +29,7 @@ class DetailsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
         ]);
 
         $teamId = auth()->user()->currentTeam->id;
@@ -56,7 +56,7 @@ class DetailsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
         ]);
 
         $user = auth()->user();

@@ -42,7 +42,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <script>
 export default {
     props: {
-        asset: Array,
+        assets: Array,
     },
 };
 </script>

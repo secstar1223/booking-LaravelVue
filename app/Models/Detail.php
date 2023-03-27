@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Detail extends Model {
-	 protected $table = 'rental_products';
+	 protected $table = 'detail';
 	 
     protected $fillable = [
         'name',

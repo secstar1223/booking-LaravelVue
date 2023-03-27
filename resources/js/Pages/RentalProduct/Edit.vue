@@ -1,91 +1,64 @@
-<script setup>
-
-import { useForm } from '@inertiajs/vue3'
-import AppLayout from '@/Layouts/AppLayout.vue';
-
-const props = defineProps({
-    groupId: {
-        type: Number,
-        required: true
-    },
-    groupName: {
-        type: String,
-        required: true
-    },
-    groupRules: {
-        type: Array,
-        required: true
-    },
-    taxRules: {
-        type: Object,
-        required: true
-    },
-})
-
-console.log(props)
-
-const form = useForm({
-    name: props.groupName,
-    rules: props.groupRules,
-})
-var selectedRuleId = 0;
-
-function addRule() {
-    if (selectedRuleId) {
-      let ruleId = parseInt(selectedRuleId)
-      if (ruleId == 0) {
-        return
-    }
-      if (form.rules.indexOf(ruleId) === -1) {
-        form.rules.push(ruleId)
-        selectedRuleId = 0
-      }
-  }
-}
-
-function deleteRule(ruleId) {
-  ruleId = parseInt(ruleId)
-    const index = form.rules.indexOf(ruleId)
-    if (index !== -1) {
-        form.rules.splice(index, 1)
-    }
-}
-
-</script>
-
 <template>
-<AppLayout title="Durations">
+<AppLayout title="Details">
     <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Edit a Tax group
-            </h2>
+      <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        Edit Details
+      </h2>
     </template>
     <div>
-        <form @submit.prevent="form.put('/tax-groups/' + props.groupId)">
-            <label>
-                Name:
-                <input type="text" v-model="form.name">
-                <div v-if="form.errors.name">{{ form.errors.name }}</div>
-            </label>
-            <br>
-            <label>
-                Rule:
-                <select v-model="selectedRuleId">
-                    <option value="0">Select a rule</option>
-                    <option v-for="(ruleName, ruleId) in props.taxRules" :key="ruleId" :value="ruleId">
-                        {{ ruleName }}
-                    </option>
-                </select>
-                <button type="button" @click="addRule">Add Rule</button>
-                <div v-if="form.errors.rules">{{ form.errors.rules }}</div>
-            </label>
-            <br>
-            <ul>
-                <li v-for="rule in form.rules" :key="rule">{{ props.taxRules[rule] }} <button type="button" @click="deleteRule(rule)">Delete</button></li>
-            </ul>
-            <br>
-            <button>Save Tax Group</button>
-        </form>
+      <form @submit.prevent="form.put(`/rentals/${details.id}`)">
+        <label>
+          Name:
+          <input type="text" v-model="form.name">
+          <div v-if="form.errors.name">{{ form.errors.name }}</div>
+        </label>
+        <br>
+        <label>
+          Description:
+         <input type="text" v-model="form.description">
+          <div v-if="form.errors.description">{{ form.errors.description }}</div>
+        </label>
+        <br>
+        <label>
+         image:
+		  <div>
+			<input type="file" @change="onImageSelected">
+			<div v-if="form.image">
+			  <img :src="form.image" alt="Selected image">
+			</div>
+			<div v-if="form.errors.image">{{ form.errors.image }}</div>
+		  </div>
+        </label>
+        <br>
+        <button>Update Details</button>
+      </form>
     </div>
 </AppLayout>
 </template>
+  
+  <script setup>
+  import { useForm } from '@inertiajs/vue3';
+  import AppLayout from '@/Layouts/AppLayout.vue';
+  
+  const props = defineProps({
+    detail: {
+      type: Object,
+      required: true
+    }
+  });
+  
+  const form = useForm({
+    name: props.detail.name,
+    descripton: props.detail.description,
+    image: props.detail.image,
+  });
+  
+  function onImageSelected(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      setData('image', reader.result);
+    });
+    reader.readAsDataURL(file);
+  }
+  </script>

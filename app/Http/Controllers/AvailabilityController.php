@@ -2,24 +2,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Availability;
-use App\Models\RentalProduct;
+use App\Models\Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class AvailabilityController extends Controller
 {
-    public function index(RentalProduct $rentalProduct)
+    public function index(Details $details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if ($rentalProduct->team->id !== $team->id) {
+        if ($details->team->id !== $team->id) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
         $availabilities = [];
-        foreach ($rentalProduct->availabilities as $available) {
+        foreach ($dtails->availabilities as $available) {
             $appliesTo = [];
             foreach ($available->durations as $duration) {
                 $appliesTo[] = [$duration->name, $duration->id];
@@ -38,22 +38,22 @@ class AvailabilityController extends Controller
         }
 
         return Inertia::render('Availability/Index', [
-            'rentalProductId' => $rentalProduct->id,
+            'detailsId' => $details->id,
             'availabilities' => $availabilities,
         ]);
     }
 
-    public function create(RentalProduct $rentalProduct)
+    public function create(Details $details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if ($rentalProduct->team->id !== $team->id) {
+        if ($details->team->id !== $team->id) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
         $durations = [];
-        foreach ($rentalProduct->durations as $duration) {
+        foreach ($details->durations as $duration) {
             $durations[] = [
                 'id' => $duration->id,
                 'name' => $duration->name,
@@ -61,17 +61,17 @@ class AvailabilityController extends Controller
         }
 
         return Inertia::render('Availability/Create', [
-            'rentalProductId' => $rentalProduct->id,
+            'detailsId' => $details->id,
             'durations' => $durations,
         ]);
     }
 
-    public function store(RentalProduct $rentalProduct, Request $request)
+    public function store(details $details, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if ($rentalProduct->team->id !== $team->id) {
+        if ($details->team->id !== $team->id) {
             return response()->json(['errors' => [
                 'days' => 'The specified rental product does not exist or is not associated with the current team.',
             ]]);
@@ -120,10 +120,10 @@ class AvailabilityController extends Controller
         $availability->start_time = ($validatedData['times'] == 'specific' ? $validatedData['starts_specific'][0] : $validatedData['start_time']);//$validatedData['start_time'];
         $availability->end_time = ($validatedData['times'] == 'specific' ? $validatedData['starts_specific'][count($validatedData['starts_specific'])-1] : $validatedData['end_time']);//$validatedData['end_time'];
         $availability->starts_specific = $validatedData['starts_specific'];
-        $availability->rentalProduct()->associate($rentalProduct);
+        $availability->details()->associate($details);
         $availability->save();
 
-        $durations = $rentalProduct->durations()->whereIn('id', $validatedData['durations'])->get();
+        $durations = $details->durations()->whereIn('id', $validatedData['durations'])->get();
         foreach ($durations as $duration) {
             $availability->durations()->attach($duration);
         }

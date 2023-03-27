@@ -8,11 +8,12 @@ class Duration extends Model
     protected $fillable = [
         'name',
         'duration',
+		'buffer',
     ];
 
-    public function rentalProduct()
+    public function Details()
     {
-        return $this->belongsTo(RentalProduct::class);
+        return $this->belongsTo(Details::class);
     }
 
     public function availabilities() {

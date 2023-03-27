@@ -24,9 +24,9 @@ class Availability extends Model
         'starts_specific',
     ];
 
-    public function rentalProduct()
+    public function details()
     {
-        return $this->belongsTo(RentalProduct::class);
+        return $this->belongsTo(Details::class);
     }
 
     public function durations()

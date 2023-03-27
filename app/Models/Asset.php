@@ -18,4 +18,8 @@ class Asset extends Model {
     public function groups() {
         return $this->belongsToMany(Asset::class);
     }
+	
+	
+	
+	
 };

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class EquipmentTypeController extends Controller
+class PriceController extends Controller
 {
 
     protected function getPrice(Details $details): array {

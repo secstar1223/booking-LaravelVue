@@ -37,7 +37,7 @@ class AssetController extends Controller
         $asset = new Asset();
         $asset->name = $validatedData['name'];
         $asset->amount = $validatedData['amount'];
-        $asset->type = $validatedData['resource_tracking'];
+        $asset->resource_tracking = $validatedData['resource_tracking'];
         $asset->team_id = $teamId;
         $asset->save();
 

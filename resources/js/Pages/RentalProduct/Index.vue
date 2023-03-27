@@ -5,10 +5,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
 
 <template>
-<AppLayout title="Durations">
+<AppLayout title="Details">
     <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Tax groups
+                Details
             </h2>
     </template>
     <div>
@@ -16,20 +16,26 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <thead>
                 <tr>
                     <th>Name</th>
+					<th>Equipment</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="taxGroup in taxGroups" :key="taxGroup.id">
-                    <td>{{ taxGroup.name }}</td>
+                <tr v-for="detail in details" :key="detail.id">
+                    <td>{{ detail.name }}</td>
+					<td>
+						<ul>
+							<li>equipment_type for this product</li>
+						</ul>
+					</td>
                     <td>
-                        <Link :href="`/tax-groups/${taxGroup.id}/edit`" as="button" type="button">Edit</Link>
-                        <Link :href="`/tax-groups/${taxGroup.id}`" method="delete" as="button" type="button">Delete</Link>
+                        <Link :href="`/rentals/${details.id}/edit`" as="button" type="button">Edit</Link>
+                        <Link :href="`/rentals/${details.id}`" method="delete" as="button" type="button">Delete</Link>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <Link href="/tax-groups/create" as="button" type="button">Create a new tax group</Link>
+        <Link href="/rentals/create" as="button" type="button">Create a new Product</Link>
     </div>
 </AppLayout>
 </template>
@@ -37,7 +43,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <script>
 export default {
     props: {
-        taxGroups: Array,
+        details: Array,
     },
 };
 </script>

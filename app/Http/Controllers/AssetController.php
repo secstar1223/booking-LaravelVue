@@ -12,7 +12,7 @@ class AssetController extends Controller
     {
         $user = auth()->user();
         $team = $user->currentTeam;
-        $asseta = $team->assets;
+        $assets = $team->assets;
 
         return Inertia::render('Asset/Index', [
             'assets' => $assets,

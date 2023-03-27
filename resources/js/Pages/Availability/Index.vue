@@ -1,10 +1,9 @@
-<!-- TaxRules/Index.vue -->
 <script setup>
 import { Link } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 const props = defineProps({
-    rentalProductId: {
+    detailsId: {
         type: Number,
         required: true
     },

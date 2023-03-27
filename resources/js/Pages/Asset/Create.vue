@@ -26,7 +26,6 @@ const form = useForm({
         </label>
         <br>
         <label>
-          <label>
               Resource Tracking:
               <input type="checkbox" v-model="form.resource_tracking">
           <div v-if="form.errors.type">{{ form.errors.type }}</div>

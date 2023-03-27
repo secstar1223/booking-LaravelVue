@@ -1,20 +1,24 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RentalEquipmentType extends Model
+class EquipmentType extends Model
 {
     protected $fillable = [
-        'display_name',
-        'equipment_pool',
+        'name',
         'description',
-        'widget_image',
-        'widget_display',
-        'min_value',
-        'max_value',
-        'require_min',
-        'category'
+		'min-amount',
+		'max-amount',
+		'require-min',
+		'widget-image',
+		'widget-display',
+		'asset_id',
     ];
+
+    public function rentalProduct()
+    {
+        return $this->belongsTo(RentalProduct::class);
+    }
+
 }

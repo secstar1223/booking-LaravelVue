@@ -9,7 +9,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <AppLayout title="Assets">
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        Tax Rules
+       List of Assets
       </h2>
     </template>
     <div>

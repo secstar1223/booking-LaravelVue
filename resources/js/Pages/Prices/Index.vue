@@ -10,7 +10,7 @@ const props = defineProps({
     durations: {
         type: Array,
         required: true
-    }
+    },
 	equipmenttype: {
         type: Array,
         required: true

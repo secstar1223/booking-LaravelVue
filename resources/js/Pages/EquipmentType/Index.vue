@@ -218,7 +218,6 @@ const state = reactive({
 					  <div v-for="(item, key) in equipmenttype.errors['widget-display']" :key="key">{{ item }}</div>
 					</div>
 				  </td>
-				</tr>
                     <td>
                         <button @click="saveEquipmentType(equipmenttype.id)">Save</button>
                         <button @click="deleteEquipmentType(equipmenttype.id)">Delete</button>

@@ -13,6 +13,8 @@ public function up()
             $table->string('name');
             $table->unsignedBigInteger('amount');
             $table->boolean('resource_tracking');
+            $table->unsignedBigInteger('team_id');
+            $table->index('team_id');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

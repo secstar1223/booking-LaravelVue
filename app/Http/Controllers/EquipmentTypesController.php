@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class EquipmentTypeController extends Controller
+class EquipmentTypesController extends Controller
 {
 
     protected function getEquipmentType(RentalProduct $rentalProduct): array {

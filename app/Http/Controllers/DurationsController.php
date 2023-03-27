@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Duration;
-use App\Models\RentalProduct;
+use App\Models\Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -24,9 +24,9 @@ class DurationsController extends Controller
         return $parts['days'] * 86400 + $parts['hours'] * 3600 + $parts['minutes'] * 60;
     }
 
-    protected function getDurations(RentalProduct $rentalProduct): array {
+    protected function getDurations(Details $Details): array {
         $durations = [];
-        foreach ($rentalProduct->durations as $duration) {
+        foreach ($details->durations as $duration) {
             $parts = $this->timestampToParts($duration->duration);
             $durations[] = [
                 'id' => $duration->id,
@@ -42,22 +42,22 @@ class DurationsController extends Controller
         return $durations;
     }
 
-    public function index(RentalProduct $rentalProduct)
+    public function index(details $details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->details()->where('id', $details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
         return Inertia::render('Durations/Index', [
-            'rentalProductId' => $rentalProduct->id,
-            'durations' => $this->getDurations($rentalProduct),
+            'details' => $details->id,
+            'durations' => $this->getDurations($details),
         ]);
     }
 
-    public function store(RentalProduct $rentalProduct, Request $request)
+    public function store(details $details, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -69,7 +69,7 @@ class DurationsController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->details()->where('id', $details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
@@ -78,13 +78,13 @@ class DurationsController extends Controller
         $duration = new Duration();
         $duration->name = $validatedData['name'];
         $duration->duration = $this->partsToTimestamp($validatedData);
-        $duration->rental_product_id = $rentalProduct->id;
+        $duration->detailID = $details->id;
         $duration->save();
 
-        return response()->json(['durations' => $this->getDurations($rentalProduct)]);
+        return response()->json(['durations' => $this->getDurations($details)]);
     }
 
-    public function update(RentalProduct $rentalProduct, Duration $duration, Request $request)
+    public function update(Details $details, Duration $duration, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -96,11 +96,11 @@ class DurationsController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->details()->where('id', $details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
-        if (!$rentalProduct->durations()->where('id', $duration->id)->exists()) {
+        if (!$details->durations()->where('id', $duration->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified duration does not exist or is not associated with the current team.']);
         }
 
@@ -108,19 +108,19 @@ class DurationsController extends Controller
         $duration->duration = $this->partsToTimestamp($validatedData);
         $duration->save();
 
-        return response()->json(['durations' => $this->getDurations($rentalProduct)]);
+        return response()->json(['durations' => $this->getDurations($details)]);
     }
 
-    public function destroy(RentalProduct $rentalProduct, Duration $duration, Request $request)
+    public function destroy(Details $details, Duration $duration, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->details()->where('id', $details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
-        if (!$rentalProduct->durations()->where('id', $duration->id)->exists()) {
+        if (!$details->durations()->where('id', $duration->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified duration does not exist or is not associated with the current team.']);
         }
 
@@ -130,6 +130,6 @@ class DurationsController extends Controller
             return redirect()->back()->withErrors(['error' => 'Unable to delete duration.']);
         }
 
-        return response()->json(['durations' => $this->getDurations($rentalProduct)]);
+        return response()->json(['durations' => $this->getDurations($details)]);
     }
 }

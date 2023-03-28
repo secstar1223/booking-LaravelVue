@@ -25,7 +25,7 @@ class DurationsController extends Controller
         return $parts['days'] * 86400 + $parts['hours'] * 3600 + $parts['minutes'] * 60;
     }
 
-    protected function getDurations(Details $Details): array {
+    protected function getDurations(Detail $Details): array {
         $durations = [];
         foreach ($details->durations as $duration) {
             $parts = $this->timestampToParts($duration->duration);
@@ -43,7 +43,7 @@ class DurationsController extends Controller
         return $durations;
     }
 
-    public function index(details $details)
+    public function index(Detail $details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
@@ -58,7 +58,7 @@ class DurationsController extends Controller
         ]);
     }
 
-    public function store(details $details, Request $request)
+    public function store(Detail $details, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -85,7 +85,7 @@ class DurationsController extends Controller
         return response()->json(['durations' => $this->getDurations($details)]);
     }
 
-    public function update(Details $details, Duration $duration, Request $request)
+    public function update(Detail $details, Duration $duration, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -112,7 +112,7 @@ class DurationsController extends Controller
         return response()->json(['durations' => $this->getDurations($details)]);
     }
 
-    public function destroy(Details $details, Duration $duration, Request $request)
+    public function destroy(Detail $details, Duration $duration, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;

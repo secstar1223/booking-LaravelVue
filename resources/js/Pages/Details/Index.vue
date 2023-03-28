@@ -1,7 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue';
-import NavBar from '@/components/NavBar.vue';
 </script>
 
 <template>
@@ -43,9 +42,6 @@ import NavBar from '@/components/NavBar.vue';
 <script>
 export default {
 
- components: {
-    NavBar,
-  },
     props: {
         details: Array,
     },

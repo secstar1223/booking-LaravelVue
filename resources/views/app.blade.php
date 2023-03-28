@@ -18,6 +18,12 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+    <div id="app">
+        <navbar></navbar> <!-- Add this line -->
         @inertia
-    </body>
+    </div>
+    @vite('resources/js/app.js')
+    @inertiaScripts
+</body>
+
 </html>

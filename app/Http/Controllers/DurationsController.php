@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Duration;
 use App\Models\Detail;
+use App\Http\Controllers\Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;

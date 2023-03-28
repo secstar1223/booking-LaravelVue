@@ -2,14 +2,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Availability;
-use App\Models\Details;
+use App\Models\Detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class AvailabilityController extends Controller
 {
-    public function index(Details $details)
+    public function index(Detail $details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
@@ -43,7 +43,7 @@ class AvailabilityController extends Controller
         ]);
     }
 
-    public function create(Details $details)
+    public function create(Detail $details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
@@ -66,7 +66,7 @@ class AvailabilityController extends Controller
         ]);
     }
 
-    public function store(details $details, Request $request)
+    public function store(Detail $details, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;

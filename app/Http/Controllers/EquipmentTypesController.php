@@ -11,7 +11,7 @@ use Inertia\Inertia;
 class EquipmentTypesController extends Controller
 {
 
-    protected function getEquipmentType(Detail $Details): array {
+    protected function getEquipmentType(Details $Details): array {
         $equipmenttypes = [];
         foreach ($Details->equipmenttypes as $equipmenttype) {
             $equipmenttypes[] = [
@@ -30,7 +30,7 @@ class EquipmentTypesController extends Controller
         return $equipmenttypes;
     }
 
-    public function index(Detail $Details)
+    public function index(Details $Details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
@@ -46,7 +46,7 @@ class EquipmentTypesController extends Controller
         ]);
     }
 
-    public function store(Detail $Details, Request $request)
+    public function store(Details $Details, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -82,7 +82,7 @@ class EquipmentTypesController extends Controller
         return response()->json(['equipment-types' => $this->getEquipmentType($Details)]);
     }
 
-    public function update(Detail $Details, EquipmentType $equipmenttype, Request $request)
+    public function update(Details $Details, EquipmentType $equipmenttype, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -115,7 +115,7 @@ class EquipmentTypesController extends Controller
         return response()->json(['equipmenttype' => $this->getEquipmentTypes($Details)]);
     }
 
-    public function destroy(Detail $Details, EquipmentType $equipmenttype, Request $request)
+    public function destroy(Details $Details, EquipmentType $equipmenttype, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;

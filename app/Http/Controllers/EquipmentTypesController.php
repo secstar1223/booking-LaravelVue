@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EquipmentType;
-use App\Models\RentalProduct;
+use App\Models\Details;
 use App\Medels\Asset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -11,9 +11,9 @@ use Inertia\Inertia;
 class EquipmentTypesController extends Controller
 {
 
-    protected function getEquipmentType(RentalProduct $rentalProduct): array {
+    protected function getEquipmentType(Details $Details): array {
         $equipmenttypes = [];
-        foreach ($rentalProduct->equipmenttypes as $equipmenttype) {
+        foreach ($Details->equipmenttypes as $equipmenttype) {
             $equipmenttypes[] = [
                 'id' => $equipmenttype->id,
                 'name' => $equipmenttype->name,
@@ -30,23 +30,23 @@ class EquipmentTypesController extends Controller
         return $equipmenttypes;
     }
 
-    public function index(RentalProduct $rentalProduct)
+    public function index(Details $Details)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->Details()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 
         return Inertia::render('EquipmentType/Index', [
-            'rentalProductId' => $rentalProduct->id,
-            'equipmenttypes' => $this->getEquipmentType($rentalProduct),
+            'detailsId' => $Details->id,
+            'equipmenttypes' => $this->getEquipmentType($Details),
 			'assets' => $assets,
         ]);
     }
 
-    public function store(RentalProduct $rentalProduct, Request $request)
+    public function store(Details $Details, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -62,7 +62,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->Details()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 
@@ -79,10 +79,10 @@ class EquipmentTypesController extends Controller
         $equipmenttype->asset_id = $validatedData['asset_id']; // Set asset_id
         $equipmenttype->save();
 
-        return response()->json(['equipment-types' => $this->getEquipmentType($rentalProduct)]);
+        return response()->json(['equipment-types' => $this->getEquipmentType($Details)]);
     }
 
-    public function update(RentalProduct $rentalProduct, EquipmentType $equipmenttype, Request $request)
+    public function update(Details $Details, EquipmentType $equipmenttype, Request $request)
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
@@ -98,7 +98,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->Details()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 		$equipmenttype->name = $validatedData['name'];
@@ -112,15 +112,15 @@ class EquipmentTypesController extends Controller
 
         $equipmenttype->save();
 
-        return response()->json(['equipmenttype' => $this->getEquipmentTypes($rentalProduct)]);
+        return response()->json(['equipmenttype' => $this->getEquipmentTypes($Details)]);
     }
 
-    public function destroy(RentalProduct $rentalProduct, EquipmentType $equipmenttype, Request $request)
+    public function destroy(Details $Details, EquipmentType $equipmenttype, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->rentalProducts()->where('id', $rentalProduct->id)->exists()) {
+        if (!$team->Details()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 
@@ -131,6 +131,6 @@ class EquipmentTypesController extends Controller
             return redirect()->back()->withErrors(['error' => 'Unable to delete equipment type.']);
         }
 
-        return response()->json(['equipmenttype' => $this->getEquipmentTypes($rentalProduct)]);
+        return response()->json(['equipmenttype' => $this->getEquipmentTypes($Details)]);
     }
 }

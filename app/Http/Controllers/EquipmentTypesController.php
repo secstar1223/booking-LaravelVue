@@ -35,7 +35,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->Detail()->where('id', $Details->id)->exists()) {
+        if (!$team->rentalproduct()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 

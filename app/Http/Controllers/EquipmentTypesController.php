@@ -35,7 +35,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->Details()->where('id', $Details->id)->exists()) {
+        if (!$team->Detail()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 
@@ -62,7 +62,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->Details()->where('id', $Details->id)->exists()) {
+        if (!$team->Detail()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 
@@ -98,7 +98,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->Details()->where('id', $Details->id)->exists()) {
+        if (!$team->Detail()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified equipment type does not exist or is not associated with the current team.']);
         }
 		$equipmenttype->name = $validatedData['name'];
@@ -120,7 +120,7 @@ class EquipmentTypesController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->Details()->where('id', $Details->id)->exists()) {
+        if (!$team->Detail()->where('id', $Details->id)->exists()) {
             return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
         }
 

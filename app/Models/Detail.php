@@ -21,11 +21,18 @@ class Detail extends Model {
         return $this->belongsToMany(TaxGroup::class);
     }
 	
-	public function equipments() {
-        return $this->hasMany(Equipment::class);
+	public function equipmenttypes() {
+        return $this->hasMany(EquipmentType::class, 'rental_product_id');
+    }
+    public function availabilities() {
+        return $this->hasMany(Availability::class, 'rental_product_id');
     }
 
     public function durations() {
-        return $this->hasMany(Duration::class);
+        return $this->hasMany(Duration::class, 'rental_product_id');
+    }
+
+    public function prices(){
+        return $this->hasMany(Price::class,'rental_product_id');
     }
 };

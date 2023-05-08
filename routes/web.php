@@ -12,7 +12,10 @@ use App\Http\Controllers\DurationsController;
 use App\Http\Controllers\EquipmentTypesController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\AvailabilityController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +48,14 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/asset', [AssetController::class, 'index'])->name('asset.index');
+    Route::get('/asset/create', [AssetController::class, 'create'])->name('asset.create');
+    Route::post('/asset', [AssetController::class, 'store'])->name('asset.store');
+    Route::get('/asset/{asset}/edit', [AssetController::class, 'edit'])->name('asset.edit');
+    Route::put('/asset/{asset}', [AssetController::class, 'update'])->name('asset.update');
+    Route::delete('/asset/{asset}', [AssetController::class, 'destroy'])->name('asset.delete');
 
     Route::get('/tax-rules', [TaxRulesController::class, 'index'])->name('tax-rules.index');
     Route::get('/tax-rules/create', [TaxRulesController::class, 'create'])->name('tax-rules.create');
@@ -62,15 +70,58 @@ Route::middleware([
     Route::get('/tax-groups/{taxGroup}/edit', [TaxGroupsController::class, 'edit'])->name('tax-groups.edit');
     Route::put('/tax-groups/{taxGroup}', [TaxGroupsController::class, 'update'])->name('tax-groups.update');
     Route::delete('/tax-groups/{taxGroup}', [TaxGroupsController::class, 'destroy'])->name('tax-groups.delete');
-   
+
 
 	Route::get('/rentals', [DetailsController::class, 'index'])->name('details.index');
     Route::get('/rentals/create', [DetailsController::class, 'create'])->name('details.create');
-    Route::post('/rentals', [DetailsController::class, 'store'])->name('details.store');
+	Route::post('/rentals', [DetailsController::class, 'store'])->name('details.store');
     Route::get('/rentals/{details}/edit', [DetailsController::class, 'edit'])->name('details.edit');
     Route::put('/rentals/{details}', [DetailsController::class, 'update'])->name('details.update');
     Route::delete('/rentals/{details}', [DetailsController::class, 'destroy'])->name('details.delete');
 
+	Route::get('/rentals/{detail}/editnewrentals', [DetailsController::class, 'editnewrentals'])
+        	->name('details.editnewrentals')
+        	->where('detail', '[0-9]+');
+    
+    Route::prefix('/rentals/{detail}/editnewrentals')->group(function () {
+		
+
+        	Route::get('/prices', [PriceController::class, 'index'])->name('details.editnewrentals.prices');
+			Route::post('/prices', [PriceController::class, 'store'])->name('prices.store');
+			Route::put('/prices/{price}', [PriceController::class, 'update'])->name('prices.update');
+        
+        	Route::get('/durations', [DurationsController::class, 'index'])->name('details.editnewrentals.durations');
+			Route::post('/durations', [DurationsController::class, 'store'])->name('details.editnewrentals.store');
+			Route::put('/durations/{durations}', [DurationsController::class, 'update'])->name('details.editnewrentals.update');
+			Route::delete('/durations/{durtaions}', [DurationsController::class, 'destroy'])->name('details.editnewrentals.destroy');
+        
+        	Route::get('/equipmenttypes', [EquipmentTypesController::class, 'index'])->name('details.editnewrentals.equipmenttype');
+			Route::post('/equipmenttypes', [EquipmentTypesController::class, 'store'])->name('equipment-type.store');
+			Route::put('/equipmenttypes/{equipmenttype}', [EquipmentTypesController::class, 'update'])->name('equipment-type.update');
+            Route::delete('/equipmenttypes/{equipmenttype}', [EquipmentTypesController::class, 'destroy'])->name('equipment-type.destroy');
+		
+			Route::get('/availabilityindex', [AvailabilityController::class, 'index'])->name('availability.index');
+			Route::get('/availabilitycreate', [AvailabilityController::class, 'create'])->name('availability.create');
+			Route::post('/availabilityindex', [AvailabilityController::class, 'store'])->name('details.editnewrentals.availability.store');
+			Route::get('/availabilityedit/{availID}', [AvailabilityController::class, 'edit'])->name('details.editnewrentals.availability.edit');
+			Route::put('/availability/{availID}', [AvailabilityController::class, 'update'])->name('details.editnewrentals.availability.update');
+			Route::delete('/availability/{availID}', [AvailabilityController::class, 'destroy'])->name('details.editnewrentals.availability.delete');
+
+    });
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+/*
 	Route::get('/rentals/{details}/equipmenttypes', [EquipmentTypesController::class, 'index'])->name('equipment-type.index');
     Route::post('/rentals/{details}/equipmenttypes', [EquipmentTypesController::class, 'store'])->name('equipment-type.store');
     Route::put('/rentals/{details}/equipmenttypes/{equipmenttype}', [EquipmentTypesController::class, 'update'])->name('equipment-type.update');
@@ -88,19 +139,12 @@ Route::middleware([
     Route::get('/rentals/{details}/availability/{taxGroup}/edit', [AvailabilityController::class, 'edit'])->name('availability.edit');
     Route::put('/rentals/{details}/availability/{taxGroup}', [AvailabilityController::class, 'update'])->name('availability.update');
     Route::delete('/rentals/{details}/availability/{taxGroup}', [AvailabilityController::class, 'destroy'])->name('availability.delete');
-    
-    
-    Route::get('/asset', [AssetController::class, 'index'])->name('asset.index');
-    Route::get('/asset/create', [AssetController::class, 'create'])->name('asset.create');
-    Route::post('/asset', [AssetController::class, 'store'])->name('asset.store');
-    Route::get('/asset/{asset}/edit', [AssetController::class, 'edit'])->name('asset.edit');
-    Route::put('/asset/{asset}', [AssetController::class, 'update'])->name('asset.update');
-    Route::delete('/asset/{asset}', [AssetController::class, 'destroy'])->name('asset.delete');
 	
 	Route::get('/rentals/{details}/prices', [PricesController::class, 'index'])->name('prices.index');
     Route::post('/rentals/{details}/prices', [PricesController::class, 'store'])->name('prices.store');
     Route::put('/rentals/{details}/prices/{equipmenttype}', [PricesController::class, 'update'])->name('prices.update');
-      
+*/
+
 });
 
 

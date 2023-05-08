@@ -58,4 +58,9 @@ class Team extends JetstreamTeam
     public function rentalProducts() {
         return $this->hasMany(RentalProduct::class);
     }
+
+    public function details() {
+        return $this->hasMany(Detail::class);
+    }
+
 }

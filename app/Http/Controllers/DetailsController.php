@@ -2,6 +2,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detail;
+use App\Models\EquipmentType;
+use App\Models\Price;
+use App\Models\Duration;
+use App\Models\Availability;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -13,11 +18,41 @@ class DetailsController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
         $details = $team->details;
+    
+        $equipmenttypes = [];
+        $prices = [];
+        $durations = [];
+        $availabilities = [];
 
-        return Inertia::render('Details/Index', [
-            'details' => $details,
+foreach ($details as $detail) {
+    $equipmenttypes[] = $detail->equipmenttypes ?? [];
+    $prices[] = $detail->prices ?? [];
+    $durations[] = $detail->durations ?? [];
+    $availabilities[] = $detail->availabilities ?? [];
+    }
+
+return Inertia::render('Details/Index', [
+    'details' => $details,
+    'equipmenttypes' => $equipmenttypes,
+    'prices' => $prices,
+    'durations' => $durations,
+    'availabilities' => $availabilities,
+]);
+    }
+
+    
+
+ public function editnewrentals( Detail $detail)
+    {
+        $user = auth()->user();
+        $team = $user->currentTeam;
+        $details = $team->details;
+
+        return Inertia::render('Details/EditNewRentals', [
+            'detail' => $detail,
         ]);
     }
+
 
     public function create()
     {
@@ -41,7 +76,7 @@ class DetailsController extends Controller
         $detail->team_id = $teamId;
         $detail->save();
 
-        return redirect()->route('details.index');
+       return redirect()->route('details.editnewrentals', ['detail' => $detail->id]);
     }
 
     public function edit(Detail $detail)
@@ -90,5 +125,92 @@ class DetailsController extends Controller
         }
 
         return redirect()->route('details.index');
+    }
+
+
+    public function equipmenttypes(Request $request)
+    {
+
+        
+        $name = $request->input('name');
+        $assetID = $request->input('assetID');
+        $detailID = $request->input('detailID');
+        $description = $request->input('description');
+        $widgetImage = $request->input('widgetImage');
+        $widgetDisplay = $request->input('widgetDisplay');
+        $minValue = $request('minAmount');
+        $maxValue = $request->input('maxAmount');
+        $requireMin = $request->input('requireMin');
+
+        $EquipmentType = new EquipmentType;
+        $EquipmentType->name = $name;
+        $EquipmentType->assetID = $assetID;
+        $EquipmentType->detailID = $detailID;
+        $EquipmentType->description = $description;
+        $EquipmentType->widgetimage = $widgetImage;
+        $EquipmentType->widgetdisplay = $widgetDisplay;
+        $EquipmentType->minamount = $minValue;
+        $EquipmentType->maxamount = $maxValue;
+        $EquipmentType->requiremin = $requireMin;
+
+        $EquipmentType->save();
+
+        $detail['equipmenttype'] = $EquipmentType;
+    
+
+        return redirect('Details/EditNewRentals/equipmenttype');
+
+    }
+	
+	    public function durations(Request $request)
+    {   
+        $name = $request->input('name');
+        $days = $request->input('days');
+        $hours = $request->input('hours');
+        $minutes = $request->input('minutes');
+
+
+        $Duration = new Duration;
+        $Duration->name = $name;
+        $Duration->product_rental_id= $detailID;
+        $Duration->days = $days;
+        $Duration->hours = $hours;
+        $Duration->minutes = $minutes;
+
+      
+
+        $Duration->save();
+
+        $detail['duration'] = $Duration;
+    
+
+        return redirect('Details/EditNewRentals/durations');
+
+    }
+
+    public function availabilities(Request $request)
+    {   
+        $availability_type = $request->input('availability_type');
+        $first_time = $request->input('first_time');
+        $last_time = $request->input('last_time');
+        $applies_to = $request->input('applies_to');
+
+
+        $Availability = new Availability;
+        $Availability->availability_type = $availability_type;
+        $Availability->product_rental_id= $detailID;
+        $Availability->first_time = $first_time;
+        $Availability->last_time = $last_time;
+        $Availability->applies_to = $applies_to;
+
+      
+
+        $Availability->save();
+
+        $detail['availabilities'] = $Availability;
+    
+
+        return redirect('Details/EditNewRentals/availabilityindex');
+
     }
 }

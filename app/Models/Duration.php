@@ -9,14 +9,19 @@ class Duration extends Model
         'name',
         'duration',
 		'buffer',
+        'rental_product_id',
     ];
 
-    public function Details()
+    public function Detail()
     {
-        return $this->belongsTo(Details::class);
+        return $this->belongsTo(Detail::class);
     }
 
     public function availabilities() {
         return $this->belongsToMany(Availability::class);
+    }
+
+    public function price(){
+        return $this->hasMany(Price::class);
     }
 }

@@ -6,20 +6,17 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
 
 <template>
-<AppLayout title="Durations">
-    <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        Tax Rules
-      </h2>
-    </template>
-    <div>
-        <table style="width:100%;">
+<AppLayout title="Tax rules">
+<div class="container">
+    <div class="box">
+        <h1>Tax rules</h1>
+        <table class="table align-middle">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Type</th>
-                    <th>Actions</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Type</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,15 +24,17 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <td>{{ taxRule.name }}</td>
                     <td>{{ taxRule.amount }}</td>
                     <td>{{ taxRule.type }}</td>
-                    <td>
-                        <Link :href="`/tax-rules/${taxRule.id}/edit`" as="button" type="button">Edit</Link>
-                        <Link :href="`/tax-rules/${taxRule.id}`" method="delete" as="button" type="button">Delete</Link>
+                    <td style="text-align:right;">
+                        <Link :href="`/tax-rules/${taxRule.id}/edit`" as="button" type="button" class="btn btn-sm btn-outline-primary" title="Edit this tax rule"><i class="fas fa-edit"></i></Link>
+                        &nbsp;
+                        <Link :href="`/tax-rules/${taxRule.id}`" method="delete" as="button" type="button" class="btn btn-sm btn-outline-danger" title="Delete this tax rule"><i class="fas fa-trash-alt"></i></Link>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <Link href="/tax-rules/create" as="button" type="button">Create a new tax rule</Link>
+        <Link href="/tax-rules/create" as="button" type="button" class="btn btn-primary">Create a new tax rule</Link>
     </div>
+</div>
 </AppLayout>
 </template>
   

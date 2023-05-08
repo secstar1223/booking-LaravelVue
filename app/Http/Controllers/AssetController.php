@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 use App\Models\Asset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AssetController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $team = $user->currentTeam;
-        $assets = $team->assets;
+       $user = auth()->user();
+       $team = $user->currentTeam;
+       $assetsQuery = Asset::query()->where('team_id', $team->id);
+       $assets = $assetsQuery->get();
 
         return Inertia::render('Asset/Index', [
-            'assets' => $assets,
+        'assets' => $assets,
+        'team' => $team,
+        'user' => $user,
         ]);
     }
 
@@ -62,15 +66,17 @@ class AssetController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->asset()->where('id', $asset->id)->exists()) {
-            return redirect()->back()->withErrors(['error' => 'The specified asset does not exist or is not associated with the current team.']);
-        }
+        $assetsQuery = Asset::query()->where('team_id', $team->id);
+    	$currentAsset = $assetsQuery->find($asset->id);
 
-        $asset->name = $validatedData['name'];
-        $asset->amount = $validatedData['amount'];
-        $asset->resource_tracking = $validatedData['resource_tracking'];
-        $asset->save();
+    if (!$currentAsset) {
+        return redirect()->back()->withErrors(['error' => 'The specified asset does not exist or is not associated with the current team.']);
+    }
 
+    $currentAsset->name = $validatedData['name'];
+    $currentAsset->amount = $validatedData['amount'];
+    $currentAsset->resource_tracking = $validatedData['resource_tracking'];
+    $currentAsset->save();
         return redirect()->route('asset.index');
     }
 
@@ -79,9 +85,12 @@ class AssetController extends Controller
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if (!$team->asset()->where('id', $asset->id)->exists()) {
-            return redirect()->back()->withErrors(['error' => 'The specified asset does not exist or is not associated with the current team.']);
-        }
+        $assetsQuery = Asset::query()->where('team_id', $team->id);
+    	$currentAsset = $assetsQuery->find($asset->id);
+
+    if (!$currentAsset) {
+        return redirect()->back()->withErrors(['error' => 'The specified asset does not exist or is not associated with the current team.']);
+    }
 
         try {
             $asset->delete();

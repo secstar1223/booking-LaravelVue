@@ -5,32 +5,31 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
 
 <template>
-<AppLayout title="Durations">
-    <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Tax groups
-            </h2>
-    </template>
-    <div>
-        <table style="width:100%;">
+<AppLayout title="Tax groups">
+<div class="container">
+    <div class="box">
+        <h1>Tax groups</h1>
+        <table class="table align-middle">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th scope="col">Name</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="taxGroup in taxGroups" :key="taxGroup.id">
                     <td>{{ taxGroup.name }}</td>
-                    <td>
-                        <Link :href="`/tax-groups/${taxGroup.id}/edit`" as="button" type="button">Edit</Link>
-                        <Link :href="`/tax-groups/${taxGroup.id}`" method="delete" as="button" type="button">Delete</Link>
+                    <td style="text-align:right;">
+                        <Link :href="`/tax-groups/${taxGroup.id}/edit`" as="button" type="button" class="btn btn-sm btn-outline-primary" title="Edit this tax group"><i class="fas fa-edit"></i></Link>
+                        &nbsp;
+                        <Link :href="`/tax-groups/${taxGroup.id}`" method="delete" as="button" type="button" class="btn btn-sm btn-outline-danger" title="Delete this tax group"><i class="fas fa-trash-alt"></i></Link>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <Link href="/tax-groups/create" as="button" type="button">Create a new tax group</Link>
+        <Link href="/tax-groups/create" as="button" type="button" class="btn btn-primary">Create a new tax group</Link>
     </div>
+</div>
 </AppLayout>
 </template>
   

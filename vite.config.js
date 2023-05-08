@@ -8,11 +8,11 @@ export default defineConfig({
     server: {
         host: true,
         hmr: {
-            host: 'booking.hxx.li',
+            host: 'bookings247.co',
         },
         https: {
-            key: fs.readFileSync('./resources/ssl/hxx.li.key'),
-            cert: fs.readFileSync('./resources/ssl/hxx.li.crt'),
+            key: fs.readFileSync('./resources/ssl/bookings247.key'),
+            cert: fs.readFileSync('./resources/ssl/bookings247.crt'),
         },
     },
     resolve: {

@@ -3,23 +3,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Availability;
 use App\Models\Detail;
+use App\Models\Duration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class AvailabilityController extends Controller
 {
-    public function index(Detail $details)
+    public function index(Detail $detail)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if ($details->team->id !== $team->id) {
-            return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
-        }
+		//$detailQuery = Detail::query()->where('team_id', $team->id);
+    	//$currentdetail = $detailQuery->find($Detail->id);
+
+  //  if (!$currentdetail) {
+  //      return redirect()->back()->withErrors(['error' => 'The specified asset does not exist or is not associated with the current team.']);
+  //  }
+  $currentDetail = Detail::with('availabilities.durations')->where('team_id', $team->id)->first();
+
+
+$detail = $currentDetail;
 
         $availabilities = [];
-        foreach ($dtails->availabilities as $available) {
+		if ($detail->availabilities !== null) {
+        foreach ($detail->availabilities as $available) {
             $appliesTo = [];
             foreach ($available->durations as $duration) {
                 $appliesTo[] = [$duration->name, $duration->id];
@@ -36,46 +45,47 @@ class AvailabilityController extends Controller
                 'display_created_timezone',*/
             ];
         }
-
-        return Inertia::render('Availability/Index', [
-            'detailsId' => $details->id,
+		}
+        return Inertia::render('Details/EditNewRentals/availabilityindex', [
+            'detailsId' => $detail->id,
+			'detail' => $detail,
             'availabilities' => $availabilities,
         ]);
     }
 
-    public function create(Detail $details)
+    public function create(Detail $detail)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if ($details->team->id !== $team->id) {
-            return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
-        }
+       // if ($details->team->id !== $team->id) {
+       //     return redirect()->back()->withErrors(['error' => 'The specified rental product does not exist or is not associated with the current team.']);
+       // }
 
         $durations = [];
-        foreach ($details->durations as $duration) {
+        foreach ($detail->durations as $duration) {
             $durations[] = [
                 'id' => $duration->id,
                 'name' => $duration->name,
             ];
         }
 
-        return Inertia::render('Availability/Create', [
-            'detailsId' => $details->id,
+        return Inertia::render('Details/EditNewRentals/availabilitycreate', [
+            'detail' => $detail,
             'durations' => $durations,
         ]);
     }
 
-    public function store(Detail $details, Request $request)
+    public function store(Detail $detail, Request $request)
     {
         $user = auth()->user();
         $team = $user->currentTeam;
 
-        if ($details->team->id !== $team->id) {
-            return response()->json(['errors' => [
-                'days' => 'The specified rental product does not exist or is not associated with the current team.',
-            ]]);
-        }
+        // if ($detail->team->id !== $team->id) {
+        //     return response()->json(['errors' => [
+        //         'days' => 'The specified rental product does not exist or is not associated with the current team.',
+        //     ]]);
+        // }
 
         $validatedData = $request->validate([
             'mon' => 'required|bool',
@@ -120,10 +130,10 @@ class AvailabilityController extends Controller
         $availability->start_time = ($validatedData['times'] == 'specific' ? $validatedData['starts_specific'][0] : $validatedData['start_time']);//$validatedData['start_time'];
         $availability->end_time = ($validatedData['times'] == 'specific' ? $validatedData['starts_specific'][count($validatedData['starts_specific'])-1] : $validatedData['end_time']);//$validatedData['end_time'];
         $availability->starts_specific = $validatedData['starts_specific'];
-        $availability->details()->associate($details);
+        $availability->detail()->associate($detail);
         $availability->save();
 
-        $durations = $details->durations()->whereIn('id', $validatedData['durations'])->get();
+        $durations = $detail->durations()->whereIn('id', $validatedData['durations'])->get();
         foreach ($durations as $duration) {
             $availability->durations()->attach($duration);
         }

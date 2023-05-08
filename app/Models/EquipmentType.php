@@ -5,20 +5,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class EquipmentType extends Model
 {
+    protected $table = 'rental_equipment_types';
     protected $fillable = [
         'name',
         'description',
-		'min-amount',
-		'max-amount',
-		'require-min',
-		'widget-image',
-		'widget-display',
-		'asset_id',
+        'min_amount',
+        'max_amount',
+        'require_min',
+        'widget_image',
+        'widget_display',
+        'assetID',
+        'rental_product_id',
     ];
 
-    public function rentalProduct()
+
+    public function Detail()
     {
-        return $this->belongsTo(RentalProduct::class);
+        return $this->belongsTo(Detail::class);
     }
 
 }

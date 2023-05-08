@@ -12,7 +12,12 @@ const props = defineProps({
     durations: {
         type: Array,
         required: true
+    },
+    detail: {
+        type: Array,
+        required: true
     }
+
 })
 
 const state = reactive({
@@ -94,7 +99,7 @@ function toggleDaily() {
 
 function handleSubmit() {
     let method = 'POST'
-    let url = '/rentals/' + props.rentalProductId + '/availability'
+    let url = '/rentals/' + props.detail.id + '/editnewrentals/availabilityindex'
 
     let availability = {
         mon: state.mon,
@@ -136,7 +141,7 @@ function handleSubmit() {
             state.errors = data.errors
             return
         }
-        window.location = '/rentals/' + props.rentalProductId + '/availability'
+        window.location = '/rentals/' + props.detail.id + '/editnewrentals/availabilityindex'
     })
     .catch((response) => {
         return response.json().then((data) => {
@@ -227,11 +232,18 @@ function handleSubmit() {
 
                 <div class="row" v-if="state.times == 'repeats'">
                     <div class="col-4 mb-4">
-                        <label class="form-label" for="starts_every">Rental starts every</label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="starts_every" v-model="state.starts_every" aria-label="Rental starts every x minutes." aria-describedby="minute_label">
-                            <span class="input-group-text" id="minute_label">minutes</span>
-                        </div>
+<label class="form-label" for="starts_every">Rental starts every</label>
+<div class="input-group">
+  <select class="form-select" id="starts_every" v-model="state.starts_every" aria-label="Rental starts every x minutes." aria-describedby="minute_label">
+    <option value="15">15 minutes</option>
+    <option value="30">30 minutes</option>
+    <option value="45">45 minutes</option>
+    <option value="60">60 minutes</option>
+  </select>
+</div>
+
+
+
                     </div>
                     <div class="col-2 mb-4"></div>
                     <div class="col-3 mb-4">

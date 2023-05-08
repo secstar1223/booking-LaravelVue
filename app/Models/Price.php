@@ -9,16 +9,16 @@ class Price extends Model {
         'deposit',
     ];
 
-    public function equipmenttype()
+    public function equipmenttypes()
     {
         return $this->belongsTo(Equipmenttype::class);
     }
 
-    public function duration() {
+    public function durations() {
         return $this->belongsTo(Duration::class);
     }
 	
-	public function details() {
+	public function detail() {
         return $this->belongsTo(Details::class);
     }
 };

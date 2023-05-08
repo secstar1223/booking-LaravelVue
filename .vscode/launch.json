@@ -8,6 +8,7 @@
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
+            "host": "127.0.0.1",
             "port": 9003,
             "pathMappings": {
                 "/var/www/html/": "${workspaceFolder}"

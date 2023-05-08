@@ -13,36 +13,39 @@ import AppLayout from '@/Layouts/AppLayout.vue';
       </h2>
     </template>
     <div>
-        <table style="width:100%;">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Resource Tracking</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="asset in assets" :key="asset.id">
-                    <td>{{ asset.name }}</td>
-                    <td>{{ asset.amount }}</td>
-                    <td>{{ asset.resource_tracking }}</td>
-                    <td>
-                        <Link :href="`/asset/${asset.id}/edit`" as="button" type="button">Edit</Link>
-                        <Link :href="`/asset/${asset.id}`" method="delete" as="button" type="button">Delete</Link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <Link href="/asset/create" as="button" type="button">Create a new asset</Link>
-    </div>
+  <table class="table" style="width:100%;">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Resource Tracking</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="asset in assets" :key="asset.id">
+        <td>{{ asset.name }}</td>
+        <td>{{ asset.amount }}</td>
+        <td>{{ asset.resource_tracking == 1 ? 'true' : 'false' }}</td>
+        <td>
+          <a :href="`/asset/${asset.id}/edit`" class="btn btn-primary" role="button">Edit</a>
+          <a :href="`/asset/${asset.id}`" class="btn btn-danger" role="button">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <Link href="/asset/create" class="btn btn-success" as="button" type="button">Create a new asset</Link>
+</div>
+
 </AppLayout>
 </template>
   
 <script>
 export default {
-    props: {
-        assets: Array,
-    },
+  props: {
+    user: Object,
+    team: Object,
+    assets: Array,
+  },
 };
 </script>
